@@ -7,6 +7,7 @@ import com.quentity.entity.GridView;
 import com.quentity.security.AuthenticatedUser;
 import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -62,11 +63,24 @@ public class MainLayout extends AppLayout {
     tabs = new TabSheet();
     tabs.getElement().getStyle().set("height", "100%");
     tabs.addThemeVariants(TabSheetVariant.LUMO_TABS_SMALL);
-    setPrimarySection(Section.NAVBAR);
-    getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "false");
+
+    UI.getCurrent().getPage().retrieveExtendedClientDetails(details -> {
+      handleScreenWidth(details.getScreenWidth());
+    });
     addDrawerContent();
     addHeaderContent();
   }
+
+  private void handleScreenWidth(int screenWidth) {
+    if(screenWidth > 700){ // not sure if this is the best way to do it , this requires the page to be updated.
+      setPrimarySection(Section.NAVBAR);
+      getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "false");
+    }else {
+      setPrimarySection(Section.DRAWER);
+      getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "true");
+    }
+  }
+
 
   private void addHeaderContent() {
     DrawerToggle toggle = new DrawerToggle();
