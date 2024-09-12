@@ -5,7 +5,6 @@ import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.GridView;
 import com.quentity.security.AuthenticatedUser;
-import com.quentity.views.myview.Human;
 import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -14,13 +13,13 @@ import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.tabs.TabSheetVariant;
-import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import com.vaadin.flow.spring.annotation.UIScope;
@@ -32,13 +31,12 @@ import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-
+import com.vaadin.flow.component.textfield.TextField;
 import java.io.ByteArrayInputStream;
 import java.util.Optional;
 import java.util.Set;
 
 import static com.quentity.misc.Utils.addToTabs;
-import static com.quentity.misc.Utils.isInheritedFrom;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -64,7 +62,8 @@ public class MainLayout extends AppLayout {
     tabs = new TabSheet();
     tabs.getElement().getStyle().set("height", "100%");
     tabs.addThemeVariants(TabSheetVariant.LUMO_TABS_SMALL);
-    setPrimarySection(Section.DRAWER);
+    setPrimarySection(Section.NAVBAR);
+    getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "false");
     addDrawerContent();
     addHeaderContent();
   }
@@ -80,10 +79,14 @@ public class MainLayout extends AppLayout {
   }
 
   private void addDrawerContent() {
-    Span appName = new Span("server");
-    appName.addClassNames(LumoUtility.FontWeight.SEMIBOLD, LumoUtility.FontSize.LARGE);
-    Header header = new Header(appName);
-
+    TextField searchDrawerTxt = new TextField();
+    searchDrawerTxt.setPlaceholder("Search");
+    searchDrawerTxt.setWidth("100%");
+//    searchDrawerTxt.getStyle().set("--vaadin-input-field-background", "var(--lumo-base-color)");
+    searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
+    searchDrawerTxt.setClearButtonVisible(true);
+    Header header = new Header(searchDrawerTxt);
+    header.getElement().getStyle().set("align-items", "center");
     Scroller scroller = new Scroller(createNavigation());
 
     addToDrawer(header, scroller, createFooter());

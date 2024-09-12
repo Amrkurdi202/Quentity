@@ -1,6 +1,7 @@
 vaadin-scroller[slot="drawer"] {
   padding: var(--lumo-space-xs);
-  background-color: var(--lumo-contrast-5pct);
+  border-right: 3px solid var(--lumo-contrast-10pct);
+/*  background-color: var(--lumo-contrast-5pct);*/
 }
 
 vaadin-side-nav-item vaadin-icon {
@@ -11,10 +12,11 @@ vaadin-side-nav-item vaadin-icon {
   display: flex;
   align-items: center;
   gap: var(--lumo-space-xs);
-  padding: var(--lumo-space-xs) var(--lumo-space-xs);
+  padding: var(--lumo-space-xs) var(--lumo-space-m);
   min-height: var(--lumo-size-xs);
   box-sizing: border-box;
-  background-color: var(--lumo-contrast-5pct);
+  border-right: 3px solid var(--lumo-contrast-10pct);
+/*  background-color: var(--lumo-contrast-5pct);*/
 }
 
 [slot="drawer"]:is(header, footer):is(:empty) {
