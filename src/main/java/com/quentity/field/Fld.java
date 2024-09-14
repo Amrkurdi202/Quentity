@@ -9,10 +9,10 @@ import java.util.Objects;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public abstract class Fld<TYPE, INNER_TYPE extends Comparable<INNER_TYPE>> extends Res<TYPE> implements Comparable<Fld<TYPE, INNER_TYPE>> {
+public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE>> extends Res<TYPE> implements Comparable<Fld<TYPE, INNER_TYPE>> {
 
   @Transient
-  protected String defaultValue;
+  protected Object defaultValue;
   @Transient
   protected boolean required;
   @Transient
@@ -25,7 +25,7 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<INNER_TYPE>> exten
     this(null, false, false, true, true);
   }
 
-  public Fld(String defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
+  public Fld(Object defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
     this.defaultValue = defaultValue;
     this.required = required;
     this.visibleField = visible;
