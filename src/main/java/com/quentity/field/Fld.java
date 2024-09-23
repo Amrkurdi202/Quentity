@@ -44,4 +44,5 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   public void setFieldName(String fieldName) {
     hasLabel.setLabel(updateLabel(fieldName));
   }
+  public abstract void validateValue(INNER_TYPE value);
 }

@@ -21,10 +21,10 @@ public class Item extends Entity<Item> {
 
     @Autowired()
     public Item(EntityService<Item> entityService) {
-        super(entityService);
+        super(entityService);;
     }
 
     public Item() {
-        super();
+        super();;
     }
 }

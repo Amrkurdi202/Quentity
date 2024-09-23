@@ -2,11 +2,10 @@ package com.quentity.field;
 
 import com.vaadin.flow.component.textfield.TextField;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import java.util.regex.Pattern;
 
@@ -20,6 +19,7 @@ public class FldString extends Fld<FldString, String> {
   @Transient
   @Setter(value = AccessLevel.NONE)
   private String fieldName;
+  @FullTextField
   private String textValue;
   @Transient
   private int minLength;
@@ -95,13 +95,8 @@ public class FldString extends Fld<FldString, String> {
     }
   }
 
-  @PrePersist
-  @PreUpdate
-  private void validateFldString() {
-    validateValue(this.getTextValue());
-  }
 
-  private void validateValue(String value) throws IllegalArgumentException {
+  public void validateValue(String value) throws IllegalArgumentException {
     if (this.isRequired() && isEmptyValue(value)) {
       throw new IllegalArgumentException("Required");
     }
@@ -111,8 +106,8 @@ public class FldString extends Fld<FldString, String> {
         throw new IllegalArgumentException("Invalid value");
       }
     }
-    if (value != null && (value.length() < this.getMinLength() || value.length() > this.getMaxLength())) {
-      throw new IllegalArgumentException("Length must be between " + this.getMinLength() + " and " + this.getMaxLength() + " characters");
+    if (value != null && (value.length() < this.getMinLength() || value.length() > this.getMaxLength() && this.getMaxLength() > 0)) {
+      throw   new IllegalArgumentException("Length must be between " + this.getMinLength() + " and " + this.getMaxLength() + " characters");
     }
   }
 

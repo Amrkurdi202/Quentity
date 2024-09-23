@@ -5,6 +5,7 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -25,7 +26,7 @@ public class FldDate extends Fld<FldDate, LocalDate> {
     private LocalDate minValue;
     @Transient
     private LocalDate maxValue;
-
+    @FullTextField
     private LocalDate dateValue;
 
     @Transient
@@ -49,6 +50,7 @@ public class FldDate extends Fld<FldDate, LocalDate> {
                 datePicker.setInvalid(true);
                 datePicker.setErrorMessage(ex.getMessage());
             }
+            this.dateValue = eValue;
         });
 
         add(datePicker);
@@ -91,7 +93,7 @@ public class FldDate extends Fld<FldDate, LocalDate> {
 
     }
 
-    private void validateValue(LocalDate value) throws IllegalArgumentException {
+    public void validateValue(LocalDate value) throws IllegalArgumentException {
         if (this.isRequired() && value == null) {
             throw new IllegalArgumentException("Required");
         }

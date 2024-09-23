@@ -220,7 +220,7 @@ public class MainLayout extends AppLayout {
                   getUI().ifPresent(ui -> {
                     Entity bean = applicationContext.getBean(entityClass);
 
-                    VerticalLayout content = GridView.get(bean.getEntityService(), bean, entityClass, entityClass.getDeclaredFields());
+                    VerticalLayout content = new GridView(bean);
 
                     if (!firstTime) {
                       firstTime = true;

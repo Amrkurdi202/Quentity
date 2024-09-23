@@ -5,17 +5,18 @@ import com.quentity.field.FldDate;
 import com.quentity.field.FldString;
 import jakarta.annotation.security.PermitAll;
 import com.quentity.entity.EntityService;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 
 @PermitAll
 @jakarta.persistence.Entity
 @Component
 public class Human extends Entity<Human> {
-
+    @IndexedEmbedded
     public FldString name, age, address;
+
     public FldDate birthDate;
 
     public void define() {

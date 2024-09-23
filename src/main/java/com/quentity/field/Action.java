@@ -10,6 +10,10 @@ public abstract class Action extends Res<Action> {
   public Action(Entity entity) {
     button = new Button();
     button.addSingleClickListener((event) -> onCall(entity, event));
+    add(button);
+  }
+  public void setActionName(String actionName) {
+    button.setText(actionName);
   }
 
   protected boolean isEnabledAction() {

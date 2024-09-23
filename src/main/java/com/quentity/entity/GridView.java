@@ -20,34 +20,41 @@ import com.vaadin.flow.theme.lumo.LumoIcon;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+import java.util.Set;
 
 import static com.quentity.entity.Entity.getGetFieldValue;
 import static com.quentity.misc.Utils.addToTabs;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
-public class GridView {
-  public static <T extends Entity> VerticalLayout
-  get(EntityService<T> entityService, Entity<T> entity, Class<T> aClass, Field[] classfields) {
-    EntityView<T> verticalLayout = new EntityView<>(aClass);
-    verticalLayout.setSizeFull();
+public class GridView<T extends Entity> extends EntityView<T> {
+
+  public GridView(Entity<T> entity) {
+    super((Class<T>) entity.getClass());
+    setSizeFull();
+    EntityService entityService = entity.getEntityService();
+    Class<T> clazz = getClazz();
+    Set<Field> classFields = EntityFieldsFactory.getFields(clazz);
     HorizontalLayout horizontalLayout = new HorizontalLayout();
     Button button = new Button(LumoIcon.PLUS.create(), (event -> {
       try {
-        showThis(entityService, aClass, classfields, aClass.getDeclaredConstructor().newInstance());
+        showThis(clazz.getDeclaredConstructor(EntityService.class).newInstance(entityService));
       } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
         throw new RuntimeException(e);
       }
     }));
     horizontalLayout.add(button);
-    verticalLayout.add(horizontalLayout);
-    Grid<T> grid = new Grid<>(aClass, false);
+    add(horizontalLayout);
+    Grid<T> grid = new Grid<>(clazz, false);
     grid.setHeight("80vh");
 
     //Adding Columns
-    for (Field field : classfields) {
+    for (Field field : classFields) {
+      if(Modifier.isStatic(field.getModifiers()))
+        continue;
       if (isInheritedFrom(field.getType(), Fld.class)) {
         try {
-          String fullFieldName = aClass.getName() + "." + field.getName();
+          String fullFieldName = clazz.getName() + "." + field.getName();
           String fieldName = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(fullFieldName);
           grid.addColumn(
                           item -> {
@@ -68,7 +75,11 @@ public class GridView {
         }
       } else if (isInheritedFrom(field.getType(), Action.class)) {
         try {
-          horizontalLayout.add((Action) field.get(entity));
+          String fullFieldName = clazz.getName() + "." + field.getName();
+          String fieldName = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(fullFieldName);
+          Action action = (Action) field.get(entity);
+          action.setActionName(fieldName);
+          horizontalLayout.add(action);
         } catch (IllegalAccessException e) {
           throw new RuntimeException(e);
         }
@@ -83,34 +94,35 @@ public class GridView {
     selectionModel.setDragSelect(true);
     grid.setRowsDraggable(true);
     grid.addItemClickListener(selectItem(selectionModel));
-    grid.addItemDoubleClickListener(showItem(entityService, aClass, classfields));
+    grid.addItemDoubleClickListener(showItem());
     //End Configs
-
     //Giving Data Provider
     grid.setDataProvider(DataProvider.fromFilteringCallbacks(
             query ->
-                    entityService.findAll(query).stream()
+                    entityService.findAll(query).stream().map(ent-> {
+                      ((Entity) ent).setEntityService(entityService);
+                      return (T) ent;
+                    })
             ,
             query ->
                     Math.toIntExact(entityService.count())
     ));
     //End Giving Data Provider
 
-    verticalLayout.add(grid);
-    return verticalLayout;
+    add(grid);
   }
 
 
-  private static <T extends Entity> ComponentEventListener<ItemDoubleClickEvent<T>> showItem(EntityService<T> entityService, Class<T> currentClass, Field[] fields) {
+  private static <T extends Entity> ComponentEventListener<ItemDoubleClickEvent<T>> showItem() {
     return event -> {
       T item = event.getItem();
-      showThis(entityService, currentClass, fields, item);
+      showThis(item);
     };
   }
 
-  private static <T extends Entity> void showThis(EntityService<T> entityService, Class<T> currentClass, Field[] fields, T item) {
+  private static <T extends Entity> void showThis( T item) {
     if (item != null) {
-      VerticalLayout selfView = SelfView.getSelfView(entityService, item, currentClass, fields);
+      VerticalLayout selfView = new SelfView(item);
 
       UI current = UI.getCurrent();
       if (!current.getInternals().getActiveRouterTargetsChain().isEmpty()) {//to make sure there is a tabSheet getCurrentView throws IllegalStateException

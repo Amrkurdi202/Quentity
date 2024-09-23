@@ -2,43 +2,51 @@ package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.field.Fld;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-public class SelfView {
-  public static <T extends Entity<T>> EntityView
-  getSelfView(EntityService<T> entityService, Entity<T> entity, Class<T> aClass, Field[] classfields) {
+public class SelfView<T extends Entity> extends EntityView<T> {
 
-    EntityView<T> verticalLayout =  new EntityView<>(aClass);
+  public SelfView(Entity<T> entity) {
+    super((Class<T>) entity.getClass());
+    Class<? extends Entity> clazz = entity.getClass();
+    Set<Field> classfields = EntityFieldsFactory.getFields(clazz);
     HorizontalLayout horizontalLayout = new HorizontalLayout();
-
     FontAwesome.Solid.Icon icon = FontAwesome.Solid.SAVE.create();
     icon.setVisible(true);
     Button button = new Button(icon, (event -> {
-      entityService.save((T) entity);
+      entity.save();
     }));
     button.addClickShortcut(Key.ENTER);
 
     horizontalLayout.add(button);
-    verticalLayout.add(horizontalLayout);
-
+    add(horizontalLayout);
     for (Field field : classfields) {
+      if (Modifier.isStatic(field.getModifiers()))
+        continue;
       try {
-        Fld fld = (Fld) field.get(entity);
-        if (fld == null) {
-          fld = (Fld) field.getType().getDeclaredConstructor().newInstance();
-          field.setAccessible(true);
-          field.set(entity, fld);
+        field.setAccessible(true);
+        Object fieldObj = field.get(entity);
+        if (Fld.class.isAssignableFrom(field.getType())) {
+          Fld fld = (Fld) fieldObj;
+          if (fld == null) {
+            fld = (Fld) field.getType().getDeclaredConstructor().newInstance();
+            field.set(entity, fld);
+          }
+          String fullFieldName = clazz.getName() + "." + field.getName();
+          fld.setFieldName(fullFieldName);
+          fld.setFieldValue(fld.getFieldValue());
+          add(fld);
         }
-        String fullFieldName = aClass.getName() + "." + field.getName();
-        fld.setFieldName(fullFieldName);
-        fld.setFieldValue(fld.getFieldValue());
-        verticalLayout.add(fld);
       } catch (IllegalAccessException e) {
         e.printStackTrace();
       } catch (InvocationTargetException | NoSuchMethodException | InstantiationException e) {
@@ -46,7 +54,6 @@ public class SelfView {
       }
     }
     entity.define();
-    return verticalLayout;
   }
 
 }
