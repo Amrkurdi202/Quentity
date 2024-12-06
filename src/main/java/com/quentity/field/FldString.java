@@ -1,5 +1,6 @@
 package com.quentity.field;
 
+import com.quentity.field.events.FieldChanged;
 import com.vaadin.flow.component.textfield.TextField;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
@@ -40,7 +41,8 @@ public class FldString extends Fld<FldString, String> {
       String eValue = e.getValue();
       try {
         validateValue(eValue);
-        onFieldChanged(e.getOldValue(), eValue);
+        if (fieldChangedCallback != null)
+          fieldChangedCallback.onFieldChanged(e.getOldValue(), eValue);
         textField.setInvalid(false);
       } catch (IllegalArgumentException ex) {
         textField.setInvalid(true);
@@ -107,13 +109,10 @@ public class FldString extends Fld<FldString, String> {
       }
     }
     if (value != null && (value.length() < this.getMinLength() || value.length() > this.getMaxLength() && this.getMaxLength() > 0)) {
-      throw   new IllegalArgumentException("Length must be between " + this.getMinLength() + " and " + this.getMaxLength() + " characters");
+      throw new IllegalArgumentException("Length must be between " + this.getMinLength() + " and " + this.getMaxLength() + " characters");
     }
   }
 
-  private void onFieldChanged(String oldValue, String newValue) {
-
-  }
 
   @Override
   public String getFieldValue() {

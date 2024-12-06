@@ -44,7 +44,8 @@ public class FldDate extends Fld<FldDate, LocalDate> {
             LocalDate eValue = e.getValue();
             try {
                 validateValue(eValue);
-                onFieldChanged(e.getOldValue(), eValue);
+                if (fieldChangedCallback != null)
+                    fieldChangedCallback.onFieldChanged(e.getOldValue(), eValue);
                 datePicker.setInvalid(false);
             } catch (IllegalArgumentException ex) {
                 datePicker.setInvalid(true);
@@ -87,10 +88,6 @@ public class FldDate extends Fld<FldDate, LocalDate> {
         datePicker.setEnabled(editable);
         this.hasLabel = datePicker;
         datePicker.addThemeName("label-left");
-    }
-
-    private void onFieldChanged(LocalDate oldValue, LocalDate newValue) {
-
     }
 
     public void validateValue(LocalDate value) throws IllegalArgumentException {

@@ -87,6 +87,6 @@ public class EntityService<E extends Entity> {
                       .matching(keyword)
                       .fuzzy(2));
     return where
-            .fetchHits(pageable.getPageNumber() - 1, pageable.getPageSize());
+            .fetchHits(pageable.getPageNumber() , pageable.getPageSize());
   }
 }

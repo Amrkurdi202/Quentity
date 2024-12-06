@@ -73,7 +73,11 @@ public class GridView<T extends Entity> extends EntityView<T> {
         } catch (SecurityException e) {
           throw new RuntimeException(e);
         }
-      } else if (isInheritedFrom(field.getType(), Action.class)) {
+      }
+      else if (isInheritedFrom(field.getType(), Entity.class)) {
+        //TODO
+      }
+      else if (isInheritedFrom(field.getType(), Action.class)) {
         try {
           String fullFieldName = clazz.getName() + "." + field.getName();
           String fieldName = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(fullFieldName);
@@ -120,7 +124,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
     };
   }
 
-  private static <T extends Entity> void showThis( T item) {
+  public static <T extends Entity> void showThis(T item) {
     if (item != null) {
       VerticalLayout selfView = new SelfView(item);
 

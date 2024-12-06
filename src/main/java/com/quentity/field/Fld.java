@@ -1,5 +1,6 @@
 package com.quentity.field;
 
+import com.quentity.field.events.FieldChanged;
 import com.vaadin.flow.component.HasLabel;
 import jakarta.persistence.Transient;
 import lombok.Data;
@@ -20,6 +21,8 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   @Transient
   protected boolean editable;
   HasLabel hasLabel;
+  @Transient
+  protected FieldChanged<INNER_TYPE> fieldChangedCallback;
 
   public Fld() {
     this(null, false, false, true, true);
@@ -44,5 +47,10 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   public void setFieldName(String fieldName) {
     hasLabel.setLabel(updateLabel(fieldName));
   }
+
   public abstract void validateValue(INNER_TYPE value);
+
+  public void onFieldChanged(FieldChanged<INNER_TYPE> callback) {
+    fieldChangedCallback = callback;
+  }
 }

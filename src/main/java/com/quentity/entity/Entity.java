@@ -1,8 +1,8 @@
 package com.quentity.entity;
 
 
-
 import com.quentity.field.Fld;
+import com.quentity.field.SingleEntityReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -40,12 +40,22 @@ public abstract class Entity<T extends Entity> {
             .forEach(field -> {
               if (Modifier.isStatic(field.getModifiers()))
                 return;
-              try {
-                field.setAccessible(true);
-                Fld fld = (Fld) field.get(this);
-                fld.validateValue((Comparable) getGetFieldValue(field, this));
-              } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                throw new RuntimeException(e);
+              if (Fld.class.isAssignableFrom(field.getType())) {
+                try {
+                  field.setAccessible(true);
+                  Fld fld = (Fld) field.get(this);
+                  fld.validateValue((Comparable) getGetFieldValue(field, this));
+                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                  throw new RuntimeException(e);
+                }
+              } else if (SingleEntityReference.class.isAssignableFrom(field.getType())) {
+                try {
+                  field.setAccessible(true);
+                  SingleEntityReference singleEntityReference = (SingleEntityReference) field.get(this);
+                  singleEntityReference.validateValue((Entity) getGetFieldValue(field, this));
+                } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                  throw new RuntimeException(e);
+                }
               }
             });
     Object save = entityService.save((T) this);

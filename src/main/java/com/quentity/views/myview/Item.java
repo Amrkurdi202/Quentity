@@ -4,6 +4,7 @@ import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.field.FldString;
 import jakarta.annotation.security.PermitAll;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Item extends Entity<Item> {
 
+    @IndexedEmbedded
     public FldString name, price;
 
     public void define() {
@@ -21,10 +23,12 @@ public class Item extends Entity<Item> {
 
     @Autowired()
     public Item(EntityService<Item> entityService) {
-        super(entityService);;
+        super(entityService);
+        ;
     }
 
     public Item() {
-        super();;
+        super();
+        ;
     }
 }
