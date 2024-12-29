@@ -1,4 +1,4 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
 import com.quentity.Application;
 import com.vaadin.flow.component.customfield.CustomField;

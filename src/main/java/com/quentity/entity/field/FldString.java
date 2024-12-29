@@ -1,6 +1,5 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
-import com.quentity.field.events.FieldChanged;
 import com.vaadin.flow.component.textfield.TextField;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
@@ -35,7 +34,7 @@ public class FldString extends Fld<FldString, String> {
 
   @Builder
   public FldString(String value, int minLength, int maxLength, String mask, String defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
-    super(defaultValue, required, unique, visible, editable);
+    super(defaultValue, required, visible, editable);
     this.textField = new TextField();
     textField.addValueChangeListener(e -> {
       String eValue = e.getValue();

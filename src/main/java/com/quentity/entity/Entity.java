@@ -1,8 +1,10 @@
 package com.quentity.entity;
 
 
-import com.quentity.field.Fld;
-import com.quentity.field.SingleEntityReference;
+import com.quentity.entity.field.Fld;
+import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.refGenPlug.FieldPojo;
+import com.quentity.reflection.Reflector;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -10,6 +12,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import java.util.Set;
 
 
 @Data
@@ -28,6 +31,7 @@ public abstract class Entity<T extends Entity> {
 
   @SneakyThrows
   public Entity(EntityService<T> entityService) {
+    this();
     this.entityService = entityService;
   }
 
@@ -62,7 +66,7 @@ public abstract class Entity<T extends Entity> {
     System.out.println("save = " + save);
   }
 
-  static <T extends Entity> Object getGetFieldValue(Field field, T item) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+  public static <T extends Entity> Object getGetFieldValue(Field field, T item) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
     Object obj = field.get(item);
 
     return obj == null ?
@@ -72,6 +76,11 @@ public abstract class Entity<T extends Entity> {
                     .invoke(obj);
   }
 
-  public abstract void define();
+  @PostLoad
+  public void postLoad() {
+    this.entityService = ServiceFactory.getService(this.getClass());
+  }
+
+  public abstract void define(T entity);
 
 }

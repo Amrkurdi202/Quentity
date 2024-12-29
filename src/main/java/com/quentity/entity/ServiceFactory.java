@@ -5,23 +5,50 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class ServiceFactory implements ApplicationContextAware {
   private static ApplicationContext applicationContext;
-  private static final ConcurrentHashMap<Class<?>,EntityService<?>> cachedServices = new ConcurrentHashMap<>();
+  private static final ConcurrentHashMap<Class<?>, EntityService<?>> CACHED_SERVICES = new ConcurrentHashMap<>();
+  private static final ConcurrentHashMap<Class<?>, MethodHandle> CACHED_DEFINES = new ConcurrentHashMap<>();
+  private static final MethodHandles.Lookup LOOKUP = MethodHandles.lookup();
 
 
   public static  <E extends Entity<E>> EntityService<E> getService(Class<E> entityClass) {
-    EntityService<E> entityService = (EntityService<E>) cachedServices.get(entityClass);
+    EntityService<E> entityService = (EntityService<E>) CACHED_SERVICES.get(entityClass);
     if (entityService != null)
       return entityService;
 
     String serviceName = entityClass.getSimpleName().toLowerCase() + "Service";
     entityService = (EntityService<E>) applicationContext.getBean(serviceName);
-    cachedServices.put(entityClass, entityService);
+    CACHED_SERVICES.put(entityClass, entityService);
     return entityService;
+  }
+
+  public static <E extends Entity<E>> EntityService<E> getService(String entityClassName) {
+    Entity<E> entity = (Entity<E>) applicationContext.getBean(entityClassName);
+    Class<? extends Entity> entityClass = entity.getClass();
+    return getService(entityClass);
+  }
+
+  public static <T extends Entity> void define(T entity) {
+    MethodHandle methodHandle = CACHED_DEFINES.get(entity.getClass());
+
+    try {
+      if (methodHandle == null) {
+        MethodType methodType = MethodType.methodType(void.class, entity.getClass());
+        methodHandle = LOOKUP.findVirtual(entity.getClass(), "define", methodType);
+        CACHED_DEFINES.put(entity.getClass(), methodHandle);
+      }
+      methodHandle.invoke(entity, entity);
+    } catch (Throwable e) {
+      throw new RuntimeException(e);
+    }
+
   }
 
   @Override

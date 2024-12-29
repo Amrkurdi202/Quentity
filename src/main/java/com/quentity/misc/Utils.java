@@ -4,7 +4,11 @@ import com.quentity.Application;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityView;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dnd.DragSource;
+import com.vaadin.flow.component.dnd.DropEffect;
+import com.vaadin.flow.component.dnd.DropTarget;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.splitlayout.SplitLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.theme.lumo.LumoIcon;
@@ -38,6 +42,24 @@ public class Utils {
               }
             }
     );
+    DragSource<Tab> dragSource = DragSource.create(tab);
+    dragSource.setDraggable(true);
+
+    DropTarget<Tab> dropTarget = DropTarget.create(tab);
+    dropTarget.setDropEffect(DropEffect.LINK);
+    dropTarget.setActive(true);
+
+    dropTarget.addDropListener(e -> {
+      Tab droppedTab = (Tab) e.getDragSourceComponent().orElse(null);
+      Component droppedTabComponent = tabs.getComponent(droppedTab);
+      tabs.remove(droppedTab);
+      Component component = tabs.getComponent(tab);
+      tabs.remove(tab);
+
+      SplitLayout splitLayout = new SplitLayout(droppedTabComponent, component);
+
+      tabs.add(tab, splitLayout);
+    });
 
     tabs.add(tab, content);
     tabs.setSelectedTab(tab);

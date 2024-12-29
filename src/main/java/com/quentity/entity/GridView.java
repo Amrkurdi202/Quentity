@@ -1,8 +1,8 @@
 package com.quentity.entity;
 
 import com.quentity.Application;
-import com.quentity.field.Action;
-import com.quentity.field.Fld;
+import com.quentity.entity.field.Action;
+import com.quentity.entity.field.Fld;
 import com.quentity.views.MainLayout;
 import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -29,16 +29,16 @@ import static com.quentity.misc.Utils.isInheritedFrom;
 
 public class GridView<T extends Entity> extends EntityView<T> {
 
-  public GridView(Entity<T> entity) {
-    super((Class<T>) entity.getClass());
+  public GridView(Class<T> entityClass, Entity<T> entity) {
+    super(entityClass);
     setSizeFull();
-    EntityService entityService = entity.getEntityService();
+    EntityService entityService = ServiceFactory.getService(entityClass);
     Class<T> clazz = getClazz();
     Set<Field> classFields = EntityFieldsFactory.getFields(clazz);
     HorizontalLayout horizontalLayout = new HorizontalLayout();
     Button button = new Button(LumoIcon.PLUS.create(), (event -> {
       try {
-        showThis(clazz.getDeclaredConstructor(EntityService.class).newInstance(entityService));
+        GridMisc.showThis(clazz.getDeclaredConstructor(EntityService.class).newInstance(entityService));
       } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
         throw new RuntimeException(e);
       }
@@ -76,8 +76,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
       }
       else if (isInheritedFrom(field.getType(), Entity.class)) {
         //TODO
-      }
-      else if (isInheritedFrom(field.getType(), Action.class)) {
+      } else if (entity != null && isInheritedFrom(field.getType(), Action.class)) {
         try {
           String fullFieldName = clazz.getName() + "." + field.getName();
           String fieldName = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(fullFieldName);
@@ -97,8 +96,8 @@ public class GridView<T extends Entity> extends EntityView<T> {
     GridMultiSelectionModel<T> selectionModel = (GridMultiSelectionModel<T>) grid.getSelectionModel();
     selectionModel.setDragSelect(true);
     grid.setRowsDraggable(true);
-    grid.addItemClickListener(selectItem(selectionModel));
-    grid.addItemDoubleClickListener(showItem());
+    grid.addItemClickListener(GridMisc.selectItem(selectionModel));
+    grid.addItemDoubleClickListener(GridMisc.showItem());
     //End Configs
     //Giving Data Provider
     grid.setDataProvider(DataProvider.fromFilteringCallbacks(
@@ -116,44 +115,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
     add(grid);
   }
 
-
-  private static <T extends Entity> ComponentEventListener<ItemDoubleClickEvent<T>> showItem() {
-    return event -> {
-      T item = event.getItem();
-      showThis(item);
-    };
-  }
-
-  public static <T extends Entity> void showThis(T item) {
-    if (item != null) {
-      VerticalLayout selfView = new SelfView(item);
-
-      UI current = UI.getCurrent();
-      if (!current.getInternals().getActiveRouterTargetsChain().isEmpty()) {//to make sure there is a tabSheet getCurrentView throws IllegalStateException
-        Main currentView = (Main) current.getCurrentView();
-        MainLayout mainLayout = currentView.getMainLayout();
-
-        if (mainLayout != null) {
-          TabSheet tabsSheet = mainLayout.tabs;
-          Long entityId = item.getEntityId();
-          String nu = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty("new");
-          addToTabs(" - " + (entityId == null ? nu : entityId.toString()), selfView, tabsSheet, item.getClass());
-        }
-      }
-    }
-  }
-
-  private static <T extends Entity> ComponentEventListener<ItemClickEvent<T>> selectItem(GridMultiSelectionModel<T> selectionModel) {
-    return event -> {
-      T item = event.getItem();
-      if (item != null) {
-        boolean selected = selectionModel.isSelected(item);
-        if (selected) {
-          selectionModel.deselect(item);
-        } else {
-          selectionModel.select(item);
-        }
-      }
-    };
+  public GridView(Entity<T> entity) {
+    this((Class<T>) entity.getClass(), entity);
   }
 }

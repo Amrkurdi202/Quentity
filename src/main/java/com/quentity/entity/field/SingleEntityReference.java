@@ -1,9 +1,9 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
 import com.quentity.Application;
 import com.quentity.entity.*;
 import com.quentity.entity.Entity;
-import com.quentity.field.events.FieldChanged;
+import com.quentity.entity.field.events.FieldChanged;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -22,7 +22,6 @@ import org.springframework.data.domain.PageRequest;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
 
 @Embeddable
 public class SingleEntityReference<T extends Entity> extends CustomField<SingleEntityReference<T>> {
@@ -30,7 +29,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
   private final Button button;
   @Setter
   @Getter
-  @OneToOne
+  @ManyToOne
   private T entity;
   @Transient
   private final ComboBox<T> comboBox;
@@ -54,30 +53,9 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
     this.comboBox.setPageSize(10);
     this.comboBox.setAutoOpen(true);
 
-    this.comboBox.setItemsWithFilterConverter(query ->
-                    ServiceFactory.getService(entity.getClass())
-                            .search(query.getFilter().orElse("")
-                                    , PageRequest.of(query.getPage()
-                                            , query.getPageSize())).stream(),
-            keyWord -> keyWord);
+
     this.comboBox.setRenderer(createRenderer());
-    this.comboBox.setItemLabelGenerator(source -> {
-      Class<T> clazz = (Class<T>) source.getClass();
-      Field firstField = EntityFieldsFactory.getFields(clazz).
-              stream().
-              filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
-              findFirst().orElse(null);
-      Long id = source.getEntityId();
-      String entityId = id == null ? "" : id.toString();
-      if (firstField == null) return entityId;
-      try {
-        firstField.setAccessible(true);
-        Fld fld = (Fld) firstField.get(source);
-        return fld != null ? fld.getFieldValue().toString() : entityId;
-      } catch (IllegalAccessException e) {
-        throw new RuntimeException(e);
-      }
-    });
+
     this.comboBox.addValueChangeListener(event -> {
       Entity eValue = event.getValue();
       try {
@@ -94,13 +72,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
       setPresentationValue(this);
     });
     comboBox.setValue(entity);
-    button = new Button(LumoIcon.PLUS.create(), (event -> {
-      try {
-        GridView.showThis(entity.getClass().getDeclaredConstructor(EntityService.class).newInstance(ServiceFactory.getService(entity.getClass())));
-      } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-        throw new RuntimeException(e);
-      }
-    }));
+    this.button = new Button(LumoIcon.PLUS.create());
     this.visibleField = true;
     this.editable = true;
     HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -109,6 +81,46 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
     horizontalLayout.setAlignItems(FlexComponent.Alignment.END);
     horizontalLayout.add(button);
     add(horizontalLayout);
+  }
+
+  public void reflect(String className) {
+    try {
+      final Class<T> clazz = (Class<T>) Class.forName(className);
+      this.comboBox.setItemsWithFilterConverter(query ->
+                      ServiceFactory.getService(clazz)
+                              .search(query.getFilter().orElse("")
+                                      , PageRequest.of(query.getPage()
+                                              , query.getPageSize())).stream(),
+              keyWord -> keyWord);
+
+      this.comboBox.setItemLabelGenerator(source -> {
+        Field firstField = EntityFieldsFactory.getFields(clazz).
+                stream().
+                filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
+                findFirst().orElse(null);
+        Long id = source.getEntityId();
+        String entityId = id == null ? "" : id.toString();
+        if (firstField == null) return entityId;
+        try {
+          firstField.setAccessible(true);
+          Fld fld = (Fld) firstField.get(source);
+          return fld != null ? fld.getFieldValue().toString() : entityId;
+        } catch (IllegalAccessException e) {
+          throw new RuntimeException(e);
+        }
+      });
+
+      this.button.addClickListener(event -> {
+        try {
+          GridMisc.showThis(clazz.getDeclaredConstructor(EntityService.class).newInstance(ServiceFactory.getService(clazz)));
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+          throw new RuntimeException(e);
+        }
+      });
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public void validateValue(T value) {

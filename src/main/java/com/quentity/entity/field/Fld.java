@@ -1,6 +1,6 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
-import com.quentity.field.events.FieldChanged;
+import com.quentity.entity.field.events.FieldChanged;
 import com.vaadin.flow.component.HasLabel;
 import jakarta.persistence.Transient;
 import lombok.Data;
@@ -25,10 +25,10 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   protected FieldChanged<INNER_TYPE> fieldChangedCallback;
 
   public Fld() {
-    this(null, false, false, true, true);
+    this(null, false, true, true);
   }
 
-  public Fld(Object defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
+  public Fld(Object defaultValue, boolean required, boolean visible, boolean editable) {
     this.defaultValue = defaultValue;
     this.required = required;
     this.visibleField = visible;

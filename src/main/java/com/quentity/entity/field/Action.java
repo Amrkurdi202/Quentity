@@ -1,4 +1,4 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
 import com.quentity.entity.Entity;
 import com.vaadin.flow.component.ClickEvent;

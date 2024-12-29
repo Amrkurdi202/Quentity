@@ -1,4 +1,4 @@
-package com.quentity.field.events;
+package com.quentity.entity.field.events;
 
 @FunctionalInterface
 public interface FieldChanged<T> {

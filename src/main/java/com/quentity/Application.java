@@ -1,6 +1,7 @@
 package com.quentity;
 
 import com.quentity.data.UserRepository;
+import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.server.PWA;
@@ -33,6 +34,8 @@ import java.util.Properties;
 public class Application implements AppShellConfigurator {
     public static final String LOCAL = "en";
     public static final HashMap <String, Properties> LOCAL_PROPERTIES = new HashMap<>();
+    private static final Reflector REFLECTOR = new Reflector();
+
     public static Properties loadProperties(String resourcePath) throws IOException {
         Properties properties = new Properties();
         try (InputStream inputStream = Application.class.getClassLoader().getResourceAsStream(resourcePath)) {
@@ -49,8 +52,6 @@ public class Application implements AppShellConfigurator {
 //        Properties arProperties = loadProperties("strings/ar.properties");
         LOCAL_PROPERTIES.put("en", enProperties);
 //        LOCAL_PROPERTIES.put("ar", arProperties);
-
-
         SpringApplication.run(Application.class, args);
     }
 

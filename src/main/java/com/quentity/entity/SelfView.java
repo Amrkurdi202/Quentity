@@ -1,8 +1,11 @@
 package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.quentity.field.Fld;
-import com.quentity.field.SingleEntityReference;
+import com.quentity.entity.field.Fld;
+import com.quentity.entity.field.MultiEntitiesReferences;
+import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.refGenPlug.FieldPojo;
+import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -35,17 +38,19 @@ public class SelfView<T extends Entity> extends EntityView<T> {
         field.setAccessible(true);
         Object fieldObj = field.get(entity);
         Class<?> fieldType = field.getType();
+        String clazzName = clazz.getName();
         if (isInheritedFrom(fieldType, Fld.class)) {
           Fld fld = (Fld) fieldObj;
           if (fld == null) {
             fld = (Fld) fieldType.getDeclaredConstructor().newInstance();
             field.set(entity, fld);
           }
-          String fullFieldName = clazz.getName() + "." + field.getName();
+          String fullFieldName = clazzName + "." + field.getName();
           fld.setFieldName(fullFieldName);
           fld.setFieldValue(fld.getFieldValue());
           add(fld);
         }
+        FieldPojo field1 = Reflector.getField(clazzName, field.getName());
         if (isInheritedFrom(fieldType, SingleEntityReference.class)) {
           SingleEntityReference singleEntityReference = (SingleEntityReference) fieldObj;
           if (singleEntityReference == null) {
@@ -60,10 +65,22 @@ public class SelfView<T extends Entity> extends EntityView<T> {
               singleEntityReference.setEntity(innerRefranceEntity);
             }
           }
-          String fullFieldName = clazz.getName() + "." + field.getName();
+          singleEntityReference.reflect(field1.getGeneric().get(0));
+          String fullFieldName = clazzName + "." + field.getName();
           singleEntityReference.setFullName(fullFieldName);
           singleEntityReference.refreshComboBox();
           add(singleEntityReference);
+        }
+        if (isInheritedFrom(fieldType, MultiEntitiesReferences.class)) {
+          MultiEntitiesReferences multiEntitiesReferences = (MultiEntitiesReferences) fieldObj;
+          if (multiEntitiesReferences == null) {
+            multiEntitiesReferences = new MultiEntitiesReferences();
+            field.set(entity, multiEntitiesReferences);
+          }
+          multiEntitiesReferences.reflect(field1.getGeneric().get(0), entity);
+          String fullFieldName = clazzName + "." + field.getName();
+          multiEntitiesReferences.setFullName(fullFieldName);
+          add(multiEntitiesReferences);
         }
       } catch (IllegalAccessException e) {
         e.printStackTrace();
@@ -71,7 +88,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
         throw new RuntimeException(e);
       }
     }
-    entity.define();
+    ServiceFactory.define(entity);
   }
 
 }

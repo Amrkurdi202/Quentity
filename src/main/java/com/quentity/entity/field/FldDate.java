@@ -1,4 +1,4 @@
-package com.quentity.field;
+package com.quentity.entity.field;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 import jakarta.persistence.Embeddable;
@@ -38,7 +38,7 @@ public class FldDate extends Fld<FldDate, LocalDate> {
 
     @Builder
     public FldDate(LocalDate value, LocalDate minValue, LocalDate maxValue, String mask, LocalDate defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
-        super(defaultValue, required, unique, visible, editable);
+        super(defaultValue, required, visible, editable);
         setDatePicker(new DatePicker());
         datePicker.addValueChangeListener(e -> {
             LocalDate eValue = e.getValue();
