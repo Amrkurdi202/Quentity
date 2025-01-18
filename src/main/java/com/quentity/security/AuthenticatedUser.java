@@ -25,6 +25,11 @@ public class AuthenticatedUser {
                 .map(userDetails -> userRepository.findByUsername(userDetails.getUsername()));
     }
 
+    @Transactional
+    public User update(User user) {
+        return userRepository.save(user);
+    }
+
     public void logout() {
         authenticationContext.logout();
     }

@@ -1,5 +1,8 @@
 package com.quentity.entity;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -17,16 +20,26 @@ public class ServiceFactory implements ApplicationContextAware {
   private static final ConcurrentHashMap<Class<?>, MethodHandle> CACHED_DEFINES = new ConcurrentHashMap<>();
   private static final MethodHandles.Lookup LOOKUP = MethodHandles.lookup();
 
+  private static ObjectMapper objectMapper;
+
 
   public static  <E extends Entity<E>> EntityService<E> getService(Class<E> entityClass) {
     EntityService<E> entityService = (EntityService<E>) CACHED_SERVICES.get(entityClass);
     if (entityService != null)
       return entityService;
 
-    String serviceName = entityClass.getSimpleName().toLowerCase() + "Service";
+    String serviceName = entityClass.getSimpleName() + "Service";
+    char lowerCase = Character.toLowerCase(serviceName.charAt(0));
+    serviceName = lowerCase + serviceName.substring(1);
     entityService = (EntityService<E>) applicationContext.getBean(serviceName);
     CACHED_SERVICES.put(entityClass, entityService);
     return entityService;
+  }
+
+  public static ObjectMapper getObjectMapper() {
+    if (objectMapper == null)
+      objectMapper = (ObjectMapper) applicationContext.getBean("objectMapper");
+    return objectMapper;
   }
 
   public static <E extends Entity<E>> EntityService<E> getService(String entityClassName) {

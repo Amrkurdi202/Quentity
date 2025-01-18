@@ -2,10 +2,12 @@ package com.quentity.views.myview;
 
 import com.quentity.entity.Entity;
 import com.quentity.entity.ServiceFactory;
+import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldDate;
 import com.quentity.entity.field.FldString;
 import com.quentity.entity.field.MultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.misc.Patterns;
 import jakarta.annotation.security.PermitAll;
 import com.quentity.entity.EntityService;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
@@ -19,6 +21,7 @@ import java.util.Objects;
 @PermitAll
 @jakarta.persistence.Entity
 @Component
+@Icon(value = "person.svg")
 public class Human extends Entity<Human> {
 
     @IndexedEmbedded
@@ -31,7 +34,7 @@ public class Human extends Entity<Human> {
     public MultiEntitiesReferences<Item> items;
 
     public void define(Human human) {
-        human.name.setMaxLength(5).setMask("^[\\s\\w]+$");
+        human.name.setMaxLength(20).setMask(Patterns.ALPHABETICAL);
         human.name.onFieldChanged((oldValue, newValue) -> {
             List<Item> search = ServiceFactory.getService(Item.class).search(newValue, Pageable.ofSize(1));
             if (Objects.equals(newValue, "amr"))
@@ -39,8 +42,8 @@ public class Human extends Entity<Human> {
             else if (search != null && !search.isEmpty())
                 human.age.setFieldValue(search.get(0).price.getFieldValue());
         });
-        human.age.setMaxLength(5).setMask("^[\\s\\w]+$");
-        human.address.setMaxLength(5).setMask("^[\\s\\w]+$");
+        human.age.setMaxLength(3).setMask(Patterns.INTEGER);
+        human.address.setMaxLength(40).setMask(Patterns.CUSTOM_COMMENT);
         human.birthDate.setMinValue(LocalDate.of(1900, 1, 1)).setMaxValue(LocalDate.now());
     }
 

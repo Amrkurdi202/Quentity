@@ -4,6 +4,7 @@ import com.quentity.Application;
 import com.quentity.entity.*;
 import com.quentity.entity.Entity;
 import com.quentity.entity.field.events.FieldChanged;
+import com.quentity.misc.LanguageUtil;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -24,7 +25,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 @Embeddable
-public class SingleEntityReference<T extends Entity> extends CustomField<SingleEntityReference<T>> {
+public class SingleEntityReference<T extends Entity> extends CustomField<SingleEntityReference<T>> implements HasValue<T> {
   @Transient
   private final Button button;
   @Setter
@@ -93,22 +94,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
                                               , query.getPageSize())).stream(),
               keyWord -> keyWord);
 
-      this.comboBox.setItemLabelGenerator(source -> {
-        Field firstField = EntityFieldsFactory.getFields(clazz).
-                stream().
-                filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
-                findFirst().orElse(null);
-        Long id = source.getEntityId();
-        String entityId = id == null ? "" : id.toString();
-        if (firstField == null) return entityId;
-        try {
-          firstField.setAccessible(true);
-          Fld fld = (Fld) firstField.get(source);
-          return fld != null ? fld.getFieldValue().toString() : entityId;
-        } catch (IllegalAccessException e) {
-          throw new RuntimeException(e);
-        }
-      });
+      this.comboBox.setItemLabelGenerator(source -> getEntityTitle(source, clazz));
 
       this.button.addClickListener(event -> {
         try {
@@ -123,6 +109,27 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
     }
   }
 
+  public String getEntityTitle() {
+    return getEntityTitle(entity, (Class<T>) entity.getClass());
+  }
+
+  private static <T extends Entity> String getEntityTitle(T source, Class<T> clazz) {
+    Field firstField = EntityFieldsFactory.getFields(clazz).
+            stream().
+            filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
+            findFirst().orElse(null);
+    Long id = source.getEntityId();
+    String entityId = id == null ? "" : id.toString();
+    if (firstField == null) return entityId;
+    try {
+      firstField.setAccessible(true);
+      Fld fld = (Fld) firstField.get(source);
+      return fld != null ? fld.getFieldValue().toString() : entityId;
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
   public void validateValue(T value) {
 
   }
@@ -132,7 +139,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
   }
 
   public void setFullName(String fullFieldName) {
-    String label = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(fullFieldName);
+    String label = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
     this.comboBox.setLabel(label);
   }
 
@@ -162,6 +169,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
       EntityFieldsFactory.getFields(clazz).
               stream().
               filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
+              limit(3).
               forEachOrdered(field -> {
                 Object o = null;
                 try {
@@ -174,7 +182,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
                 }
                 verticalLayout.add(
                         new HorizontalLayout(
-                                new Text(Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty(clazz.getName() + "." + field.getName()) + ": "),
+                                new Text(LanguageUtil.getCurrentLanguageProperties().getProperty(clazz.getName() + "." + field.getName()) + ": "),
                                 new Text(((Fld) o).getFieldValue().toString())
                         )
                 );
@@ -188,8 +196,11 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
   }
 
   public void setFieldValue(T value) {
+    T oldValue = getFieldValue();
     this.entity = value;
     this.comboBox.setValue(value);
+    if (fieldChangedCallback != null)
+      fieldChangedCallback.onFieldChanged(oldValue, value);
   }
 
   public void refreshComboBox() {

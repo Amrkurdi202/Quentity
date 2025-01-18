@@ -4,6 +4,7 @@ import com.quentity.entity.Entity;
 import jakarta.annotation.PostConstruct;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.search.engine.search.predicate.dsl.SearchPredicateFactory;
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.reflections.Reflections;
@@ -49,13 +50,16 @@ public class HibernateSearchInitializer {
     for (Class<?> entityClass : entitySubclasses) {
 
       long totalHitCount = searchSession.search(entityClass)
-              .where(f -> f.matchAll())
+              .where(SearchPredicateFactory::matchAll)
               .fetchTotalHitCount();
 
       if (totalHitCount == 0) {//New Entity
         while (true) {
           try {
             searchSession.massIndexer(entityClass)
+                    .batchSizeToLoadObjects(10)
+                    .threadsToLoadObjects(10)
+                    .typesToIndexInParallel(10)
                     .startAndWait();
             break;//to break the loop if the index is created successfully
           } catch (InterruptedException e) {

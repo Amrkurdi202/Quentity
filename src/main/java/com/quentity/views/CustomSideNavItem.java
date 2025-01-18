@@ -1,14 +1,14 @@
 package com.quentity.views;
 
 
-import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.AbstractIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.dom.DomEventListener;
 
 
 public class CustomSideNavItem extends HorizontalLayout {
 
-  public CustomSideNavItem(String label, Icon icon,
+  public CustomSideNavItem(String label, AbstractIcon icon,
                            DomEventListener clickListener) {
     super();
     add(icon);

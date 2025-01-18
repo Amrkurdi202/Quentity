@@ -17,3 +17,24 @@ html {
     --lumo-space-s: 0.3125rem;
     --lumo-space-xs: 0.1875rem;
 }
+
+.custom-span {
+    color: var(--vaadin-input-field-label-color, var(--lumo-secondary-text-color));
+    font-weight: var(--vaadin-input-field-label-font-weight, 500);
+    font-size: var(--vaadin-input-field-label-font-size, var(--lumo-font-size-s));
+    font-family: var(--lumo-font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: calc(var(--lumo-border-radius-m) / 4);
+    transition: color 0.2s;
+    line-height: 1;
+    margin-top: -0.25em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+

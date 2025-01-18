@@ -1,6 +1,7 @@
 package com.quentity.entity;
 
 import com.quentity.Application;
+import com.quentity.misc.LanguageUtil;
 import com.quentity.views.MainLayout;
 import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -36,7 +37,7 @@ public class GridMisc {
         if (mainLayout != null) {
           TabSheet tabsSheet = mainLayout.tabs;
           Long entityId = item.getEntityId();
-          String nu = Application.LOCAL_PROPERTIES.get(Application.LOCAL).getProperty("new");
+          String nu = LanguageUtil.getCurrentLanguageProperties().getProperty("new");
           addToTabs(" - " + (entityId == null ? nu : entityId.toString()), selfView, tabsSheet, item.getClass());
         }
       }

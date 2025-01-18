@@ -36,22 +36,9 @@ public class Application implements AppShellConfigurator {
     public static final HashMap <String, Properties> LOCAL_PROPERTIES = new HashMap<>();
     private static final Reflector REFLECTOR = new Reflector();
 
-    public static Properties loadProperties(String resourcePath) throws IOException {
-        Properties properties = new Properties();
-        try (InputStream inputStream = Application.class.getClassLoader().getResourceAsStream(resourcePath)) {
-            if (inputStream == null) {
-                throw new IOException("Resource not found: " + resourcePath);
-            }
-            properties.load(inputStream);
-        }
-        return properties;
-    }
 
     public static void main(String[] args) throws IOException {
-        Properties enProperties = loadProperties("strings/en.properties");
-//        Properties arProperties = loadProperties("strings/ar.properties");
-        LOCAL_PROPERTIES.put("en", enProperties);
-//        LOCAL_PROPERTIES.put("ar", arProperties);
+
         SpringApplication.run(Application.class, args);
     }
 

@@ -1,6 +1,7 @@
 package com.quentity.entity.field;
 
 import com.quentity.Application;
+import com.quentity.misc.LanguageUtil;
 import com.vaadin.flow.component.customfield.CustomField;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +17,7 @@ public abstract class Res<TYPE> extends CustomField<TYPE> {
 
   public String updateLabel(String keyName) {
     this.keyName = keyName;
-    textData = Application.LOCAL_PROPERTIES.get(LOCAL).getProperty(keyName);
+    textData = LanguageUtil.getCurrentLanguageProperties().getProperty(keyName);
     return textData;
   }
 }

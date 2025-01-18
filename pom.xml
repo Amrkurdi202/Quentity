@@ -126,7 +126,7 @@
             <artifactId>hibernate-search-backend-lucene</artifactId>
         </dependency>
         <dependency>
-<!--            hibernate search uses it-->
+            <!--            hibernate search uses it-->
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
             <version>3.6.1.Final</version>
@@ -212,6 +212,19 @@
                             <goal>
                                 RefGenPlug
                             </goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.quentity</groupId>
+                <artifactId>MobGenPlug</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>make-mobile</goal>
+                            <goal>sync-mobile</goal>
                         </goals>
                     </execution>
                 </executions>
