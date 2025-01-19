@@ -7,9 +7,10 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextFi
 
 import java.time.LocalDate;
 
-@EqualsAndHashCode(callSuper = true)
+
 @Accessors(chain = true)
 @Embeddable
+@EqualsAndHashCode
 public class FldDate extends InternalFldDate {
     @FullTextField
     private LocalDate dateValue;

@@ -81,8 +81,7 @@ public class LanguageUtil {
     public static void setCurrentLanguage(String lang) {
         VaadinSession.getCurrent().setAttribute(SESSION_LANG_KEY, lang);
         UI.getCurrent().setDirection(LanguageUtil.
-                getCurrentLanguageProperties().
-                getProperty(LanguageUtil.QUENTITY_LANGUAGE_DIRECTION).equals("rtl") ?
+                get(LanguageUtil.QUENTITY_LANGUAGE_DIRECTION).equals("rtl") ?
                 Direction.RIGHT_TO_LEFT : Direction.LEFT_TO_RIGHT);
     }
 
@@ -96,6 +95,10 @@ public class LanguageUtil {
     public static Properties getCurrentLanguageProperties() {
         String lang = getCurrentLanguage();
         return LANGUAGES.getOrDefault(lang, LANGUAGES.get(DEFAULT_LANG));
+    }
+
+    public static String get(String key) {
+        return getCurrentLanguageProperties().getProperty(key);
     }
 
 }

@@ -15,16 +15,21 @@ import java.util.Objects;
 public abstract class InternalFldDate extends Fld<InternalFldDate, LocalDate> {
 
     @Transient
+    @EqualsAndHashCode.Exclude
     protected DatePicker datePicker;
     @Transient
+    @EqualsAndHashCode.Exclude
     @Setter(value = AccessLevel.NONE)
     protected String fieldName;
     @Transient
+    @EqualsAndHashCode.Exclude
     protected LocalDate minValue;
     @Transient
+    @EqualsAndHashCode.Exclude
     protected LocalDate maxValue;
 
     @Transient
+    @EqualsAndHashCode.Exclude
     protected String mask;
 
     public InternalFldDate() {

@@ -27,7 +27,6 @@ import java.util.Set;
 
 import static com.quentity.entity.Entity.getGetFieldValue;
 import static com.quentity.entity.Entity.getReferenceFieldTitle;
-import static com.quentity.misc.Utils.addToTabs;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
 public class GridView<T extends Entity> extends EntityView<T> {
@@ -63,7 +62,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
             else if (entity != null && isInheritedFrom(field.getType(), Action.class)) {
                 try {
                     String fullFieldName = clazz.getName() + "." + field.getName();
-                    String fieldName = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
+                    String fieldName = LanguageUtil.get(fullFieldName);
                     Action action = (Action) field.get(entity);
                     action.setActionName(fieldName);
                     horizontalLayout.add(action);
@@ -105,7 +104,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
 
     private static <T extends Entity> void addField(Field field, Class<T> clazz, Grid<T> grid, boolean reference) {
         String fullFieldName = clazz.getName() + "." + field.getName();
-        String fieldName = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
+        String fieldName = LanguageUtil.get(fullFieldName);
         grid.addColumn(
                         item -> {
                             try {

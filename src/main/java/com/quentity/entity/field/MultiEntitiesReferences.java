@@ -5,10 +5,12 @@ import com.quentity.entity.Entity;
 
 import com.vaadin.flow.data.provider.ListDataProvider;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 
 import java.util.*;
 
 @Embeddable
+@EqualsAndHashCode
 public class MultiEntitiesReferences<T extends Entity> extends InternalMultiEntitiesReferences<MultiEntitiesReferences, T> {
     @ManyToMany(fetch = FetchType.EAGER)
     @OrderColumn

@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.quentity.reflection.Reflector.newField;
+
 public class MultiEntitiesReferencesDeserializer extends JsonDeserializer<MultiEntitiesReferences> implements ContextualDeserializer {
     private Class<?> entityClass;
     private EntityService entityService;
@@ -61,7 +63,7 @@ public class MultiEntitiesReferencesDeserializer extends JsonDeserializer<MultiE
                 try {
                     field.setAccessible(true);
                     if (field.get(entity) == null) {
-                        Entity.newField(entity, field);
+                        newField(entity, field);
                     }
                 } catch (Throwable e) {
                     throw new RuntimeException("Error populating field: " + field.getName(), e);

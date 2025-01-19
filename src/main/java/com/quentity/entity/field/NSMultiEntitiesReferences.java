@@ -6,6 +6,7 @@ import com.quentity.entity.Entity;
 
 import com.vaadin.flow.data.provider.ListDataProvider;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -89,5 +90,26 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
     public NSMultiEntitiesReferences setOnSaveCallback(Consumer<Map<String, Object>> onSaveCallback) {
         this.onSaveCallback = onSaveCallback;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof InternalMultiEntitiesReferences)) return false;
+        else {
+            InternalMultiEntitiesReferences that = (InternalMultiEntitiesReferences) o;
+            List entities1 = that.getEntities();
+            List<T> entities2 = this.getEntities();
+            if (entities1 == null || entities1.isEmpty()) {
+                return entities2.isEmpty();
+            }
+            return entities1.equals(entities2);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getEntities());
     }
 }

@@ -1,12 +1,12 @@
 package com.quentity.views.myview;
 
 import com.quentity.entity.Entity;
-import com.quentity.entity.ServiceFactory;
 import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.MultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import jakarta.annotation.security.PermitAll;
 import com.quentity.entity.EntityService;
+import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Icon(value = "StudentCourses.svg")
 public class StudentCourses extends Entity<StudentCourses> {
+
     public SingleEntityReference<Student> student;
 
     public SingleEntityReference<Semester> semester;

@@ -1,14 +1,13 @@
 package com.quentity.entity.field;
 
-
 import jakarta.persistence.Embeddable;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
-@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 @Embeddable
+@EqualsAndHashCode
 public class FldString extends InternalFldString {
     @FullTextField
     private String textValue;

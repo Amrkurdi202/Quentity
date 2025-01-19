@@ -1,8 +1,10 @@
 package com.quentity.misc;
 
 import com.quentity.Application;
+import com.quentity.dialog.Ask;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityView;
+import com.quentity.entity.SelfView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dnd.DragSource;
 import com.vaadin.flow.component.dnd.DropEffect;
@@ -32,16 +34,33 @@ public class Utils {
         }
 
         Tab tab = new Tab(
-                new Span(LanguageUtil.getCurrentLanguageProperties()
-                        .getProperty(contentClass.getName()) + suffix),
+                new Span(LanguageUtil.
+                        get(contentClass.getName()) + suffix),
                 closeTabSpan);
-        tab.setTooltipText(LanguageUtil.getCurrentLanguageProperties().getProperty(contentClass.getName()) + suffix);
+        tab.setTooltipText(LanguageUtil.get(contentClass.getName()) + suffix);
         closeTabSpan.addClickListener(
                 e -> {
-                    tabs.remove(tab);
-                    if (tabs.getSelectedTab() == null) {
-                        content.getUI().ifPresent(ui -> ui.navigate(""));
-                    }
+                    if (content instanceof SelfView) {
+                        Entity entity = ((SelfView) content).getEntity();
+                        if (entity != null && entity.isEntityEdited()) {
+                            Ask.builder().
+                                    header(LanguageUtil.get("unsavedChanges")).
+                                    message(LanguageUtil.get("unsavedChangesMessage")).
+                                    confirmText(LanguageUtil.get("save")).
+                                    cancelText(LanguageUtil.get("cancel")).
+                                    rejectText(LanguageUtil.get("reject")).
+                                    onConfirm(e1 -> {
+                                        entity.save();
+                                        close(content, tabs, tab);
+                                    }).
+                                    onReject(e1 -> {
+                                        close(content, tabs, tab);
+                                    }).
+                                    build().
+                                    show();
+                        } else close(content, tabs, tab);
+                    } else
+                        close(content, tabs, tab);
                 }
         );
         DragSource<Tab> dragSource = DragSource.create(tab);
@@ -79,6 +98,13 @@ public class Utils {
 
         tabs.add(tab, content);
         tabs.setSelectedTab(tab);
+    }
+
+    private static void close(Component content, TabSheet tabs, Tab tab) {
+        tabs.remove(tab);
+        if (tabs.getSelectedTab() == null) {
+            content.getUI().ifPresent(ui -> ui.navigate(""));
+        }
     }
 
     public static boolean isInheritedFrom(Class<?> subClass, Class<?> superClass) {

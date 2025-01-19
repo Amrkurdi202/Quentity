@@ -5,6 +5,7 @@ import com.quentity.entity.EntityService;
 import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldString;
 import jakarta.annotation.security.PermitAll;
+import lombok.EqualsAndHashCode;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

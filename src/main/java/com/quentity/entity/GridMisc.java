@@ -37,7 +37,7 @@ public class GridMisc {
         if (mainLayout != null) {
           TabSheet tabsSheet = mainLayout.tabs;
           Long entityId = item.getEntityId();
-          String nu = LanguageUtil.getCurrentLanguageProperties().getProperty("new");
+          String nu = LanguageUtil.get("new");
           addToTabs(" - " + (entityId == null ? nu : entityId.toString()), selfView, tabsSheet, item.getClass());
         }
       }

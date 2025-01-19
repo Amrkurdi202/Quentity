@@ -13,19 +13,26 @@ import java.math.BigDecimal;
 @Accessors(chain = true)
 public abstract class InternalFldNumber extends Fld<InternalFldNumber, Double> {
     @Transient
+    @EqualsAndHashCode.Exclude
     protected NumberField numericField;
     @Transient
+    @EqualsAndHashCode.Exclude
     @Setter(value = AccessLevel.NONE)
     private String fieldName;
     @Transient
+    @EqualsAndHashCode.Exclude
     private String suffix;
     @Transient
+    @EqualsAndHashCode.Exclude
     private String prefix;
     @Transient
+    @EqualsAndHashCode.Exclude
     private Double min;
     @Transient
+    @EqualsAndHashCode.Exclude
     private Double max;
     @Transient
+    @EqualsAndHashCode.Exclude
     private Double step;
 
 

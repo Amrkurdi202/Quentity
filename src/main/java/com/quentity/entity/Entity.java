@@ -6,24 +6,24 @@ import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.entity.field.events.FieldChanged;
+import com.quentity.reflection.Reflector;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.*;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static com.quentity.reflection.Reflector.*;
 
 
 @Data
-@EqualsAndHashCode
 @jakarta.persistence.Entity
 @Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -32,13 +32,6 @@ import java.util.concurrent.ConcurrentMap;
 @FilterDef(name = "activeFilter", parameters = @ParamDef(name = "deleted", type = boolean.class))
 @Filter(name = "activeFilter", condition = "deleted = false")
 public abstract class Entity<T extends Entity> {
-    @Transient
-    @JsonIgnore
-    private final static ConcurrentMap<Class<?>, MethodHandle> constructorCache = new ConcurrentHashMap<>();
-    @Transient
-    @JsonIgnore
-    private final static ConcurrentMap<Field, MethodHandle> fieldSetterCache = new ConcurrentHashMap<>();
-
     @Transient
     @Getter
     @Setter
@@ -141,16 +134,6 @@ public abstract class Entity<T extends Entity> {
         return callReflectively(field, item, "getEntityTitle");
     }
 
-    private static <T extends Entity> Object callReflectively(Field field, T item, String methodName) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        Object obj = field.get(item);
-        field.setAccessible(true);
-        if (obj == null) return null;
-        Method method = field.getType()
-                .getMethod(methodName);
-        return method
-                .invoke(obj);
-    }
-
     @PostLoad
     public void postLoad() {
         this.entityService = ServiceFactory.getService(this.getClass());
@@ -159,64 +142,42 @@ public abstract class Entity<T extends Entity> {
     public abstract void define(T entity);
 
     // Method to create a new entity and initialize its fields
-    public static <T> T newEntity(Class<T> entityClass) {
+    public static <T extends Entity> T newEntity(Class<T> entityClass) {
         T entity = newEmptyEntity(entityClass);
 
         // Initialize all fields using newField
-        for (Field field : EntityFieldsFactory.getFields(entityClass)) {
-            newField(entity, field);
-        }
+        initFields(entityClass, entity);
 
         return entity;
     }
 
-    // Method to create a new entity without initializing its fields
-    public static <T> T newEmptyEntity(Class<T> entityClass) {
-        MethodHandle constructor = constructorCache.computeIfAbsent(entityClass, clazz -> {
-            try {
-                return MethodHandles.lookup().findConstructor(clazz, MethodType.methodType(void.class, EntityService.class));
-            } catch (NoSuchMethodException | IllegalAccessException e) {
-                throw new RuntimeException("Unable to find constructor for class: " + clazz, e);
-            }
-        });
 
-        @SuppressWarnings("unchecked")
-        T instance = null;
-        try {
-            instance = (T) constructor.invoke(ServiceFactory.getService((Class) entityClass));
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
+    public boolean isEntityEdited() {
+        if (this.entityId == null)
+            return true;
+        T originalEntity = entityService.findById(this.getEntityId()).orElse(null);
+        if (originalEntity == null) {
+            return false; // Entity does not exist in the database
         }
-        return instance;
+        initNSFields((Class<T>) originalEntity.getClass(), originalEntity);
+        originalEntity.define(originalEntity);//A must for calculated fields
+        return !this.equals(originalEntity); // Ensure your entity has proper equals() and hashCode()
     }
 
-    // Method to initialize a specific field in an entity
-    public static void newField(Object entity, Field field) {
-        field.setAccessible(true);
-        MethodHandle setter = fieldSetterCache.computeIfAbsent(field, f -> {
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Entity)) return false;
+        for (Field field : EntityFieldsFactory.getFields(getClass())) {
             try {
-                return MethodHandles.lookup().unreflectSetter(f);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException("Unable to access field: " + f, e);
+                if (!Objects.equals(getGetFieldValue(field, this),
+                        getGetFieldValue(field, (Entity) obj)))
+                    return false;
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                throw new RuntimeException(e);
             }
-        });
-
-        // Create an instance of the field's type and set it
-        Class<?> fieldType = field.getType();
-        MethodHandle constructor = constructorCache.computeIfAbsent(fieldType, clazz -> {
-            try {
-                return MethodHandles.lookup().findConstructor(clazz, MethodType.methodType(void.class));
-            } catch (NoSuchMethodException | IllegalAccessException e) {
-                throw new RuntimeException("Unable to find constructor for field type: " + clazz, e);
-            }
-        });
-        Object fieldInstance = null;
-        try {
-            fieldInstance = constructor.invoke();
-            setter.invoke(entity, fieldInstance);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
         }
+        return true;
     }
+
 
 }

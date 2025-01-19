@@ -14,13 +14,12 @@ import com.vaadin.flow.component.grid.dataview.GridListDataView;
 import com.vaadin.flow.component.grid.dnd.GridDropLocation;
 import com.vaadin.flow.component.grid.dnd.GridDropMode;
 import com.vaadin.flow.component.grid.editor.Editor;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,28 +33,37 @@ import static com.quentity.entity.Entity.getGetFieldValue;
 import static com.quentity.entity.Entity.getReferenceFieldTitle;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
+@EqualsAndHashCode
 public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends CustomField<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>> {
     @Transient
     @Setter
     @Getter
+    @EqualsAndHashCode.Exclude
     private boolean required;
     @Transient
     @Setter
     @Getter
+    @EqualsAndHashCode.Exclude
     private boolean visibleField;
     @Transient
     @Setter
     @Getter
+    @EqualsAndHashCode.Exclude
     private boolean editable;
     @Transient
+    @EqualsAndHashCode.Exclude
     protected FieldChanged<T> fieldChangedCallback;
     @Transient
+    @EqualsAndHashCode.Exclude
     Grid<T> grid;
     @Transient
+    @EqualsAndHashCode.Exclude
     private String label;
     @Transient
+    @EqualsAndHashCode.Exclude
     private SingleEntityReference entitySingleEntityReference;
     @Transient
+    @EqualsAndHashCode.Exclude
     private Button addToListButton;
 
     public void reflect(String className, Entity entity) {
@@ -73,7 +81,7 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
                 Class<?> fieldType = field.getType();
                 Grid.Column<T> column = null;
                 String fullFieldName = clazz.getName() + "." + field.getName();
-                String fieldName = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
+                String fieldName = LanguageUtil.get(fullFieldName);
 
                 boolean inheritedFromSingle = isInheritedFrom(fieldType, SingleEntityReference.class);
                 if (isInheritedFrom(fieldType, Fld.class) || inheritedFromSingle) {
@@ -292,7 +300,7 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
     }
 
     public void setFullName(String fullFieldName) {
-        this.label = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
+        this.label = LanguageUtil.get(fullFieldName);
     }
 
     public List<T> getFieldValue() {//Called using reflection

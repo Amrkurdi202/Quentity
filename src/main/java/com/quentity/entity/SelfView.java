@@ -14,9 +14,11 @@ import java.util.Set;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
 public class SelfView<T extends Entity> extends EntityView<T> {
+    private Entity<T> entity;
 
     public SelfView(Entity<T> entity) {
         super((Class<T>) entity.getClass());
+        this.entity = entity;
         Class<? extends Entity> clazz = entity.getClass();
         Set<Field> classfields = EntityFieldsFactory.getFields(clazz);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -93,6 +95,10 @@ public class SelfView<T extends Entity> extends EntityView<T> {
             }
         }
         ServiceFactory.define(entity);
+    }
+
+    public Entity getEntity() {
+        return entity;
     }
 
 }

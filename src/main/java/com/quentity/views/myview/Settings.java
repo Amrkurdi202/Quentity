@@ -7,6 +7,7 @@ import com.quentity.entity.field.NSFldDate;
 import com.quentity.entity.field.NSFldString;
 import com.quentity.misc.Patterns;
 import jakarta.annotation.security.RolesAllowed;
+import lombok.EqualsAndHashCode;
 import org.springframework.stereotype.Component;
 import com.quentity.entity.EntityService;
 import org.springframework.beans.factory.annotation.Autowired;

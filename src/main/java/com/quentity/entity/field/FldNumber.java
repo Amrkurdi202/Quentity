@@ -6,11 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
-import java.math.BigDecimal;
 
 @Embeddable
-@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
+@EqualsAndHashCode
 public class FldNumber extends InternalFldNumber {
     @FullTextField
     Double value;

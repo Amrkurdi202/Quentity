@@ -116,7 +116,7 @@ public class MainLayout extends AppLayout {
 
   private void addDrawerContent() {
     TextField searchDrawerTxt = new TextField();
-    searchDrawerTxt.setPlaceholder(LanguageUtil.getCurrentLanguageProperties().getProperty("search"));
+    searchDrawerTxt.setPlaceholder(LanguageUtil.get("search"));
     searchDrawerTxt.setWidth("100%");
 //    searchDrawerTxt.getStyle().set("--vaadin-input-field-background", "var(--lumo-base-color)");
     searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
@@ -197,15 +197,15 @@ public class MainLayout extends AppLayout {
 
   private String getCurrentPageTitle() {
     if (getContent() instanceof com.quentity.views.myview.Main) {
-      return LanguageUtil.getCurrentLanguageProperties()
-              .getProperty("main");
+      return LanguageUtil.
+              get("main");
     }
     TabSheet content = (TabSheet) getContent();
     if (content.getSelectedTab() == null) {
       return "";
     }
-    return LanguageUtil.getCurrentLanguageProperties()
-            .getProperty(content.getComponent(content.getSelectedTab()).getClass().getName());
+    return LanguageUtil.
+            get(content.getComponent(content.getSelectedTab()).getClass().getName());
   }
 
   /**
@@ -235,8 +235,8 @@ public class MainLayout extends AppLayout {
       // Check access before adding to navigation
       if (accessChecker.hasAccess(entityClass)) {
         CustomSideNavItem item = new CustomSideNavItem(
-                LanguageUtil.getCurrentLanguageProperties()
-                        .getProperty(entityClass.getPackageName() + "." + entityClass.getSimpleName()),
+                LanguageUtil.
+                        get(entityClass.getPackageName() + "." + entityClass.getSimpleName()),
                 IconHandler.getIcon(entityClass),
                 (event) -> {
                   getUI().ifPresent(ui -> {

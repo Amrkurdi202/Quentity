@@ -15,15 +15,20 @@ import java.util.regex.Pattern;
 @Accessors(chain = true)
 public abstract class InternalFldString extends Fld<InternalFldString, String> {
     @Transient
+    @EqualsAndHashCode.Exclude
     protected TextField textField;
     @Transient
     @Setter(value = AccessLevel.NONE)
+    @EqualsAndHashCode.Exclude
     private String fieldName;
     @Transient
+    @EqualsAndHashCode.Exclude
     private int minLength;
     @Transient
+    @EqualsAndHashCode.Exclude
     private int maxLength;
     @Transient
+    @EqualsAndHashCode.Exclude
     private String mask;
 
     public InternalFldString() {

@@ -10,6 +10,7 @@ import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.Patterns;
 import jakarta.annotation.security.PermitAll;
 import com.quentity.entity.EntityService;
+import lombok.EqualsAndHashCode;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

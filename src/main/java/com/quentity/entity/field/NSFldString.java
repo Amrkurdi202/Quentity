@@ -6,7 +6,7 @@ import jakarta.persistence.Transient;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @Accessors(chain = true)
 @Embeddable
 public class NSFldString extends InternalFldString {

@@ -3,8 +3,10 @@ package com.quentity.entity.field;
 import com.quentity.entity.Entity;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.button.Button;
+import lombok.EqualsAndHashCode;
 
 public abstract class Action extends Res<Action> {
+  @EqualsAndHashCode.Exclude
   Button button;
 
   public Action(Entity entity) {

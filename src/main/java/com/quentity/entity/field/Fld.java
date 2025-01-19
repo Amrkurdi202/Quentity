@@ -14,15 +14,21 @@ import java.util.Objects;
 public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE>> extends Res<TYPE> implements Comparable<Fld<TYPE, INNER_TYPE>>, HasValue<INNER_TYPE> {
 
   @Transient
+  @EqualsAndHashCode.Exclude
   protected Object defaultValue;
   @Transient
+  @EqualsAndHashCode.Exclude
   protected boolean required;
   @Transient
+  @EqualsAndHashCode.Exclude
   protected boolean visibleField;
   @Transient
+  @EqualsAndHashCode.Exclude
   protected boolean editable;
+  @EqualsAndHashCode.Exclude
   HasLabel hasLabel;
   @Transient
+  @EqualsAndHashCode.Exclude
   protected FieldChanged<INNER_TYPE> fieldChangedCallback;
 
   public Fld() {
@@ -52,4 +58,6 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   }
 
   abstract <E extends ValueChangeEvent<INNER_TYPE>> void getValueChangeListener(E e);
+
+
 }

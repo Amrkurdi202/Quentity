@@ -16,6 +16,7 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
@@ -25,28 +26,35 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 @Embeddable
+@EqualsAndHashCode
 public class SingleEntityReference<T extends Entity> extends CustomField<SingleEntityReference<T>> implements HasValue<T> {
   @Transient
+  @EqualsAndHashCode.Exclude
   private final Button button;
   @Setter
   @Getter
   @ManyToOne
   private T entity;
   @Transient
+  @EqualsAndHashCode.Exclude
   private final ComboBox<T> comboBox;
   @Transient
   @Setter
   @Getter
+  @EqualsAndHashCode.Exclude
   private boolean required;
   @Transient
   @Setter
   @Getter
+  @EqualsAndHashCode.Exclude
   private boolean visibleField;
   @Transient
   @Setter
   @Getter
+  @EqualsAndHashCode.Exclude
   private boolean editable;
   @Transient
+  @EqualsAndHashCode.Exclude
   protected FieldChanged<T> fieldChangedCallback;
 
   public SingleEntityReference() {
@@ -139,7 +147,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
   }
 
   public void setFullName(String fullFieldName) {
-    String label = LanguageUtil.getCurrentLanguageProperties().getProperty(fullFieldName);
+    String label = LanguageUtil.get(fullFieldName);
     this.comboBox.setLabel(label);
   }
 
@@ -182,7 +190,7 @@ public class SingleEntityReference<T extends Entity> extends CustomField<SingleE
                 }
                 verticalLayout.add(
                         new HorizontalLayout(
-                                new Text(LanguageUtil.getCurrentLanguageProperties().getProperty(clazz.getName() + "." + field.getName()) + ": "),
+                                new Text(LanguageUtil.get(clazz.getName() + "." + field.getName()) + ": "),
                                 new Text(((Fld) o).getFieldValue().toString())
                         )
                 );

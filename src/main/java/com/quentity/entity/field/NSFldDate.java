@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
 @Accessors(chain = true)
 @Embeddable
 public class NSFldDate extends InternalFldDate {
