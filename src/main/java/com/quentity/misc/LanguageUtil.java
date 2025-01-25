@@ -87,7 +87,8 @@ public class LanguageUtil {
 
     // Get the current language from the session
     public static String getCurrentLanguage() {
-        String lang = (String) VaadinSession.getCurrent().getAttribute(SESSION_LANG_KEY);
+        VaadinSession current = VaadinSession.getCurrent();
+        String lang = current != null ? ((String) current.getAttribute(SESSION_LANG_KEY)) : null;
         return lang != null ? lang : DEFAULT_LANG;
     }
 

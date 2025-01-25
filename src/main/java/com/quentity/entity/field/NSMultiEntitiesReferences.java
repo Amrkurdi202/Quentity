@@ -46,6 +46,7 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
 
     @Override
     public void onSave() {
+        validateValue(entities);
         if (onSaveCallback != null && !onSaveCallbackCalled) {
             onSaveCallbackCalled = true;
             onSaveCallback.accept(contextData);
@@ -111,5 +112,11 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
     @Override
     public int hashCode() {
         return Objects.hashCode(getEntities());
+    }
+
+    @Override
+    public void validateValue(Object value) {
+        if (isRequired() && (value == null || ((ListDataProvider) value).getItems().isEmpty()))
+            throw new IllegalArgumentException("Field is required");
     }
 }

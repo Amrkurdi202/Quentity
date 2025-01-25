@@ -1,12 +1,11 @@
 package com.quentity.views;
 
-import com.quentity.Application;
 import com.quentity.data.User;
 import com.quentity.entity.Entity;
-import com.quentity.entity.GridView;
 import com.quentity.entity.annotions.handler.IconHandler;
 import com.quentity.entity.annotions.handler.MainEntityViewHandler;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.reflection.Reflector;
 import com.quentity.security.AuthenticatedUser;
 import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.Component;
@@ -14,31 +13,26 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.tabs.TabSheetVariant;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import com.vaadin.flow.spring.annotation.UIScope;
-import com.vaadin.flow.theme.lumo.LumoIcon;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import org.reflections.Reflections;
-import org.reflections.scanners.Scanners;
-import org.reflections.util.ClasspathHelper;
-import org.reflections.util.ConfigurationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import com.vaadin.flow.component.textfield.TextField;
+
 import java.io.ByteArrayInputStream;
 import java.util.Optional;
 import java.util.Set;
@@ -143,7 +137,7 @@ public class MainLayout extends AppLayout {
     if (maybeUser.isPresent()) {
       User user = maybeUser.get();
 
-      Avatar avatar = new Avatar(user.getName());
+      Avatar avatar = new Avatar(user.getUsername());
       StreamResource resource = new StreamResource("profile-pic",
               () -> new ByteArrayInputStream(user.getProfilePicture()));
       avatar.setImageResource(resource);
@@ -156,7 +150,7 @@ public class MainLayout extends AppLayout {
       MenuItem userName = userMenu.addItem("");
       Div div = new Div();
       div.add(avatar);
-      div.add(user.getName());
+      div.add(user.getUsername());
       div.add(new Icon("lumo", "dropdown"));
       div.getElement().getStyle().set("display", "flex");
       div.getElement().getStyle().set("align-items", "center");
@@ -221,14 +215,7 @@ public class MainLayout extends AppLayout {
    * @param nav The {@link VerticalLayout} to add navigation items to.
    */
   public void addEntitySubclassesToNav(VerticalLayout nav) {
-    // Create a Reflections object configured to scan the entire classpath
-    Reflections reflections = new Reflections(new ConfigurationBuilder()
-            .setUrls(ClasspathHelper.forClassLoader(ClasspathHelper.contextClassLoader()))
-            .setScanners(Scanners.SubTypes.filterResultsBy(c -> true))
-    );
-
-    // Get all subclasses of Entity
-    Set<Class<? extends Entity>> entitySubclasses = reflections.getSubTypesOf(Entity.class);
+    Set<Class<? extends Entity>> entitySubclasses = Reflector.getEntities();
 
     // Loop through each subclass
     for (Class<? extends Entity> entityClass : entitySubclasses) {
@@ -240,16 +227,17 @@ public class MainLayout extends AppLayout {
                 IconHandler.getIcon(entityClass),
                 (event) -> {
                   getUI().ifPresent(ui -> {
-                    Entity bean = applicationContext.getBean(entityClass);
-
-                    VerticalLayout content = MainEntityViewHandler.getMainEntityView(bean);
+                    VaadinSession current = VaadinSession.getCurrent();
+                    if (current != null) {
+                      current.setAttribute(User.class, authenticatedUser.get().get());
+                    }
+                    VerticalLayout content = MainEntityViewHandler.getMainEntityView(entityClass);
 
                     if (!firstTime) {
                       firstTime = true;
                     }
                     setContent(content);
                   });
-                  Notification.show("Click", 1000, Notification.Position.BOTTOM_END);
                 }
         );
         nav.add(item);

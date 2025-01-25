@@ -1,29 +1,30 @@
 package com.quentity.entity;
 
-import com.quentity.Application;
+import com.quentity.data.User;
 import com.quentity.entity.field.Action;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.LanguageUtil;
-import com.quentity.views.MainLayout;
-import com.quentity.views.myview.Main;
-import com.vaadin.flow.component.ComponentEventListener;
-import com.vaadin.flow.component.UI;
+import com.querydsl.jpa.impl.AbstractJPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.KeyModifier;
+import com.vaadin.flow.component.ShortcutRegistration;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
-import com.vaadin.flow.component.grid.ItemClickEvent;
-import com.vaadin.flow.component.grid.ItemDoubleClickEvent;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.data.provider.DataProvider;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import static com.quentity.entity.Entity.getGetFieldValue;
 import static com.quentity.entity.Entity.getReferenceFieldTitle;
@@ -31,8 +32,22 @@ import static com.quentity.misc.Utils.isInheritedFrom;
 
 public class GridView<T extends Entity> extends EntityView<T> {
 
-    public GridView(Class<T> entityClass, Entity<T> entity) {
+    public GridView(Class<T> entityClass) {
         super(entityClass);
+        Entity<T> entity = Entity.newEntity(entityClass);
+        ServiceFactory.define(entity);
+        VaadinSession current = VaadinSession.getCurrent();
+        User user = null;
+        if (current != null) {
+            user = current.getAttribute(User.class);
+        }
+        Consumer<T> queryEditTest = entity.
+                getQueryEditor(user == null ?
+                        "default" :
+                        user.
+                                getDefaultEntityQuery(entity.getClass()));
+        if (queryEditTest != null)
+            queryEditTest.accept((T) entity);
         setSizeFull();
         EntityService entityService = ServiceFactory.getService(entityClass);
         Class<T> clazz = getClazz();
@@ -46,10 +61,28 @@ public class GridView<T extends Entity> extends EntityView<T> {
                 throw new RuntimeException(e);
             }
         }));
-        horizontalLayout.add(button);
-        add(horizontalLayout);
+
         Grid<T> grid = new Grid<>(clazz, false);
         grid.setHeight("80vh");
+        Button deleteButton = new Button(LumoIcon.MINUS.create(), (event -> {
+
+            Set<T> selectedItems = grid.getSelectedItems();
+            for (T selectedItem : selectedItems) {
+                entityService.deleteById(selectedItem.getEntityId());
+            }
+            grid.getGenericDataView().refreshAll();
+            Notification itemsDeletedSuccessfully = Notification.show(selectedItems.size() + " " + LanguageUtil.get("itemsDeletedSuccessfully"),
+                    1000, Notification.Position.BOTTOM_END);
+            itemsDeletedSuccessfully.addThemeVariants(NotificationVariant.LUMO_PRIMARY);
+        }));
+        ShortcutRegistration shortcutRegistration = button.addClickShortcut(Key.DELETE, KeyModifier.CONTROL);
+        shortcutRegistration.
+                setBrowserDefaultAllowed(false);
+        shortcutRegistration.
+                setEventPropagationAllowed(false);
+        horizontalLayout.add(button);
+        horizontalLayout.add(deleteButton);
+        add(horizontalLayout);
 
         //Adding Columns
         for (Field field : classFields) {
@@ -88,14 +121,32 @@ public class GridView<T extends Entity> extends EntityView<T> {
         //End Configs
         //Giving Data Provider
         grid.setDataProvider(DataProvider.fromFilteringCallbacks(
-                query ->
-                        entityService.findAll(query).stream().map(ent -> {
+                query -> {
+                    AbstractJPAQuery<T, JPAQuery<T>> queryFilter = entity.getQueryFilter();
+                    if (queryFilter == null)
+                        return entityService.findAll(query).stream().map(ent -> {
                             ((Entity) ent).setEntityService(entityService);
                             return (T) ent;
-                        })
+                        });
+                    else {
+                        return queryFilter.offset(query.getOffset())
+                                .limit(query.getLimit())
+                                .fetch().stream().map(ent -> {
+                                    ent.setEntityService(entityService);
+                                    return (T) ent;
+                                });
+                    }
+                }
                 ,
-                query ->
-                        Math.toIntExact(entityService.count())
+                query -> {
+                    AbstractJPAQuery<T, JPAQuery<T>> queryFilter = entity.getQueryFilter();
+                    if (queryFilter == null)
+                        return Math.toIntExact(entityService.count());
+                    return Math.toIntExact(queryFilter.clone().
+                            offset(query.getOffset()).
+                            limit(query.getLimit()).
+                            fetchCount());
+                }
         ));
         //End Giving Data Provider
 
@@ -124,6 +175,6 @@ public class GridView<T extends Entity> extends EntityView<T> {
     }
 
     public GridView(Entity<T> entity) {
-        this((Class<T>) entity.getClass(), entity);
+        this((Class<T>) entity.getClass());
     }
 }

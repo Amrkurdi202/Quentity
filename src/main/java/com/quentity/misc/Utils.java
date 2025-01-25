@@ -32,11 +32,12 @@ public class Utils {
             else
                 contentClass = content.getClass();
         }
-
         Tab tab = new Tab(
                 new Span(LanguageUtil.
                         get(contentClass.getName()) + suffix),
                 closeTabSpan);
+        if (content instanceof SelfView)
+            ((SelfView) content).addRunnable(() -> close(content, tabs, tab));
         tab.setTooltipText(LanguageUtil.get(contentClass.getName()) + suffix);
         closeTabSpan.addClickListener(
                 e -> {
@@ -48,7 +49,7 @@ public class Utils {
                                     message(LanguageUtil.get("unsavedChangesMessage")).
                                     confirmText(LanguageUtil.get("save")).
                                     cancelText(LanguageUtil.get("cancel")).
-                                    rejectText(LanguageUtil.get("reject")).
+                                    rejectText(LanguageUtil.get("discard")).
                                     onConfirm(e1 -> {
                                         entity.save();
                                         close(content, tabs, tab);

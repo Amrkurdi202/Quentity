@@ -10,6 +10,7 @@ import com.quentity.search.QueryBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -55,7 +56,6 @@ public class GenericService {
             String queryStr = queryBuilder.buildQueryWithFilters(entityClass, validFilters, logic);
             queryStr += " LIMIT ? OFFSET ?";
 
-            System.out.println("Generated Query: " + queryStr);
 
             var query = entityManager.createNativeQuery(queryStr, entityClass);
 
@@ -130,4 +130,5 @@ public class GenericService {
 
         }
     }
+
 }

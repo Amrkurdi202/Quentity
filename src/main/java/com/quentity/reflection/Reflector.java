@@ -10,6 +10,10 @@ import com.quentity.refGenPlug.EntityPojo;
 import com.quentity.refGenPlug.FieldPojo;
 import com.quentity.refGenPlug.FilePojo;
 import jakarta.validation.constraints.NotNull;
+import org.reflections.Reflections;
+import org.reflections.scanners.Scanners;
+import org.reflections.util.ClasspathHelper;
+import org.reflections.util.ConfigurationBuilder;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,10 +110,15 @@ public class Reflector {
         }
     }
 
-    public static <T extends Entity> void initNSFields(Class<T> entityClass, T entity) {
+    public static <T extends Entity> void initNullFields(Class<T> entityClass, T entity) {
         for (Field field : EntityFieldsFactory.getFields(entityClass)) {
-            if (field.getType().getSimpleName().startsWith("NS"))
-                newField(entity, field);
+            MethodHandle fieldGetter = getFieldGetter(field);
+            try {
+                if (fieldGetter.invoke(entity) == null)
+                    newField(entity, field);
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -191,15 +200,19 @@ public class Reflector {
         });
     }
 
-    public static <T extends Entity> Object callReflectively(Field field, T item, String methodName) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        field.setAccessible(true);
-        MethodHandle methodHandle = fieldGetterCache.computeIfAbsent(field, f -> {
+    public static MethodHandle getFieldGetter(Field field) {
+        return fieldGetterCache.computeIfAbsent(field, f -> {
             try {
                 return LOOKUP.unreflectGetter(f);
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public static <T extends Entity> Object callReflectively(Field field, T item, String methodName) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        field.setAccessible(true);
+        MethodHandle methodHandle = getFieldGetter(field);
 
         Object obj;
         try {
@@ -214,6 +227,18 @@ public class Reflector {
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static Set<Class<? extends Entity>> getEntities() {
+        // Create a Reflections object configured to scan the entire classpath
+        Reflections reflections = new Reflections(new ConfigurationBuilder()
+                .setUrls(ClasspathHelper.forClassLoader(ClasspathHelper.contextClassLoader()))
+                .setScanners(Scanners.SubTypes.filterResultsBy(c -> true))
+        );
+
+        // Get all subclasses of Entity
+        Set<Class<? extends Entity>> entitySubclasses = reflections.getSubTypesOf(Entity.class);
+        return entitySubclasses;
     }
 
 }

@@ -23,6 +23,7 @@ public class MultiEntitiesReferences<T extends Entity> extends InternalMultiEnti
 
     @Override
     public void onSave() {
+        validateValue(entities);
         Set<Long> doneEntities = new HashSet<>();//to prevent cyclic references
         if (entities == null) return;
         for (T entity : entities) {
@@ -30,6 +31,12 @@ public class MultiEntitiesReferences<T extends Entity> extends InternalMultiEnti
             doneEntities.add(entity.getEntityId());
             entity.save();
         }
+    }
+
+    @Override
+    public void validateValue(Object value) {
+        if (isRequired() && value == null)
+            throw new IllegalArgumentException("Field is required");
     }
 
     @Override

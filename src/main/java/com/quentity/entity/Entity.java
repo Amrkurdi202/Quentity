@@ -6,19 +6,26 @@ import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.entity.field.events.FieldChanged;
-import com.quentity.reflection.Reflector;
+import com.querydsl.jpa.impl.AbstractJPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.SneakyThrows;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+import org.hibernate.annotations.Where;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
-import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Consumer;
 
 import static com.quentity.reflection.Reflector.*;
 
@@ -27,7 +34,6 @@ import static com.quentity.reflection.Reflector.*;
 @jakarta.persistence.Entity
 @Indexed
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@SQLDelete(sql = "UPDATE human SET deleted = true WHERE id = ?")
 @Where(clause = "deleted = false")
 @FilterDef(name = "activeFilter", parameters = @ParamDef(name = "deleted", type = boolean.class))
 @Filter(name = "activeFilter", condition = "deleted = false")
@@ -37,12 +43,30 @@ public abstract class Entity<T extends Entity> {
     @Setter
     @JsonIgnore
     private EntityService<T> entityService;
+
+    @Transient
+    @JsonIgnore
+    private final Map<String, Consumer<T>> queryEditors = new ConcurrentHashMap<>();
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @TableGenerator(
+            name = "ID_GEN",
+            table = "ID_GEN",
+            pkColumnName = "GEN_KEY",
+            valueColumnName = "GEN_VALUE",
+            pkColumnValue = "ENTITY_ID",
+            allocationSize = 1,
+            initialValue = 1000
+    )
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ID_GEN")
     private Long entityId;
 
     @JsonIgnore
+    @Column(columnDefinition = "boolean default false")
     private boolean deleted = false; // Soft delete flag
+
+    @JsonIgnore
+    @Transient
+    private AbstractJPAQuery<T, JPAQuery<T>>[] addedFilters = new AbstractJPAQuery[1];
 
     @SneakyThrows
     public Entity(EntityService<T> entityService) {
@@ -55,27 +79,32 @@ public abstract class Entity<T extends Entity> {
     }
 
     public void save() {
+        if (entityService == null)
+            entityService = ServiceFactory.getService((Class<T>) getClass());
         EntityFieldsFactory.getFields(getClass())
                 .forEach(field -> {
                     if (Modifier.isStatic(field.getModifiers()))
                         return;
                     if (Fld.class.isAssignableFrom(field.getType())) {
+
+                        field.setAccessible(true);
                         try {
-                            field.setAccessible(true);
                             Fld fld = (Fld) field.get(this);
                             fld.validateValue((Comparable) getGetFieldValue(field, this));
                         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             throw new RuntimeException(e);
                         }
+
                     } else if (SingleEntityReference.class.isAssignableFrom(field.getType())) {
                         try {
                             field.setAccessible(true);
                             SingleEntityReference singleEntityReference = (SingleEntityReference) field.get(this);
-                            singleEntityReference.validateValue((Entity) getGetFieldValue(field, this));
                             Entity entity = singleEntityReference.getEntity();
-                            if (entity != null && entity.getEntityId() == null)
+                            if (entity != null && entity.getEntityId() == null) {
+                                singleEntityReference.validateValue(entity);
                                 entity.save();
-                        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                            }
+                        } catch (IllegalAccessException e) {
                             throw new RuntimeException(e);
                         }
                     } else if (InternalMultiEntitiesReferences.class.isAssignableFrom(field.getType())) {
@@ -93,6 +122,8 @@ public abstract class Entity<T extends Entity> {
     }
 
     public void apiSave() {
+        if (entityService == null)
+            entityService = ServiceFactory.getService((Class<T>) getClass());
         final Entity prev;
         if (entityId != null)
             prev = entityService.findById(entityId).orElse(null);
@@ -159,7 +190,7 @@ public abstract class Entity<T extends Entity> {
         if (originalEntity == null) {
             return false; // Entity does not exist in the database
         }
-        initNSFields((Class<T>) originalEntity.getClass(), originalEntity);
+        initNullFields((Class<T>) originalEntity.getClass(), originalEntity);
         originalEntity.define(originalEntity);//A must for calculated fields
         return !this.equals(originalEntity); // Ensure your entity has proper equals() and hashCode()
     }
@@ -177,6 +208,32 @@ public abstract class Entity<T extends Entity> {
             }
         }
         return true;
+    }
+
+    public void delete() {
+        if (entityService == null)
+            entityService = ServiceFactory.getService((Class<T>) getClass());
+        entityService.deleteById(entityId);
+    }
+
+    public void addQueryEditor(String queryName, Consumer<T> queryEditor) {
+        queryEditors.put(queryName, queryEditor);
+    }
+
+    public Consumer<T> getQueryEditor(String queryName) {
+        return queryEditors.get(queryName);
+    }
+
+    public Map<String, Consumer<T>> getQueryEditor() {
+        return queryEditors;
+    }
+
+    public void addQueryFilter(AbstractJPAQuery<T, JPAQuery<T>> filter) {
+        addedFilters[0] = filter;
+    }
+
+    public AbstractJPAQuery<T, JPAQuery<T>> getQueryFilter() {
+        return addedFilters[0];
     }
 
 

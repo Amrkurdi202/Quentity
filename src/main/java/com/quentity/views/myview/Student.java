@@ -1,18 +1,20 @@
 package com.quentity.views.myview;
 
 import com.quentity.entity.Entity;
+import com.quentity.entity.EntityService;
 import com.quentity.entity.annotions.Icon;
-import com.quentity.entity.field.*;
+import com.quentity.entity.field.FldDate;
+import com.quentity.entity.field.FldString;
+import com.quentity.entity.field.NSMultiEntitiesReferences;
 import com.quentity.misc.EntityManagerProvider;
 import com.quentity.misc.Patterns;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import jakarta.annotation.security.PermitAll;
-import com.quentity.entity.EntityService;
-import lombok.EqualsAndHashCode;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class Student extends Entity<Student> {
     public FldString firstName, lastName, address;
 
     public FldDate birthDate;
+
 
     NSMultiEntitiesReferences<Course> currentSemesterCourses;
 

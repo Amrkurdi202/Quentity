@@ -1,78 +1,105 @@
 package com.quentity.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quentity.entity.EntityService;
+import com.quentity.entity.field.FldString;
+import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.views.myview.AccessGroup;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@Getter
-@Entity
+@Setter
 @Table(name = "application_user")
-public class User implements UserDetails {
+@Entity
+@Component
+@RolesAllowed("ROLE_ADMIN")
+public class User extends com.quentity.entity.Entity<User> implements UserDetails {
 
-    @Setter
-    private String username;
-    @Setter
-    private String name;
-    @Setter
+    @Transient
+    private static final Map<UserWithEntity, String> userDefaultQueryForEntity = new ConcurrentHashMap<>();
+
+    @Transient
+    private static final Map<User, List<UserWithEntity>> helperMap = new ConcurrentHashMap<>();
+
+    @IndexedEmbedded
+    private FldString username;
+
     @JsonIgnore
     private String hashedPassword;
-    @Setter
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
+    @Getter
     private Set<Role> roles;
-    @Setter
+
     @Lob
     @Column(length = 1000000)
+    @Getter
     private byte[] profilePicture;
-    @Setter
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
-    // The initial value is to account for data.sql demo data ids
-    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
-    private Long id;
-    @Version
-    private int version;
 
-    @Setter
     @Getter
     @Column(name = "lang", length = 3, nullable = false)
     private String lang = "en";
 
+    public SingleEntityReference<AccessGroup> accessGroup;
 
     @Override
     public int hashCode() {
-        return getId().hashCode();
+        Long entityId = getEntityId();
+        return entityId == null ? super.hashCode() : entityId.hashCode();
+    }
+
+    @Override
+    public void define(User entity) {
+        accessGroup.onFieldChanged((oldValue, newValue) -> {
+            List<UserWithEntity> userWithEntities = helperMap.get(this);
+            if (userWithEntities != null) {
+                for (UserWithEntity userWithEntity : userWithEntities) {
+                    userDefaultQueryForEntity.computeIfPresent(userWithEntity, (key, value) -> getQuery(userWithEntity.getUser(), userWithEntity.getEntityClass()));
+                }
+            }
+        });
     }
 
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof User that)) {
-            return false; // null or not an AbstractEntity class
+            // null or not an AbstractEntity class
+            return false;
         }
-        if (getId() != null) {
-            return getId().equals(that.getId());
+        if (getEntityId() != null) {
+            return getEntityId().equals(that.getEntityId());
         }
         return super.equals(that);
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role))
-                .collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
     }
 
     @Override
     public String getPassword() {
         return hashedPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return username.getFieldValue();
     }
 
     @Override
@@ -93,5 +120,43 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Autowired()
+    public User(EntityService<User> entityService) {
+        super(entityService);
+    }
+
+    public User() {
+        super();
+    }
+
+    public <E extends com.quentity.entity.Entity> String getDefaultEntityQuery(Class<E> entityClass) {
+        return getDefaultEntityQuery(this, entityClass);
+    }
+
+    public static <E extends com.quentity.entity.Entity> String getDefaultEntityQuery(User user, Class<E> entityClass) {
+        UserWithEntity key1 = new UserWithEntity().setUser(user).setEntityClass(entityClass);
+        helperMap.computeIfAbsent(user, u -> new ArrayList<>()).add(key1);
+        return userDefaultQueryForEntity.computeIfAbsent(key1, key -> getQuery(user, entityClass));
+    }
+
+    private static <E extends com.quentity.entity.Entity> String getQuery(User user, Class<E> entityClass) {
+        try {
+            SingleEntityReference<AccessGroup> accessGroup1 = user.accessGroup;
+            AccessGroup accessGroupEntity = accessGroup1.getEntity();
+            return accessGroupEntity.getQueries().stream().filter(query -> query.entities.getEntity().getName().getFieldValue().equals(entityClass.getSimpleName())).findFirst().orElse(null).query.getEntity().name.getFieldValue();
+        } catch (NullPointerException e) {
+            return "default";
+        }
+    }
+
+    @Data
+    @Accessors(chain = true)
+    private static class UserWithEntity {
+
+        private User user;
+
+        private Class<? extends com.quentity.entity.Entity> entityClass;
     }
 }

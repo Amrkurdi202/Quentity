@@ -1,12 +1,14 @@
 package com.quentity.views.myview;
 
 import com.quentity.entity.Entity;
+import com.quentity.entity.EntityService;
+import com.quentity.entity.annotions.DieTogether;
 import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldNumber;
 import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.misc.EntityManagerProvider;
+import com.querydsl.jpa.impl.JPAQuery;
 import jakarta.annotation.security.PermitAll;
-import com.quentity.entity.EntityService;
-import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +24,19 @@ public class Mark extends Entity<Mark> {
 
     public SingleEntityReference<ExamType> examType;
 
+    @DieTogether
     public SingleEntityReference<Student> student;
 
     public FldNumber mark;
 
     public void define(Mark mark) {
-        course.setRequired(true);
-        semester.setRequired(true);
-        examType.setRequired(true);
-        student.setRequired(true);
+        mark.course.setRequired(true);
+        mark.semester.setRequired(true);
+        mark.examType.setRequired(true);
+        mark.student.setRequired(true);
         mark.mark.setRequired(true);
+        mark.mark.setMin(0d).setMax(100d);
+        addQueryEditor("queryEditTest", this::queryEditTest);
     }
 
     @Autowired()
@@ -41,5 +46,15 @@ public class Mark extends Entity<Mark> {
 
     public Mark() {
         super();
+    }
+
+    private void queryEditTest(Mark mark) {
+        JPAQuery<Object> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
+        JPAQuery<Student> where = jpaQuery.select(QStudent.student).from(QStudent.student).where(QStudent.student.studentID.textValue.startsWith("120"));
+        mark.student.setAddedFilters(where);
+        jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
+        QMark mark1 = QMark.mark1;
+        JPAQuery<Mark> where1 = jpaQuery.select(mark1).from(mark1).where(mark1.student.entity.entityId.eq(1015l));
+        mark.addQueryFilter(where1);
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+import static com.quentity.entity.EntityService.getColumn;
+
 @Service
 public class QueryBuilder {
     @PersistenceContext
@@ -60,22 +62,11 @@ public class QueryBuilder {
     }
 
     public String getDatabaseColumnName(String fieldName, Class<?> entityClass) {
-        SessionFactory sessionFactory = entityManager.unwrap(org.hibernate.Session.class).getSessionFactory();
-        SessionFactoryImplementor sessionFactoryImpl = (SessionFactoryImplementor) sessionFactory;
-        MetamodelImplementor metadata = sessionFactoryImpl.getMetamodel();
-        EntityPersister persister = metadata.entityPersister(entityClass);
-        if (persister != null) {
-            String[] columnNames = ((UnionSubclassEntityPersister) persister).getPropertyColumnNames(fieldName);
-            if (columnNames.length > 0) {
-                return columnNames[0];
-            }
-        }
-        return fieldName;
+        return getColumn(fieldName, entityClass, entityManager);
     }
 
 
     private String[] parseFieldWithOperation(String fieldWithOperation) {
-        System.out.println("Parsing: " + fieldWithOperation);
 
         String regex = "^(\\w+)([><=!]+)$";
         java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
@@ -84,8 +75,6 @@ public class QueryBuilder {
         if (matcher.find()) {
             String fieldName = matcher.group(1);
             String operator = matcher.group(2);
-            System.out.println("Parsed Field: " + fieldName);
-            System.out.println("Parsed Operator: " + operator);
             return new String[]{fieldName, operator};
         }
 
@@ -107,4 +96,6 @@ public class QueryBuilder {
         }
         throw new IllegalArgumentException("Unable to resolve table name for entity: " + entityClass.getName());
     }
+
+
 }

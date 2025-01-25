@@ -320,6 +320,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
     public abstract void onSave();
 
+    public abstract void validateValue(Object value);
+
     @Override
     public void setEnabled(boolean enabled) {
         grid.setEnabled(enabled);

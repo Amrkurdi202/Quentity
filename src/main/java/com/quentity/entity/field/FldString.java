@@ -21,7 +21,8 @@ public class FldString extends InternalFldString {
         String eValue = e.getValue();
         try {
             validateValue(eValue);
-            if (fieldChangedCallback != null) fieldChangedCallback.onFieldChanged(e.getOldValue(), eValue);
+            if (fieldChangedCallback != null)
+                fieldChangedCallback.onFieldChanged(e.getOldValue(), eValue);
             textField.setInvalid(false);
         } catch (IllegalArgumentException ex) {
             textField.setInvalid(true);
