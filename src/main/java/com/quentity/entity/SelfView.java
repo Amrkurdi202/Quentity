@@ -73,9 +73,9 @@ public class SelfView<T extends Entity> extends EntityView<T> {
                             singleEntityReference.setEntity(innerRefranceEntity);
                         }
                     }
-                    singleEntityReference.reflect(field1.getGeneric().get(0));
                     String fullFieldName = clazzName + "." + field.getName();
-                    singleEntityReference.setFullName(fullFieldName);
+                    singleEntityReference.updateLabel(fullFieldName);
+                    singleEntityReference.reflect(field1.getGeneric().get(0));
                     singleEntityReference.refreshComboBox();
                     add(singleEntityReference);
                 }
@@ -90,7 +90,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
                         field.set(entity, multiEntitiesReferences);
                     }
                     String fullFieldName = clazzName + "." + field.getName();
-                    multiEntitiesReferences.setFullName(fullFieldName);
+                    multiEntitiesReferences.updateLabel(fullFieldName);
                     //It should have label before reflect
                     //In reflect we add the Span
                     multiEntitiesReferences.reflect(field1.getGeneric().get(0), entity);

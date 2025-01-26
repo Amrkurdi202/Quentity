@@ -220,14 +220,14 @@
                 <groupId>com.quentity</groupId>
                 <artifactId>AppGenPlug</artifactId>
                 <version>1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>make-app</goal>
-                            <goal>sync</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <!--                <executions>-->
+                <!--                    <execution>-->
+                <!--                        <goals>-->
+                <!--                            <goal>make-app</goal>-->
+                <!--                            <goal>sync</goal>-->
+                <!--                        </goals>-->
+                <!--                    </execution>-->
+                <!--                </executions>-->
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

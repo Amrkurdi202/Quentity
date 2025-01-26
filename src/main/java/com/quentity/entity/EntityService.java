@@ -88,7 +88,7 @@ public class EntityService<E extends Entity> {
                             throw new RuntimeException(e);
                         }
                         if (fld != null) {
-                            List entities = ((MultiEntitiesReferences) fld).getEntities();
+                            List entities = ((MultiEntitiesReferences) fld).getEntity();
                             if (entities != null) {
                                 entities.clear();
                                 resolvedEntity.set(repository.save(entity));

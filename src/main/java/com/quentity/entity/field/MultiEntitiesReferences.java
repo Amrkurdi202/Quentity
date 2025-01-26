@@ -2,12 +2,16 @@ package com.quentity.entity.field;
 
 
 import com.quentity.entity.Entity;
-
 import com.vaadin.flow.data.provider.ListDataProvider;
-import jakarta.persistence.*;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OrderColumn;
 import lombok.EqualsAndHashCode;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Embeddable
 @EqualsAndHashCode
@@ -17,7 +21,7 @@ public class MultiEntitiesReferences<T extends Entity> extends InternalMultiEnti
     private List<T> entities;
 
     @Override
-    public List<T> getEntities() {
+    public List<T> getEntity() {
         return entities == null ? null : entities;
     }
 
@@ -46,8 +50,8 @@ public class MultiEntitiesReferences<T extends Entity> extends InternalMultiEnti
     }
 
     @Override
-    public MultiEntitiesReferences setEntities(ListDataProvider<T> entities) {
-        this.entities = entities.getItems().stream().toList();
+    public MultiEntitiesReferences setEntity(ListDataProvider<T> entity) {
+        this.entities = entity.getItems().stream().toList();
         return this;
     }
 

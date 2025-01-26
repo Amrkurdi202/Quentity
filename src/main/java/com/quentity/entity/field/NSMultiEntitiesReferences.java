@@ -3,10 +3,9 @@ package com.quentity.entity.field;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quentity.entity.Entity;
-
 import com.vaadin.flow.data.provider.ListDataProvider;
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -40,7 +39,7 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
 
 
     @Override
-    public List<T> getEntities() {
+    public List<T> getEntity() {
         return entities == null ? new ArrayList<>() : (List<T>) entities.getItems();
     }
 
@@ -54,6 +53,7 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
         }
         if (!skipDefaultOnSave) {
             //to prevent cyclic references
+            if (entities == null) return;
             for (T entity : entities.getItems()) {
                 if (doneEntities.contains(entity.getEntityId())) continue;
                 doneEntities.add(entity.getEntityId());
@@ -63,9 +63,9 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
     }
 
     @Override
-    public NSMultiEntitiesReferences setEntities(ListDataProvider<T> entities) {
-        this.entities = entities;
-        grid.setDataProvider(entities);
+    public NSMultiEntitiesReferences setEntity(ListDataProvider<T> entity) {
+        this.entities = entity;
+        grid.setDataProvider(entity);
         return this;
     }
 
@@ -78,7 +78,7 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
     }
 
     public NSMultiEntitiesReferences setEntitiesWithContext(ListDataProvider<T> entities, Consumer<Map<String, Object>> consumer) {
-        setEntities(entities);
+        setEntity(entities);
         contextData(consumer);
         return this;
     }
@@ -100,8 +100,8 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
         if (!(o instanceof InternalMultiEntitiesReferences)) return false;
         else {
             InternalMultiEntitiesReferences that = (InternalMultiEntitiesReferences) o;
-            List entities1 = that.getEntities();
-            List<T> entities2 = this.getEntities();
+            List entities1 = that.getEntity();
+            List<T> entities2 = this.getEntity();
             if (entities1 == null || entities1.isEmpty()) {
                 return entities2.isEmpty();
             }
@@ -111,7 +111,7 @@ public class NSMultiEntitiesReferences<T extends Entity> extends InternalMultiEn
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getEntities());
+        return Objects.hashCode(getEntity());
     }
 
     @Override

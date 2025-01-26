@@ -2,11 +2,9 @@ package com.quentity.entity.field;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.entity.*;
-import com.quentity.entity.Entity;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.customfield.CustomField;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
 import com.vaadin.flow.component.grid.contextmenu.GridContextMenu;
@@ -18,7 +16,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
-import jakarta.persistence.*;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +32,7 @@ import static com.quentity.entity.Entity.getReferenceFieldTitle;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
 @EqualsAndHashCode
-public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends CustomField<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>> {
+public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends Res<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>> {
     @Transient
     @Setter
     @Getter
@@ -56,9 +54,6 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
     @Transient
     @EqualsAndHashCode.Exclude
     Grid<T> grid;
-    @Transient
-    @EqualsAndHashCode.Exclude
-    private String label;
     @Transient
     @EqualsAndHashCode.Exclude
     private SingleEntityReference entitySingleEntityReference;
@@ -132,8 +127,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
             grid.addItemClickListener(GridMisc.selectItem(selectionModel));
             grid.addItemDoubleClickListener(GridMisc.showItem());
             //End Configs
-            if (getEntities() != null)
-                grid.setItems(getEntities());
+            if (getEntity() != null)
+                grid.setItems(getEntity());
 
 
             AtomicReference<T> draggedItem = new AtomicReference<>();
@@ -237,13 +232,13 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
         icon = FontAwesome.Solid.PAPERCLIP.create();
         addToListButton = new Button(icon, e -> {
             Entity entity1 = entitySingleEntityReference.getEntity();
-            if (getEntities() == null)
+            if (getEntity() == null)
                 setEntities(new ArrayList<>());
 
             if (entity1 != null) {
-                getEntities().add((T) entity1);
+                getEntity().add((T) entity1);
             }
-            grid.setItems(getEntities());
+            grid.setItems(getEntity());
         });
         HorizontalLayout horizontalLayout = new HorizontalLayout();
         horizontalLayout.add(addToListButton);
@@ -251,7 +246,7 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
         VerticalLayout verticalLayout = new VerticalLayout();
 
-        Span span = new Span(label);
+        Span span = new Span(getTextData());
         span.addClassName("custom-span");
         verticalLayout.add(span);
 
@@ -299,12 +294,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
         fieldChangedCallback = callback;
     }
 
-    public void setFullName(String fullFieldName) {
-        this.label = LanguageUtil.get(fullFieldName);
-    }
-
     public List<T> getFieldValue() {//Called using reflection
-        return getEntities();
+        return getEntity();
     }
 
 
@@ -314,9 +305,9 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
     abstract InternalMultiEntitiesReferences setEntities(List<T> entities);
 
-    abstract InternalMultiEntitiesReferences setEntities(ListDataProvider<T> entities);
+    abstract InternalMultiEntitiesReferences setEntity(ListDataProvider<T> entity);
 
-    abstract List<T> getEntities();
+    abstract List<T> getEntity();
 
     public abstract void onSave();
 

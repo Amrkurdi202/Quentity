@@ -37,6 +37,6 @@ public class AccessGroup extends Entity<AccessGroup> {
 
     @Transient
     public List<EntityQuery> getQueries() {
-        return queries.getEntities();
+        return queries.getEntity();
     }
 }
