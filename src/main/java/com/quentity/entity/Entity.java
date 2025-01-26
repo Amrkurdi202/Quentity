@@ -2,12 +2,14 @@ package com.quentity.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quentity.data.User;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.entity.field.events.FieldChanged;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.vaadin.flow.server.VaadinSession;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -68,6 +70,17 @@ public abstract class Entity<T extends Entity> {
     @Transient
     private AbstractJPAQuery<T, JPAQuery<T>>[] addedFilters = new AbstractJPAQuery[1];
 
+    @Transient
+    @JsonIgnore
+    @Setter
+    @Getter
+    private Consumer<Map<String, Object>> onSaveCallback;
+
+    @Transient
+    @JsonIgnore
+    @Getter
+    private Map<String, Object> contextData = new ConcurrentHashMap<>();
+
     @SneakyThrows
     public Entity(EntityService<T> entityService) {
         this();
@@ -78,7 +91,24 @@ public abstract class Entity<T extends Entity> {
         super();
     }
 
+    public static <T extends Entity> void defaultQuery(Entity<T> entity) {
+        VaadinSession current = VaadinSession.getCurrent();
+        User user = null;
+        if (current != null) {
+            user = current.getAttribute(User.class);
+        }
+        Consumer<T> queryEditor = entity.
+                getQueryEditor(user == null ?
+                        "default" :
+                        user.
+                                getDefaultEntityQuery(entity.getClass()));
+        if (queryEditor != null)
+            queryEditor.accept((T) entity);
+    }
+
     public void save() {
+        if (onSaveCallback != null)
+            onSaveCallback.accept(contextData);
         if (entityService == null)
             entityService = ServiceFactory.getService((Class<T>) getClass());
         EntityFieldsFactory.getFields(getClass())

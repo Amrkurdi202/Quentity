@@ -9,8 +9,10 @@ import java.util.List;
 public class MainEntityViewHandler {
     public static <E extends Entity> EntityView<E> getMainEntityView(Class<E> entityClass) {
         Annotation annotation = entityClass.getAnnotation(Mono.class);
-        if (annotation == null)
+        if (annotation == null) {
+
             return getEntityDefaultView(entityClass);
+        }
         else {
             EntityService entityService = ServiceFactory.getService(entityClass);
             List<Entity> all = entityService.findAll();

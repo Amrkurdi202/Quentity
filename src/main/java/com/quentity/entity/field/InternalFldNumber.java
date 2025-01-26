@@ -1,12 +1,12 @@
 package com.quentity.entity.field;
 
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.textfield.*;
+import com.vaadin.flow.component.textfield.NumberField;
 import jakarta.persistence.Transient;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import lombok.experimental.Accessors;
-
-import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -163,5 +163,19 @@ public abstract class InternalFldNumber extends Fld<InternalFldNumber, Double> {
             fieldChangedCallback.onFieldChanged(oldValue, value);
     }
 
+    <E extends ValueChangeEvent<Double>> void getValueChangeListener(E e) {
+        Double eValue = e.getValue();
+        try {
+            validateValue(eValue);
+            if (fieldChangedCallback != null) fieldChangedCallback.onFieldChanged(e.getOldValue(), eValue);
+            numericField.setInvalid(false);
+        } catch (IllegalArgumentException ex) {
+            numericField.setInvalid(true);
+            numericField.setErrorMessage(ex.getMessage());
+        }
+        setNumericValue(eValue);
+        setModelValue(this, true);
+        setPresentationValue(this);
+    }
 }
 

@@ -1,6 +1,5 @@
 package com.quentity.entity;
 
-import com.quentity.data.User;
 import com.quentity.entity.field.Action;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.SingleEntityReference;
@@ -17,14 +16,12 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.DataProvider;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import static com.quentity.entity.Entity.getGetFieldValue;
 import static com.quentity.entity.Entity.getReferenceFieldTitle;
@@ -36,18 +33,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
         super(entityClass);
         Entity<T> entity = Entity.newEntity(entityClass);
         ServiceFactory.define(entity);
-        VaadinSession current = VaadinSession.getCurrent();
-        User user = null;
-        if (current != null) {
-            user = current.getAttribute(User.class);
-        }
-        Consumer<T> queryEditTest = entity.
-                getQueryEditor(user == null ?
-                        "default" :
-                        user.
-                                getDefaultEntityQuery(entity.getClass()));
-        if (queryEditTest != null)
-            queryEditTest.accept((T) entity);
+        Entity.defaultQuery(entity);
         setSizeFull();
         EntityService entityService = ServiceFactory.getService(entityClass);
         Class<T> clazz = getClazz();

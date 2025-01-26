@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.field.FldString;
 import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.misc.EntityManagerProvider;
 import com.quentity.views.myview.AccessGroup;
+import com.quentity.views.myview.EntityQuery;
+import com.quentity.views.myview.Queries;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -17,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -29,10 +35,13 @@ import java.util.stream.Collectors;
 public class User extends com.quentity.entity.Entity<User> implements UserDetails {
 
     @Transient
+    @Getter
     private static final Map<UserWithEntity, String> userDefaultQueryForEntity = new ConcurrentHashMap<>();
 
     @Transient
+    @Getter
     private static final Map<User, List<UserWithEntity>> helperMap = new ConcurrentHashMap<>();
+    public static final String DEFAULT = "default";
 
     @IndexedEmbedded
     private FldString username;
@@ -64,14 +73,12 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
 
     @Override
     public void define(User entity) {
-        accessGroup.onFieldChanged((oldValue, newValue) -> {
-            List<UserWithEntity> userWithEntities = helperMap.get(this);
-            if (userWithEntities != null) {
-                for (UserWithEntity userWithEntity : userWithEntities) {
-                    userDefaultQueryForEntity.computeIfPresent(userWithEntity, (key, value) -> getQuery(userWithEntity.getUser(), userWithEntity.getEntityClass()));
-                }
-            }
-        });
+        accessGroup.onSave();
+    }
+
+    public static void refreshAccessRights() {
+        helperMap.clear();
+        userDefaultQueryForEntity.clear();
     }
 
     @Override
@@ -140,14 +147,70 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
         return userDefaultQueryForEntity.computeIfAbsent(key1, key -> getQuery(user, entityClass));
     }
 
+    public static String getCurrentUserDefaultQuery(Class<? extends com.quentity.entity.Entity> entityClass) {
+        VaadinSession current = VaadinSession.getCurrent();
+        User user = null;
+        if (current != null) {
+            user = current.getAttribute(User.class);
+            if (user == null)
+                return null;
+            return getDefaultEntityQuery(user, entityClass);
+        }
+        return null;
+    }
+
     private static <E extends com.quentity.entity.Entity> String getQuery(User user, Class<E> entityClass) {
         try {
-            SingleEntityReference<AccessGroup> accessGroup1 = user.accessGroup;
-            AccessGroup accessGroupEntity = accessGroup1.getEntity();
-            return accessGroupEntity.getQueries().stream().filter(query -> query.entities.getEntity().getName().getFieldValue().equals(entityClass.getSimpleName())).findFirst().orElse(null).query.getEntity().name.getFieldValue();
+            SingleEntityReference<AccessGroup> accessGroup1 = getAccessGroup(user);
+            if (accessGroup1 == null)
+                return null;
+            EntityQuery entityQuery = getEntityQuery(entityClass, accessGroup1);
+            return getQueryString(entityQuery);
         } catch (NullPointerException e) {
-            return "default";
+            return DEFAULT;
         }
+    }
+
+    private static String getQueryString(EntityQuery entityQuery) {
+        if (entityQuery == null)
+            return DEFAULT;
+        SingleEntityReference<Queries> query = entityQuery.
+                query;
+        if (query == null)
+            return null;
+        Queries entity = query.getEntity();
+        if (entity == null)
+            return null;
+        return entity
+                .name.getFieldValue();
+    }
+
+    private static <E extends com.quentity.entity.Entity> EntityQuery getEntityQuery(Class<E> entityClass, SingleEntityReference<AccessGroup> accessGroup1) {
+        AccessGroup accessGroupEntity = accessGroup1.getEntity();
+        EntityQuery entityQuery = accessGroupEntity.getQueries().
+                stream().
+                filter(query -> query.entities.
+                        getEntity().
+                        getFullName().
+                        equals(entityClass.getName()))
+                .findFirst().orElse(null);
+        return entityQuery;
+    }
+
+    private static SingleEntityReference<AccessGroup> getAccessGroup(User user) {
+        JPAQuery<Object> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
+        QUser user1 = QUser.user;
+        JPAQuery<SingleEntityReference
+                <? extends com.quentity.entity.Entity>> where = jpaQuery.
+                select(user1.accessGroup)
+                .from(user1).
+                where(user1.entityId.
+                        eq(user.getEntityId()));
+        SingleEntityReference
+                <AccessGroup> accessGroup1 = (SingleEntityReference
+                <AccessGroup>) where.
+                fetchOne();
+        return accessGroup1;
     }
 
     @Data

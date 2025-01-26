@@ -1,7 +1,6 @@
 package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.quentity.data.User;
 import com.quentity.entity.field.*;
 import com.quentity.misc.LanguageUtil;
 import com.quentity.refGenPlug.FieldPojo;
@@ -13,11 +12,9 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.server.VaadinSession;
 
 import java.lang.reflect.*;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import static com.quentity.misc.Utils.isInheritedFrom;
 
@@ -103,18 +100,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
             }
         }
         ServiceFactory.define(entity);
-        VaadinSession current = VaadinSession.getCurrent();
-        User user = null;
-        if (current != null) {
-            user = current.getAttribute(User.class);
-        }
-        Consumer<T> queryEditTest = entity.
-                getQueryEditor(user == null ?
-                        "default" :
-                        user.
-                                getDefaultEntityQuery(entity.getClass()));
-        if (queryEditTest != null)
-            queryEditTest.accept((T) entity);
+        Entity.defaultQuery(entity);
     }
 
     private static <T extends Entity> Button saveButton(Entity<T> entity) {

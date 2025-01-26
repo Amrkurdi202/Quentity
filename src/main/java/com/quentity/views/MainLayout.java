@@ -1,5 +1,6 @@
 package com.quentity.views;
 
+import com.quentity.data.Role;
 import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.annotions.handler.IconHandler;
@@ -46,202 +47,208 @@ import static com.quentity.misc.Utils.addToTabs;
 @UIScope
 public class MainLayout extends AppLayout {
 
-  public final TabSheet tabs;
-  private H1 viewTitle;
+    public final TabSheet tabs;
+    private H1 viewTitle;
 
-  private AuthenticatedUser authenticatedUser;
-  private AccessAnnotationChecker accessChecker;
-  private final ApplicationContext applicationContext;
-  private boolean firstTime;
+    private AuthenticatedUser authenticatedUser;
+    private AccessAnnotationChecker accessChecker;
+    private final ApplicationContext applicationContext;
+    private boolean firstTime;
 
-  @Autowired
-  public MainLayout(ApplicationContext applicationContext, AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
-    Optional<User> user = authenticatedUser.get();
-    user.ifPresent(value -> LanguageUtil.setCurrentLanguage(value.getLang()));
-    getElement().getStyle().set("height", "100%");
-    this.authenticatedUser = authenticatedUser;
-    this.accessChecker = accessChecker;
-    this.applicationContext = applicationContext;
-    tabs = new TabSheet();
-    tabs.getElement().getStyle().set("height", "100%");
-    tabs.addThemeVariants(TabSheetVariant.LUMO_TABS_SMALL);
-    tabs.addSelectedChangeListener(
-            event -> {
-              Tab selectedTab = event.getSelectedTab();
-              if (selectedTab == null)
-                viewTitle.setText("");
-              else {
-                Tooltip tooltip = selectedTab.getTooltip();
-                if (tooltip != null)
-                  viewTitle.setText(tooltip.getText());
-              }
+    @Autowired
+    public MainLayout(ApplicationContext applicationContext, AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+        Optional<User> user = authenticatedUser.get();
+        user.ifPresent(value -> {
+            LanguageUtil.setCurrentLanguage(value.getLang());
+            VaadinSession current = VaadinSession.getCurrent();
+            if (current != null) {
+                current.setAttribute(User.class, authenticatedUser.get().get());
             }
-    );
-
-    UI.getCurrent().getPage().retrieveExtendedClientDetails(details -> {
-      handleScreenWidth(details.getScreenWidth());
-    });
-    addDrawerContent();
-    addHeaderContent();
-  }
-
-  private void handleScreenWidth(int screenWidth) {
-    if(screenWidth > 700){ // not sure if this is the best way to do it , this requires the page to be updated.
-      setPrimarySection(Section.NAVBAR);
-      getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "false");
-    }else {
-      setPrimarySection(Section.DRAWER);
-      getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "true");
-    }
-  }
-
-
-  private void addHeaderContent() {
-    DrawerToggle toggle = new DrawerToggle();
-    toggle.setAriaLabel("Menu toggle");
-
-    viewTitle = new H1();
-    viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
-
-    LanguageSelectorWidget languageSelectorWidget = new LanguageSelectorWidget(authenticatedUser);
-
-    addToNavbar(true, toggle, viewTitle, languageSelectorWidget);
-  }
-
-  private void addDrawerContent() {
-    TextField searchDrawerTxt = new TextField();
-    searchDrawerTxt.setPlaceholder(LanguageUtil.get("search"));
-    searchDrawerTxt.setWidth("100%");
-//    searchDrawerTxt.getStyle().set("--vaadin-input-field-background", "var(--lumo-base-color)");
-    searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
-    searchDrawerTxt.setClearButtonVisible(true);
-    Header header = new Header(searchDrawerTxt);
-    header.getElement().getStyle().set("align-items", "center");
-    Scroller scroller = new Scroller(createNavigation());
-
-    addToDrawer(header, scroller, createFooter());
-  }
-
-  private VerticalLayout createNavigation() {
-    VerticalLayout nav = new VerticalLayout();
-
-    addEntitySubclassesToNav(nav);
-
-    return nav;
-  }
-
-  private Footer createFooter() {
-    Footer layout = new Footer();
-
-    Optional<User> maybeUser = authenticatedUser.get();
-    if (maybeUser.isPresent()) {
-      User user = maybeUser.get();
-
-      Avatar avatar = new Avatar(user.getUsername());
-      StreamResource resource = new StreamResource("profile-pic",
-              () -> new ByteArrayInputStream(user.getProfilePicture()));
-      avatar.setImageResource(resource);
-      avatar.setThemeName("xsmall");
-      avatar.getElement().setAttribute("tabindex", "-1");
-
-      MenuBar userMenu = new MenuBar();
-      userMenu.setThemeName("tertiary-inline contrast");
-
-      MenuItem userName = userMenu.addItem("");
-      Div div = new Div();
-      div.add(avatar);
-      div.add(user.getUsername());
-      div.add(new Icon("lumo", "dropdown"));
-      div.getElement().getStyle().set("display", "flex");
-      div.getElement().getStyle().set("align-items", "center");
-      div.getElement().getStyle().set("gap", "var(--lumo-space-s)");
-      userName.add(div);
-      userName.getSubMenu().addItem("Sign out", e -> {
-        authenticatedUser.logout();
-      });
-
-      layout.add(userMenu);
-    } else {
-      Anchor loginLink = new Anchor("login", "Sign in");
-      layout.add(loginLink);
-    }
-
-    return layout;
-  }
-
-  @Override
-  protected void afterNavigation() {
-    super.afterNavigation();
-    viewTitle.setText(getCurrentPageTitle());
-  }
-
-  @Override
-  public void setContent(Component content) {
-    content.removeFromParent();
-    if (content instanceof com.quentity.views.myview.Main) {
-      ((Main) content).setMainLayout(this);
-      tabs.setSelectedTab(null);
-      super.setContent(content);
-      return;
-    }
-
-    addToTabs("", content, tabs);
-    super.setContent(tabs);
-  }
-
-  private String getCurrentPageTitle() {
-    if (getContent() instanceof com.quentity.views.myview.Main) {
-      return LanguageUtil.
-              get("main");
-    }
-    TabSheet content = (TabSheet) getContent();
-    if (content.getSelectedTab() == null) {
-      return "";
-    }
-    return LanguageUtil.
-            get(content.getComponent(content.getSelectedTab()).getClass().getName());
-  }
-
-  /**
-   * Adds side navigation items for each subclass of {@link Entity} that is accessible.
-   *
-   * <p>This method uses reflection to scan the entire classpath for subclasses of {@link Entity}.
-   * It creates a {@link CustomSideNavItem} for each subclass that is accessible according to
-   * the {@link AccessAnnotationChecker} and adds it to the provided {@link VerticalLayout}.
-   *
-   * <p>When a {@link CustomSideNavItem} is clicked, it retrieves an instance of the corresponding
-   * {@link Entity} from the application context and sets it as the content of the main layout.
-   *
-   * @param nav The {@link VerticalLayout} to add navigation items to.
-   */
-  public void addEntitySubclassesToNav(VerticalLayout nav) {
-    Set<Class<? extends Entity>> entitySubclasses = Reflector.getEntities();
-
-    // Loop through each subclass
-    for (Class<? extends Entity> entityClass : entitySubclasses) {
-      // Check access before adding to navigation
-      if (accessChecker.hasAccess(entityClass)) {
-        CustomSideNavItem item = new CustomSideNavItem(
-                LanguageUtil.
-                        get(entityClass.getPackageName() + "." + entityClass.getSimpleName()),
-                IconHandler.getIcon(entityClass),
-                (event) -> {
-                  getUI().ifPresent(ui -> {
-                    VaadinSession current = VaadinSession.getCurrent();
-                    if (current != null) {
-                      current.setAttribute(User.class, authenticatedUser.get().get());
+        });
+        getElement().getStyle().set("height", "100%");
+        this.authenticatedUser = authenticatedUser;
+        this.accessChecker = accessChecker;
+        this.applicationContext = applicationContext;
+        tabs = new TabSheet();
+        tabs.getElement().getStyle().set("height", "100%");
+        tabs.addThemeVariants(TabSheetVariant.LUMO_TABS_SMALL);
+        tabs.addSelectedChangeListener(
+                event -> {
+                    Tab selectedTab = event.getSelectedTab();
+                    if (selectedTab == null)
+                        viewTitle.setText("");
+                    else {
+                        Tooltip tooltip = selectedTab.getTooltip();
+                        if (tooltip != null)
+                            viewTitle.setText(tooltip.getText());
                     }
-                    VerticalLayout content = MainEntityViewHandler.getMainEntityView(entityClass);
-
-                    if (!firstTime) {
-                      firstTime = true;
-                    }
-                    setContent(content);
-                  });
                 }
         );
-        nav.add(item);
-      }
+
+        UI.getCurrent().getPage().retrieveExtendedClientDetails(details -> {
+            handleScreenWidth(details.getScreenWidth());
+        });
+        addDrawerContent();
+        addHeaderContent();
     }
-  }
+
+    private void handleScreenWidth(int screenWidth) {
+        if (screenWidth > 700) { // not sure if this is the best way to do it , this requires the page to be updated.
+            setPrimarySection(Section.NAVBAR);
+            getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "false");
+        } else {
+            setPrimarySection(Section.DRAWER);
+            getElement().getStyle().set("--vaadin-app-layout-drawer-overlay", "true");
+        }
+    }
+
+
+    private void addHeaderContent() {
+        DrawerToggle toggle = new DrawerToggle();
+        toggle.setAriaLabel("Menu toggle");
+
+        viewTitle = new H1();
+        viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
+
+        LanguageSelectorWidget languageSelectorWidget = new LanguageSelectorWidget(authenticatedUser);
+
+        addToNavbar(true, toggle, viewTitle, languageSelectorWidget);
+    }
+
+    private void addDrawerContent() {
+        TextField searchDrawerTxt = new TextField();
+        searchDrawerTxt.setPlaceholder(LanguageUtil.get("search"));
+        searchDrawerTxt.setWidth("100%");
+//    searchDrawerTxt.getStyle().set("--vaadin-input-field-background", "var(--lumo-base-color)");
+        searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
+        searchDrawerTxt.setClearButtonVisible(true);
+        Header header = new Header(searchDrawerTxt);
+        header.getElement().getStyle().set("align-items", "center");
+        Scroller scroller = new Scroller(createNavigation());
+
+        addToDrawer(header, scroller, createFooter());
+    }
+
+    private VerticalLayout createNavigation() {
+        VerticalLayout nav = new VerticalLayout();
+
+        addEntitySubclassesToNav(nav);
+
+        return nav;
+    }
+
+    private Footer createFooter() {
+        Footer layout = new Footer();
+
+        Optional<User> maybeUser = authenticatedUser.get();
+        if (maybeUser.isPresent()) {
+            User user = maybeUser.get();
+
+            Avatar avatar = new Avatar(user.getUsername());
+            StreamResource resource = new StreamResource("profile-pic",
+                    () -> new ByteArrayInputStream(user.getProfilePicture()));
+            avatar.setImageResource(resource);
+            avatar.setThemeName("xsmall");
+            avatar.getElement().setAttribute("tabindex", "-1");
+
+            MenuBar userMenu = new MenuBar();
+            userMenu.setThemeName("tertiary-inline contrast");
+
+            MenuItem userName = userMenu.addItem("");
+            Div div = new Div();
+            div.add(avatar);
+            div.add(user.getUsername());
+            div.add(new Icon("lumo", "dropdown"));
+            div.getElement().getStyle().set("display", "flex");
+            div.getElement().getStyle().set("align-items", "center");
+            div.getElement().getStyle().set("gap", "var(--lumo-space-s)");
+            userName.add(div);
+            userName.getSubMenu().addItem("Sign out", e -> {
+                authenticatedUser.logout();
+            });
+
+            layout.add(userMenu);
+        } else {
+            Anchor loginLink = new Anchor("login", "Sign in");
+            layout.add(loginLink);
+        }
+
+        return layout;
+    }
+
+    @Override
+    protected void afterNavigation() {
+        super.afterNavigation();
+        viewTitle.setText(getCurrentPageTitle());
+    }
+
+    @Override
+    public void setContent(Component content) {
+        content.removeFromParent();
+        if (content instanceof com.quentity.views.myview.Main) {
+            ((Main) content).setMainLayout(this);
+            tabs.setSelectedTab(null);
+            super.setContent(content);
+            return;
+        }
+
+        addToTabs("", content, tabs);
+        super.setContent(tabs);
+    }
+
+    private String getCurrentPageTitle() {
+        if (getContent() instanceof com.quentity.views.myview.Main) {
+            return LanguageUtil.
+                    get("main");
+        }
+        TabSheet content = (TabSheet) getContent();
+        if (content.getSelectedTab() == null) {
+            return "";
+        }
+        return LanguageUtil.
+                get(content.getComponent(content.getSelectedTab()).getClass().getName());
+    }
+
+    /**
+     * Adds side navigation items for each subclass of {@link Entity} that is accessible.
+     *
+     * <p>This method uses reflection to scan the entire classpath for subclasses of {@link Entity}.
+     * It creates a {@link CustomSideNavItem} for each subclass that is accessible according to
+     * the {@link AccessAnnotationChecker} and adds it to the provided {@link VerticalLayout}.
+     *
+     * <p>When a {@link CustomSideNavItem} is clicked, it retrieves an instance of the corresponding
+     * {@link Entity} from the application context and sets it as the content of the main layout.
+     *
+     * @param nav The {@link VerticalLayout} to add navigation items to.
+     */
+    public void addEntitySubclassesToNav(VerticalLayout nav) {
+        Set<Class<? extends Entity>> entitySubclasses = Reflector.getEntities();
+        User user = authenticatedUser.get().orElse(null);
+        //This check to prevent adding access group to admin
+        boolean isAdmin = user != null && user.getRoles().contains(Role.ADMIN);
+        // Loop through each subclass
+        for (Class<? extends Entity> entityClass : entitySubclasses) {
+            // Check access before adding to navigation
+            if ((isAdmin && accessChecker.hasAccess(entityClass)) ||
+                    (accessChecker.hasAccess(entityClass) &&
+                            User.getCurrentUserDefaultQuery(entityClass) != null)) {
+                CustomSideNavItem item = new CustomSideNavItem(
+                        LanguageUtil.
+                                get(entityClass.getPackageName() + "." + entityClass.getSimpleName()),
+                        IconHandler.getIcon(entityClass),
+                        (event) -> {
+                            getUI().ifPresent(ui -> {
+                                VerticalLayout content = MainEntityViewHandler.getMainEntityView(entityClass);
+
+                                if (!firstTime) {
+                                    firstTime = true;
+                                }
+                                setContent(content);
+                            });
+                        }
+                );
+                nav.add(item);
+            }
+        }
+    }
 }

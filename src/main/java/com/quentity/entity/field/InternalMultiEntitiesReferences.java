@@ -4,6 +4,8 @@ import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.entity.*;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.refGenPlug.FieldPojo;
+import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
@@ -98,10 +100,20 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
                         ).setEditorComponent(item -> {
                             try {
                                 ServiceFactory.define(item);
-                                Fld field1 = (Fld) field.get(item);
-                                field1.setFieldName(fullFieldName);
-                                field1.setFieldValue(field1.getFieldValue());
-                                return field1;
+
+
+                                Object fld = field.get(item);
+                                if (fld instanceof Fld fld1) {
+                                    fld1.setFieldName(fullFieldName);
+                                    fld1.setFieldValue(fld1.getFieldValue());
+                                } else if (fld instanceof SingleEntityReference fld1) {
+                                    FieldPojo field1 = Reflector.getField(className, field.getName());
+                                    fld1.updateLabel(fullFieldName);
+                                    fld1.reflect(field1.getGeneric().get(0));
+                                    fld1.refreshComboBox();
+                                    fld1.setFieldValue(fld1.getFieldValue());
+                                }
+                                return (com.vaadin.flow.component.Component) fld;
                             } catch (IllegalAccessException e) {
                                 throw new RuntimeException(e);
                             }

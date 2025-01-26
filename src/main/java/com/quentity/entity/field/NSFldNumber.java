@@ -2,16 +2,16 @@ package com.quentity.entity.field;
 
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
 
 @Embeddable
 @Accessors(chain = true)
 @EqualsAndHashCode
-public class FldNumber extends InternalFldNumber {
-    @FullTextField
+public class NSFldNumber extends InternalFldNumber {
+    @Transient
     Double value;
 
     @Override
@@ -23,4 +23,5 @@ public class FldNumber extends InternalFldNumber {
     void setNumericValue(Double value) {
         this.value = value;
     }
+
 }

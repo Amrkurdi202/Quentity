@@ -3,25 +3,45 @@ package com.quentity.views.myview;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.ServiceFactory;
+import com.quentity.entity.field.FldBool;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
 import com.querydsl.jpa.impl.JPAQuery;
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.Map;
 import java.util.function.Consumer;
 
 @jakarta.persistence.Entity
 @Component
-@RolesAllowed("ROLE_ADMIN")
 public class EntityQuery extends Entity<EntityQuery> {
 
     public SingleEntityReference<Entities> entities;
 
     public SingleEntityReference<Queries> query;
+    public FldBool active, mono, readWrite;
+
 
     public void define(EntityQuery entityQuery) {
+        boolean active = entityQuery.active != null &&
+                (entityQuery.active.getFieldValue() != null &&
+                        entityQuery.active.getFieldValue());
+
+        entityQuery.query.setEnabled(active);
+        entityQuery.mono.setEnabled(active);
+        entityQuery.readWrite.setEnabled(active);
+
+        entityQuery.active.onFieldChanged((oldValue, newValue) -> {
+            entityQuery.query.setEnabled(newValue);
+            entityQuery.mono.setEnabled(newValue);
+            entityQuery.readWrite.setEnabled(newValue);
+            if (!newValue) {
+                entityQuery.query.setFieldValue(null);
+                entityQuery.mono.setFieldValue(false);
+                entityQuery.readWrite.setFieldValue(false);
+            }
+        });
         entityQuery.entities.onFieldChanged((oldValue, newValue) -> {
             if (newValue != null) {
                 Class aClass = null;
@@ -48,4 +68,5 @@ public class EntityQuery extends Entity<EntityQuery> {
     public EntityQuery() {
         super();
     }
+
 }

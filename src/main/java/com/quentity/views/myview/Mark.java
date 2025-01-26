@@ -39,6 +39,7 @@ public class Mark extends Entity<Mark> {
         mark.mark.setRequired(true);
         mark.mark.setMin(0d).setMax(100d);
         addQueryEditor("queryEditTest", this::queryEditTest);
+        addQueryEditor("default", this::defaultQuery);
     }
 
     @Autowired()
@@ -61,5 +62,9 @@ public class Mark extends Entity<Mark> {
         User user = VaadinSession.getCurrent().getAttribute(User.class);
         JPAQuery<Mark> where1 = jpaQuery.select(mark1).from(mark1).where(mark1.student.entity.entityId.eq(innerJpaQuery.select(student.entityId).from(student).where(student.user.entity.eq(user))));
         mark.addQueryFilter(where1);
+    }
+
+    private void defaultQuery(Mark mark) {
+
     }
 }
