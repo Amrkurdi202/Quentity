@@ -121,7 +121,7 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
         }
     }
 
-    String getEntityTitle() {
+    public String getEntityTitle() {
         return getEntityTitle(getEntity(), (Class<T>) getEntity().getClass());
     }
 

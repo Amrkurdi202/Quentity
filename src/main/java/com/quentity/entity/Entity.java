@@ -99,10 +99,12 @@ public abstract class Entity<T extends Entity> {
                         try {
                             field.setAccessible(true);
                             SingleEntityReference singleEntityReference = (SingleEntityReference) field.get(this);
-                            Entity entity = singleEntityReference.getEntity();
-                            if (entity != null && entity.getEntityId() == null) {
-                                singleEntityReference.validateValue(entity);
-                                entity.save();
+                            if (singleEntityReference != null) {
+                                Entity entity = singleEntityReference.getEntity();
+                                if (entity != null && entity.getEntityId() == null) {
+                                    singleEntityReference.validateValue(entity);
+                                    entity.save();
+                                }
                             }
                         } catch (IllegalAccessException e) {
                             throw new RuntimeException(e);
