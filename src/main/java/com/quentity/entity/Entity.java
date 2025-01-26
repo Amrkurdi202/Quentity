@@ -253,6 +253,8 @@ public abstract class Entity<T extends Entity> {
     }
 
     public Consumer<T> getQueryEditor(String queryName) {
+        if (queryName == null)
+            return null;
         return queryEditors.get(queryName);
     }
 

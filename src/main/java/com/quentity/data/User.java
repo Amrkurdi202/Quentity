@@ -22,7 +22,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -41,6 +40,7 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     @Transient
     @Getter
     private static final Map<User, List<UserWithEntity>> helperMap = new ConcurrentHashMap<>();
+
     public static final String DEFAULT = "default";
 
     @IndexedEmbedded
@@ -174,42 +174,26 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     private static String getQueryString(EntityQuery entityQuery) {
         if (entityQuery == null)
             return DEFAULT;
-        SingleEntityReference<Queries> query = entityQuery.
-                query;
+        SingleEntityReference<Queries> query = entityQuery.query;
         if (query == null)
             return null;
         Queries entity = query.getEntity();
         if (entity == null)
             return null;
-        return entity
-                .name.getFieldValue();
+        return entity.name.getFieldValue();
     }
 
     private static <E extends com.quentity.entity.Entity> EntityQuery getEntityQuery(Class<E> entityClass, SingleEntityReference<AccessGroup> accessGroup1) {
         AccessGroup accessGroupEntity = accessGroup1.getEntity();
-        EntityQuery entityQuery = accessGroupEntity.getQueries().
-                stream().
-                filter(query -> query.entities.
-                        getEntity().
-                        getFullName().
-                        equals(entityClass.getName()))
-                .findFirst().orElse(null);
+        EntityQuery entityQuery = accessGroupEntity.getQueries().stream().filter(query -> query.entities.getEntity().getFullName().equals(entityClass.getName())).findFirst().orElse(null);
         return entityQuery;
     }
 
     private static SingleEntityReference<AccessGroup> getAccessGroup(User user) {
         JPAQuery<Object> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
         QUser user1 = QUser.user;
-        JPAQuery<SingleEntityReference
-                <? extends com.quentity.entity.Entity>> where = jpaQuery.
-                select(user1.accessGroup)
-                .from(user1).
-                where(user1.entityId.
-                        eq(user.getEntityId()));
-        SingleEntityReference
-                <AccessGroup> accessGroup1 = (SingleEntityReference
-                <AccessGroup>) where.
-                fetchOne();
+        JPAQuery<SingleEntityReference<? extends com.quentity.entity.Entity>> where = jpaQuery.select(user1.accessGroup).from(user1).where(user1.entityId.eq(user.getEntityId()));
+        SingleEntityReference<AccessGroup> accessGroup1 = (SingleEntityReference<AccessGroup>) where.fetchOne();
         return accessGroup1;
     }
 

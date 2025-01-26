@@ -11,7 +11,6 @@ import jakarta.persistence.Transient;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @jakarta.persistence.Entity

@@ -9,7 +9,6 @@ import com.quentity.misc.EntityManagerProvider;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -20,18 +19,14 @@ public class EntityQuery extends Entity<EntityQuery> {
     public SingleEntityReference<Entities> entities;
 
     public SingleEntityReference<Queries> query;
+
     public FldBool active, mono, readWrite;
 
-
     public void define(EntityQuery entityQuery) {
-        boolean active = entityQuery.active != null &&
-                (entityQuery.active.getFieldValue() != null &&
-                        entityQuery.active.getFieldValue());
-
+        boolean active = entityQuery.active != null && (entityQuery.active.getFieldValue() != null && entityQuery.active.getFieldValue());
         entityQuery.query.setEnabled(active);
         entityQuery.mono.setEnabled(active);
         entityQuery.readWrite.setEnabled(active);
-
         entityQuery.active.onFieldChanged((oldValue, newValue) -> {
             entityQuery.query.setEnabled(newValue);
             entityQuery.mono.setEnabled(newValue);
@@ -68,5 +63,4 @@ public class EntityQuery extends Entity<EntityQuery> {
     public EntityQuery() {
         super();
     }
-
 }

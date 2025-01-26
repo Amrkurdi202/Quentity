@@ -38,7 +38,7 @@ public class Mark extends Entity<Mark> {
         mark.student.setRequired(true);
         mark.mark.setRequired(true);
         mark.mark.setMin(0d).setMax(100d);
-        addQueryEditor("queryEditTest", this::queryEditTest);
+        addQueryEditor("Student", this::queryEditTest);
         addQueryEditor("default", this::defaultQuery);
     }
 
@@ -52,6 +52,10 @@ public class Mark extends Entity<Mark> {
     }
 
     private void queryEditTest(Mark mark) {
+        mark.student.setEnabled(false);
+        mark.course.setEnabled(false);
+        mark.semester.setEnabled(false);
+        mark.examType.setEnabled(false);
         JPAQuery<Object> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
         JPAQuery<Student> where = jpaQuery.select(QStudent.student).from(QStudent.student).where(QStudent.student.studentID.textValue.startsWith("120"));
         mark.student.setAddedFilters(where);
@@ -65,6 +69,5 @@ public class Mark extends Entity<Mark> {
     }
 
     private void defaultQuery(Mark mark) {
-
     }
 }
