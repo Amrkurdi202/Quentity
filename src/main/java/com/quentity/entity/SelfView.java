@@ -1,9 +1,13 @@
 package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
-import com.quentity.entity.field.*;
+import com.quentity.data.Role;
+import com.quentity.data.User;
+import com.quentity.entity.field.Fld;
+import com.quentity.entity.field.InternalMultiEntitiesReferences;
+import com.quentity.entity.field.InternalSingleEntityReference;
+import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.LanguageUtil;
-import com.quentity.refGenPlug.FieldPojo;
 import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyModifier;
@@ -12,8 +16,10 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.server.VaadinSession;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Set;
 
 import static com.quentity.misc.Utils.isInheritedFrom;
@@ -30,12 +36,17 @@ public class SelfView<T extends Entity> extends EntityView<T> {
         Set<Field> classfields = EntityFieldsFactory.getFields(clazz);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-        Button button = saveButton(entity);
-        horizontalLayout.add(button);
-        button = deleteButton(entity, closeRunnable);
-        horizontalLayout.add(button);
+        VaadinSession currentSession = VaadinSession.getCurrent();
+        User user = currentSession.getAttribute(User.class);
+        if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
+            horizontalLayout.add(deleteButton(entity, closeRunnable));
+        }
+        Reflector.initNullFields((Class<T>) clazz, (T) entity);
+        ServiceFactory.define(entity);
+        Entity.excuteDefaultQuery(entity);
 
-        add(horizontalLayout);
+        boolean anyFieldVisible = false;
+
         for (Field field : classfields) {
             if (Modifier.isStatic(field.getModifiers()))
                 continue;
@@ -46,61 +57,41 @@ public class SelfView<T extends Entity> extends EntityView<T> {
                 String clazzName = clazz.getName();
                 if (isInheritedFrom(fieldType, Fld.class)) {
                     Fld fld = (Fld) fieldObj;
-                    if (fld == null) {
-                        fld = (Fld) fieldType.getDeclaredConstructor().newInstance();
-                        field.set(entity, fld);
-                    }
                     String fullFieldName = clazzName + "." + field.getName();
                     fld.setFieldName(fullFieldName);
                     fld.setFieldValue(fld.getFieldValue());
-                    add(fld);
-                }
-                FieldPojo field1 = Reflector.getField(clazzName, field.getName());
-                if (isInheritedFrom(fieldType, SingleEntityReference.class)) {
-                    SingleEntityReference singleEntityReference = (SingleEntityReference) fieldObj;
-                    if (singleEntityReference == null) {
-                        singleEntityReference = new SingleEntityReference();
-                        field.set(entity, singleEntityReference);
-                        ParameterizedType genericType = (ParameterizedType) field.getGenericType();
-                        Type[] actualTypeArguments = genericType.getActualTypeArguments();
-                        if (actualTypeArguments != null && actualTypeArguments.length > 0) {
-                            Class actualTypeArgument = (Class) actualTypeArguments[0];
-                            Entity innerRefranceEntity = (Entity) actualTypeArgument.getDeclaredConstructor(EntityService.class).
-                                    newInstance(ServiceFactory.getService(actualTypeArgument));
-                            singleEntityReference.setEntity(innerRefranceEntity);
-                        }
+                    if (fld.isVisibleField()) {
+                        add(fld);
+                        anyFieldVisible = true;
                     }
-                    String fullFieldName = clazzName + "." + field.getName();
-                    singleEntityReference.updateLabel(fullFieldName);
-                    singleEntityReference.reflect(field1.getGeneric().get(0));
-                    singleEntityReference.refreshComboBox();
-                    add(singleEntityReference);
+                }
+                if (isInheritedFrom(fieldType, InternalSingleEntityReference.class)) {
+                    SingleEntityReference singleEntityReference = (SingleEntityReference) fieldObj;
+                    Reflector.treatREF(entity, fieldObj, field);
+                    if (singleEntityReference.isVisibleField()) {
+                        add(singleEntityReference);
+                        anyFieldVisible = true;
+                    }
                 }
                 if (isInheritedFrom(fieldType, InternalMultiEntitiesReferences.class)) {
                     InternalMultiEntitiesReferences multiEntitiesReferences = (InternalMultiEntitiesReferences) fieldObj;
-                    if (multiEntitiesReferences == null) {
-                        String type = field1.getType();
-                        if ("MultiEntitiesReferences".equals(type))
-                            multiEntitiesReferences = new MultiEntitiesReferences();
-                        else
-                            multiEntitiesReferences = new NSMultiEntitiesReferences();
-                        field.set(entity, multiEntitiesReferences);
+                    Reflector.treatREF(entity, fieldObj, field);
+                    if (multiEntitiesReferences.isVisibleField()) {
+                        add(multiEntitiesReferences);
+                        anyFieldVisible = true;
                     }
-                    String fullFieldName = clazzName + "." + field.getName();
-                    multiEntitiesReferences.updateLabel(fullFieldName);
-                    //It should have label before reflect
-                    //In reflect we add the Span
-                    multiEntitiesReferences.reflect(field1.getGeneric().get(0), entity);
-                    add(multiEntitiesReferences);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
-            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException e) {
+            } catch (Throwable e) {
                 throw new RuntimeException(e);
             }
         }
-        ServiceFactory.define(entity);
-        Entity.defaultQuery(entity);
+
+        if (anyFieldVisible) {
+            horizontalLayout.add(saveButton(entity));
+            addComponentAsFirst(horizontalLayout);
+        }
     }
 
     private static <T extends Entity> Button saveButton(Entity<T> entity) {

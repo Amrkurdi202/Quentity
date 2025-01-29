@@ -2,6 +2,7 @@ package com.quentity.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quentity.entity.EntityService;
+import com.quentity.entity.field.FldBool;
 import com.quentity.entity.field.FldString;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
@@ -22,6 +23,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -35,7 +37,7 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
 
     @Transient
     @Getter
-    private static final Map<UserWithEntity, String> userDefaultQueryForEntity = new ConcurrentHashMap<>();
+    private static final Map<UserWithEntity, UserEntityConstraint> userDefaultQueryForEntity = new ConcurrentHashMap<>();
 
     @Transient
     @Getter
@@ -137,14 +139,47 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
         super();
     }
 
-    public <E extends com.quentity.entity.Entity> String getDefaultEntityQuery(Class<E> entityClass) {
-        return getDefaultEntityQuery(this, entityClass);
+    public <E extends com.quentity.entity.Entity> String getDefaultEntityQueryString(Class<E> entityClass) {
+        return getDefaultEntityQueryString(this, entityClass);
     }
 
-    public static <E extends com.quentity.entity.Entity> String getDefaultEntityQuery(User user, Class<E> entityClass) {
+    public <E extends com.quentity.entity.Entity> boolean isMono(Class<E> entityClass) {
+        return isMono(this, entityClass);
+    }
+
+    public <E extends com.quentity.entity.Entity> boolean isReadWrite(Class<E> entityClass) {
+        return isReadWrite(this, entityClass);
+    }
+
+    public static <E extends com.quentity.entity.Entity> String getDefaultEntityQueryString(User user, Class<E> entityClass) {
         UserWithEntity key1 = new UserWithEntity().setUser(user).setEntityClass(entityClass);
         helperMap.computeIfAbsent(user, u -> new ArrayList<>()).add(key1);
-        return userDefaultQueryForEntity.computeIfAbsent(key1, key -> getQuery(user, entityClass));
+        UserEntityConstraint userEntityConstraint = getUserEntityConstraint(user, entityClass, key1);
+        return userEntityConstraint == null ? null : userEntityConstraint.getQuery();
+    }
+
+    public static <E extends com.quentity.entity.Entity> boolean isMono(User user, Class<E> entityClass) {
+        UserWithEntity key1 = new UserWithEntity().setUser(user).setEntityClass(entityClass);
+        helperMap.computeIfAbsent(user, u -> new ArrayList<>()).add(key1);
+        UserEntityConstraint userEntityConstraint = getUserEntityConstraint(user, entityClass, key1);
+        return userEntityConstraint.isMono();
+    }
+
+    public static <E extends com.quentity.entity.Entity> boolean isReadWrite(User user, Class<E> entityClass) {
+        UserWithEntity key1 = new UserWithEntity().setUser(user).setEntityClass(entityClass);
+        helperMap.computeIfAbsent(user, u -> new ArrayList<>()).add(key1);
+        UserEntityConstraint userEntityConstraint = getUserEntityConstraint(user, entityClass, key1);
+        return userEntityConstraint.isReadWrite();
+    }
+
+    private static <E extends com.quentity.entity.Entity> UserEntityConstraint getUserEntityConstraint(User user, Class<E> entityClass, UserWithEntity key1) {
+        UserEntityConstraint userEntityConstraint = userDefaultQueryForEntity.computeIfAbsent(key1, key -> {
+            UserEntityConstraint query = getQuery(user, entityClass);
+            if (query == null)
+                return new UserEntityConstraint().setQuery(null).setMono(false).setReadWrite(false);
+            return query;
+        });
+        return userEntityConstraint;
     }
 
     public static String getCurrentUserDefaultQuery(Class<? extends com.quentity.entity.Entity> entityClass) {
@@ -154,21 +189,21 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
             user = current.getAttribute(User.class);
             if (user == null)
                 return null;
-            return getDefaultEntityQuery(user, entityClass);
+            return getDefaultEntityQueryString(user, entityClass);
         }
         return null;
     }
 
-    private static <E extends com.quentity.entity.Entity> String getQuery(User user, Class<E> entityClass) {
-        try {
-            SingleEntityReference<AccessGroup> accessGroup1 = getAccessGroup(user);
-            if (accessGroup1 == null)
-                return null;
-            EntityQuery entityQuery = getEntityQuery(entityClass, accessGroup1);
-            return getQueryString(entityQuery);
-        } catch (NullPointerException e) {
-            return DEFAULT;
-        }
+    private static <E extends com.quentity.entity.Entity> UserEntityConstraint getQuery(User user, Class<E> entityClass) {
+        SingleEntityReference<AccessGroup> accessGroup1 = getAccessGroup(user);
+        if (accessGroup1 == null)
+            return null;
+        EntityQuery entityQuery = getEntityQuery(entityClass, accessGroup1);
+        if (entityQuery == null)
+            return null;
+        FldBool mono = entityQuery.mono;
+        FldBool readWrite = entityQuery.readWrite;
+        return new UserEntityConstraint().setMono(mono != null && mono.getFieldValue()).setReadWrite(readWrite != null && readWrite.getFieldValue()).setQuery(getQueryString(entityQuery));
     }
 
     private static String getQueryString(EntityQuery entityQuery) {
@@ -204,5 +239,16 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
         private User user;
 
         private Class<? extends com.quentity.entity.Entity> entityClass;
+    }
+
+    @Data
+    @Accessors(chain = true)
+    private static class UserEntityConstraint {
+
+        String query;
+
+        boolean isMono;
+
+        boolean readWrite;
     }
 }

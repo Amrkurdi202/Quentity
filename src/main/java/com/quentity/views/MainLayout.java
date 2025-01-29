@@ -15,17 +15,18 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.contextmenu.MenuItem;
+import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.shared.Tooltip;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.tabs.TabSheetVariant;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.server.StreamResource;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
@@ -35,9 +36,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import java.io.ByteArrayInputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.quentity.misc.ThemeController.*;
 import static com.quentity.misc.Utils.addToTabs;
 
 /**
@@ -46,18 +50,20 @@ import static com.quentity.misc.Utils.addToTabs;
 @org.springframework.stereotype.Component
 @UIScope
 public class MainLayout extends AppLayout {
-
     public final TabSheet tabs;
-    private H1 viewTitle;
+    private H3 viewTitle;
 
     private AuthenticatedUser authenticatedUser;
     private AccessAnnotationChecker accessChecker;
     private final ApplicationContext applicationContext;
     private boolean firstTime;
+    private Div themeSwitch;
 
     @Autowired
     public MainLayout(ApplicationContext applicationContext, AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
         Optional<User> user = authenticatedUser.get();
+
+        syncTheme(this);
         user.ifPresent(value -> {
             LanguageUtil.setCurrentLanguage(value.getLang());
             VaadinSession current = VaadinSession.getCurrent();
@@ -107,26 +113,38 @@ public class MainLayout extends AppLayout {
         DrawerToggle toggle = new DrawerToggle();
         toggle.setAriaLabel("Menu toggle");
 
-        viewTitle = new H1();
-        viewTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.NONE);
+        viewTitle = new H3();
+        viewTitle.addClassNames(LumoUtility.FontSize.SMALL, LumoUtility.Margin.NONE);
 
         LanguageSelectorWidget languageSelectorWidget = new LanguageSelectorWidget(authenticatedUser);
-
-        addToNavbar(true, toggle, viewTitle, languageSelectorWidget);
+        HorizontalLayout div1 = new HorizontalLayout(toggle, viewTitle);
+        div1.setAlignItems(FlexComponent.Alignment.CENTER);
+        div1.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+        themeSwitch = themeSwitch();
+        HorizontalLayout div2 = new HorizontalLayout(languageSelectorWidget, themeSwitch);
+        div2.getStyle().set("margin-right", "var(--lumo-space-l)");
+        div2.setAlignItems(FlexComponent.Alignment.CENTER);
+        div2.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+        HorizontalLayout div = new HorizontalLayout(div1, div2);
+        div.setWidthFull();
+        div.setMaxHeight("50px");
+        div.setAlignItems(FlexComponent.Alignment.CENTER);
+        div.setJustifyContentMode(FlexComponent.JustifyContentMode.BETWEEN);
+        addToNavbar(true, div);
     }
 
     private void addDrawerContent() {
-        TextField searchDrawerTxt = new TextField();
-        searchDrawerTxt.setPlaceholder(LanguageUtil.get("search"));
-        searchDrawerTxt.setWidth("100%");
+//        TextField searchDrawerTxt = new TextField();
+//        searchDrawerTxt.setPlaceholder(LanguageUtil.get("search"));
+//        searchDrawerTxt.setWidth("100%");
 //    searchDrawerTxt.getStyle().set("--vaadin-input-field-background", "var(--lumo-base-color)");
-        searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
-        searchDrawerTxt.setClearButtonVisible(true);
-        Header header = new Header(searchDrawerTxt);
-        header.getElement().getStyle().set("align-items", "center");
+//        searchDrawerTxt.setSuffixComponent(VaadinIcon.SEARCH.create());
+//        searchDrawerTxt.setClearButtonVisible(true);
+//        Header header = new Header(searchDrawerTxt);
+//        header.getElement().getStyle().set("align-items", "center");
         Scroller scroller = new Scroller(createNavigation());
 
-        addToDrawer(header, scroller, createFooter());
+        addToDrawer(/*header,*/ scroller, createFooter());
     }
 
     private VerticalLayout createNavigation() {
@@ -163,13 +181,13 @@ public class MainLayout extends AppLayout {
             div.getElement().getStyle().set("align-items", "center");
             div.getElement().getStyle().set("gap", "var(--lumo-space-s)");
             userName.add(div);
-            userName.getSubMenu().addItem("Sign out", e -> {
+            userName.getSubMenu().addItem(LanguageUtil.get("logout"), e -> {
                 authenticatedUser.logout();
             });
 
             layout.add(userMenu);
         } else {
-            Anchor loginLink = new Anchor("login", "Sign in");
+            Anchor loginLink = new Anchor("login", LanguageUtil.get("signin"));
             layout.add(loginLink);
         }
 
@@ -226,19 +244,23 @@ public class MainLayout extends AppLayout {
         User user = authenticatedUser.get().orElse(null);
         //This check to prevent adding access group to admin
         boolean isAdmin = user != null && user.getRoles().contains(Role.ADMIN);
+        Map<String, VerticalLayout> packageEntitiesListMap = new LinkedHashMap<>();
         // Loop through each subclass
         for (Class<? extends Entity> entityClass : entitySubclasses) {
             // Check access before adding to navigation
             if ((isAdmin && accessChecker.hasAccess(entityClass)) ||
                     (accessChecker.hasAccess(entityClass) &&
                             User.getCurrentUserDefaultQuery(entityClass) != null)) {
+                String packageName = entityClass.getPackageName();
+                VerticalLayout verticalLayout = packageEntitiesListMap.computeIfAbsent(packageName, p -> new VerticalLayout());
                 CustomSideNavItem item = new CustomSideNavItem(
                         LanguageUtil.
-                                get(entityClass.getPackageName() + "." + entityClass.getSimpleName()),
+                                get(packageName + "." + entityClass.getSimpleName()),
                         IconHandler.getIcon(entityClass),
                         (event) -> {
                             getUI().ifPresent(ui -> {
-                                VerticalLayout content = MainEntityViewHandler.getMainEntityView(entityClass);
+                                VerticalLayout content = MainEntityViewHandler.
+                                        getMainEntityView(authenticatedUser.get().orElse(null), entityClass);
 
                                 if (!firstTime) {
                                     firstTime = true;
@@ -247,8 +269,47 @@ public class MainLayout extends AppLayout {
                             });
                         }
                 );
-                nav.add(item);
+                verticalLayout.add(item);
             }
         }
+
+        outer:
+        for (Map.Entry<String, VerticalLayout> entry : packageEntitiesListMap.entrySet()) {
+            String key = entry.getKey();
+            String key2 = key;
+            while (true) {
+                int index = key2.lastIndexOf(".");
+                if (index == -1) break;
+                key2 = key.substring(0, index);
+                VerticalLayout verticalLayout = packageEntitiesListMap.get(key2);
+                if (verticalLayout != null) {
+                    verticalLayout.add(new Details(LanguageUtil.get(key), entry.getValue()));
+                    continue outer;
+                }
+            }
+            nav.add(new Details(LanguageUtil.get(key), entry.getValue()));
+        }
     }
+
+    private void toggleTheme() {
+        if (isLightTheme(this)) {
+            setDarkTheme(this);
+        } else {
+            setLightTheme(this);
+        }
+    }
+
+    private Div themeSwitch() {
+        String sun = "☀\uFE0F";
+        String moon = "\uD83C\uDF19";
+        Span moonOrSunIcon = new Span(isLightTheme(this) ? moon : sun);
+        moonOrSunIcon.addSingleClickListener(e -> {
+            toggleTheme();
+            moonOrSunIcon.setText(isLightTheme(this) ? moon : sun);
+        });
+
+        return new Div(moonOrSunIcon);
+    }
+
+
 }

@@ -12,6 +12,8 @@ import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.PermitAll;
 
+import static com.quentity.misc.ThemeController.syncTheme;
+
 @AnonymousAllowed
 @PageTitle("Login")
 @Route(value = "login")
@@ -37,6 +39,7 @@ public class LoginView extends LoginOverlay implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
+        syncTheme(this);
         if (authenticatedUser.get().isPresent()) {
             // Already logged in
             setOpened(false);

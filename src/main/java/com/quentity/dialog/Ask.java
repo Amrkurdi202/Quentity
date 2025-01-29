@@ -33,13 +33,12 @@ public class Ask {
         if (cancelText != null) {
             confirmationDialog.setCancelable(true);
             confirmationDialog.setCancelText(cancelText);
-            confirmationDialog.addRejectListener(event -> onReject.accept(contextData));
+            confirmationDialog.addCancelListener(event -> onCancel.accept(contextData));
         }
         if (rejectText != null) {
             confirmationDialog.setRejectable(true);
             confirmationDialog.setRejectText(rejectText);
-            if (onCancel != null)
-                confirmationDialog.addCancelListener(event -> onCancel.accept(contextData));
+            confirmationDialog.addRejectListener(event -> onReject.accept(contextData));
         }
         confirmationDialog.addConfirmListener(event -> onConfirm.accept(contextData));
     }

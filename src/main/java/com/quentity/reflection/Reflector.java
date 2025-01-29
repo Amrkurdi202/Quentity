@@ -4,8 +4,10 @@ import com.quentity.entity.Entity;
 import com.quentity.entity.EntityFieldsFactory;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.ServiceFactory;
+import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
-import com.quentity.entity.field.SingleEntityReference;
+import com.quentity.entity.field.InternalSingleEntityReference;
+import com.quentity.misc.LanguageUtil;
 import com.quentity.refGenPlug.EntityPojo;
 import com.quentity.refGenPlug.FieldPojo;
 import com.quentity.refGenPlug.FilePojo;
@@ -145,14 +147,7 @@ public class Reflector {
 
     // Method to initialize a specific field in an entity
     public static <T extends Entity> void newField(T entity, Field field) {
-        field.setAccessible(true);
-        MethodHandle setter = fieldSetterCache.computeIfAbsent(field, f -> {
-            try {
-                return LOOKUP.unreflectSetter(f);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException("Unable to access field: " + f, e);
-            }
-        });
+        MethodHandle setter = getFieldSetter(field);
 
         // Create an instance of the field's type and set it
         Class<?> fieldType = field.getType();
@@ -166,19 +161,45 @@ public class Reflector {
         Object fieldInstance = null;
         try {
             fieldInstance = constructor.invoke();
+            String clazzName = entity.getClass().getName();
+            String fullFieldName = clazzName + "." + field.getName();
+            if (fieldInstance instanceof Fld fld) {
+                fld.setFieldName(LanguageUtil.get(fullFieldName));
+            }
+
             treatREF(entity, fieldInstance, field);
+
             setter.invoke(entity, fieldInstance);
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
     }
 
-    private static <T extends Entity> void treatREF(T entity, Object fieldInstance, Field field) {
-        if (fieldInstance instanceof SingleEntityReference fld) {
+    public static MethodHandle getFieldSetter(Field field) {
+        field.setAccessible(true);
+        MethodHandle setter = fieldSetterCache.computeIfAbsent(field, f -> {
+            try {
+                return LOOKUP.unreflectSetter(f);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException("Unable to access field: " + f, e);
+            }
+        });
+        return setter;
+    }
+
+    public static <T extends Entity> void treatREF(T entity, Object fieldInstance, Field field) {
+        String clazzName = entity.getClass().getName();
+        String fullFieldName = clazzName + "." + field.getName();
+        if (fieldInstance instanceof InternalSingleEntityReference fld) {
+            if (fld.isReflected()) return;
             FieldPojo field1 = Reflector.getField(entity.getClass().getName(), field.getName());
+            fld.updateLabel(fullFieldName);
             fld.reflect(field1.getGeneric().get(0));
+            fld.refreshComboBox();
         } else if (fieldInstance instanceof InternalMultiEntitiesReferences fld) {
+            if (fld.isReflected()) return;
             FieldPojo field1 = Reflector.getField(entity.getClass().getName(), field.getName());
+            fld.updateLabel(fullFieldName);
             fld.reflect(field1.getGeneric().get(0), entity);
         }
     }

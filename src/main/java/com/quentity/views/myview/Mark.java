@@ -8,6 +8,7 @@ import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldNumber;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
+import com.quentity.views.myview.logistic.managment.Semester;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.PermitAll;
@@ -38,7 +39,7 @@ public class Mark extends Entity<Mark> {
         mark.student.setRequired(true);
         mark.mark.setRequired(true);
         mark.mark.setMin(0d).setMax(100d);
-        addQueryEditor("Student", this::queryEditTest);
+        addQueryEditor("Student", this::studentQuery);
         addQueryEditor("default", this::defaultQuery);
     }
 
@@ -51,11 +52,12 @@ public class Mark extends Entity<Mark> {
         super();
     }
 
-    private void queryEditTest(Mark mark) {
-        mark.student.setEnabled(false);
-        mark.course.setEnabled(false);
-        mark.semester.setEnabled(false);
-        mark.examType.setEnabled(false);
+    private void studentQuery(Mark mark) {
+        mark.student.setEditable(false);
+        mark.course.setEditable(false);
+        mark.semester.setEditable(false);
+        mark.examType.setEditable(false);
+        mark.mark.setEditable(false);
         JPAQuery<Object> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
         JPAQuery<Student> where = jpaQuery.select(QStudent.student).from(QStudent.student).where(QStudent.student.studentID.textValue.startsWith("120"));
         mark.student.setAddedFilters(where);

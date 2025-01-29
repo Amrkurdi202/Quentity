@@ -6,9 +6,6 @@ import com.vaadin.flow.component.icon.AbstractIcon;
 import com.vaadin.flow.component.icon.SvgIcon;
 import com.vaadin.flow.server.StreamResource;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 public class IconHandler {
 
     private static final String DOC_SVG = "doc.svg";
@@ -24,7 +21,10 @@ public class IconHandler {
         } catch (Exception e) {
             throw new IllegalArgumentException("Could not find icon " + fileName);
         }
-        return new SvgIcon(iconResource);
+        SvgIcon svgIcon = new SvgIcon(iconResource);
+        svgIcon.setColor("none !important");
+        svgIcon.getStyle().set("stroke", "var(--lumo-body-text-color) !important");
+        return svgIcon;
     }
 
     private static String getName(String name) {

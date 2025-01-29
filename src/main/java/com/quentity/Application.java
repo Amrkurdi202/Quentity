@@ -35,9 +35,9 @@ import java.util.function.Consumer;
  */
 @SpringBootApplication
 @EnableJpaRepositories(considerNestedRepositories = true)
-@Theme(value = "server")
 @PWA(name = "Server", shortName = "Server", offlineResources = {"icons/logo.png"})
 @Push
+@Theme("quentity")
 public class Application implements AppShellConfigurator {
     public static final String LOCAL = "en";
     public static final HashMap<String, Properties> LOCAL_PROPERTIES = new HashMap<>();

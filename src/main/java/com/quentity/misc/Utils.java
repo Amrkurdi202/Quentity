@@ -1,6 +1,6 @@
 package com.quentity.misc;
 
-import com.quentity.Application;
+
 import com.quentity.dialog.Ask;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityView;

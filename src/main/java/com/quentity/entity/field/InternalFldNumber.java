@@ -81,6 +81,7 @@ public abstract class InternalFldNumber extends Fld<InternalFldNumber, Double> {
             numericField.setValue(defaultValue);
         }
         this.hasLabel = numericField;
+        this.hasEnabled = numericField;
 
     }
 

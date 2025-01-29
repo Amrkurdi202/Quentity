@@ -1,6 +1,8 @@
 package com.quentity.entity.field;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
+import com.quentity.data.Role;
+import com.quentity.data.User;
 import com.quentity.entity.*;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
@@ -18,6 +20,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
+import com.vaadin.flow.server.VaadinSession;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -63,10 +66,24 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
     @EqualsAndHashCode.Exclude
     private Button addToListButton;
 
+    @Transient
+    @EqualsAndHashCode.Exclude
+    @Getter
+    private boolean reflected;
+
+    public InternalMultiEntitiesReferences() {
+        this.required = false;
+        this.visibleField = true;
+        this.editable = true;
+        this.reflected = false;
+
+    }
+
     public void reflect(String className, Entity entity) {
+        Class<T> clazz;
         try {
             setSizeFull();
-            Class<T> clazz = (Class<T>) Class.forName(className);
+            clazz = (Class<T>) Class.forName(className);
             Set<Field> classFields = EntityFieldsFactory.getFields(clazz);
             this.grid = new Grid<T>(clazz, false);
             grid.setHeight("20vh");
@@ -99,9 +116,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
                                 }
                         ).setEditorComponent(item -> {
                             try {
+                                Reflector.initNullFields(clazz, item);
                                 ServiceFactory.define(item);
-
-
                                 Object fld = field.get(item);
                                 if (fld instanceof Fld fld1) {
                                     fld1.setFieldName(fullFieldName);
@@ -206,35 +222,57 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
         editor.setBuffered(true);
 
         GridContextMenu<T> tGridContextMenu = grid.addContextMenu();
-        FontAwesome.Solid.Icon icon = FontAwesome.Solid.EDIT.create();
-        icon.setVisible(true);
-        tGridContextMenu.addItem(icon, e -> {
-            T item = e.getItem().orElse(null);
-            if (item != null) {
-                if (editor.isOpen()) {
-                    T editorItem = editor.getItem();
-                    if (editorItem != null) {
-                        editorItem.save();
+        FontAwesome.Solid.Icon icon;
+
+        VaadinSession currentSession = VaadinSession.getCurrent();
+        if (currentSession != null) {
+            User user = currentSession.getAttribute(User.class);
+            boolean isReadWrite = user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz));
+            if (isReadWrite) {
+                icon = FontAwesome.Solid.EDIT.create();
+                icon.setVisible(true);
+                tGridContextMenu.addItem(icon, e -> {
+                    T item = e.getItem().orElse(null);
+                    if (item != null) {
+                        if (editor.isOpen()) {
+                            T editorItem = editor.getItem();
+                            if (editorItem != null) {
+                                editorItem.save();
+                                editor.save();
+                            }
+                        }
+                        editor.editItem(item);
+                    }
+                });
+
+                icon = FontAwesome.Solid.SAVE.create();
+                icon.setVisible(true);
+                tGridContextMenu.addItem(icon, e -> {
+                    T item = e.getItem().orElse(null);
+                    if (item != null) {
+                        if (editor.isOpen()) {
+                            T editorItem = editor.getItem();
+                            if (editorItem != null) {
+                                editorItem.save();
+                            }
+                        }
+                        item.save();
                         editor.save();
                     }
-                }
-                editor.editItem(item);
+                });
             }
-        });
+        }
 
-        icon = FontAwesome.Solid.SAVE.create();
+        icon = FontAwesome.Solid.TRASH.create();
         icon.setVisible(true);
         tGridContextMenu.addItem(icon, e -> {
             T item = e.getItem().orElse(null);
             if (item != null) {
-                if (editor.isOpen()) {
-                    T editorItem = editor.getItem();
-                    if (editorItem != null) {
-                        editorItem.save();
-                    }
+                GridListDataView<T> listDataView = grid.getListDataView();
+                if (listDataView != null) {
+                    listDataView.removeItem(item);
+                    item.save();
                 }
-                item.save();
-                editor.save();
             }
         });
 
@@ -268,6 +306,7 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
         verticalLayout.add(grid);
 
         add(verticalLayout);
+        this.reflected = true;
     }
 
     private void moveItem(T item, T targetItem, GridDropLocation dropLocation) {

@@ -91,7 +91,7 @@ public abstract class Entity<T extends Entity> {
         super();
     }
 
-    public static <T extends Entity> void defaultQuery(Entity<T> entity) {
+    public static <T extends Entity> void excuteDefaultQuery(Entity<T> entity) {
         VaadinSession current = VaadinSession.getCurrent();
         User user = null;
         if (current != null) {
@@ -101,7 +101,7 @@ public abstract class Entity<T extends Entity> {
                 getQueryEditor(user == null ?
                         "default" :
                         user.
-                                getDefaultEntityQuery(entity.getClass()));
+                                getDefaultEntityQueryString(entity.getClass()));
         if (queryEditor != null)
             queryEditor.accept((T) entity);
     }
@@ -120,7 +120,8 @@ public abstract class Entity<T extends Entity> {
                         field.setAccessible(true);
                         try {
                             Fld fld = (Fld) field.get(this);
-                            fld.validateValue((Comparable) getGetFieldValue(field, this));
+                            if (fld != null)
+                                fld.validateValue((Comparable) getGetFieldValue(field, this));
                         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                             throw new RuntimeException(e);
                         }
@@ -248,6 +249,11 @@ public abstract class Entity<T extends Entity> {
         entityService.deleteById(entityId);
     }
 
+    /**
+     * Add a custom query editor (the one in the Access group)
+     * The query will be executed before the entity gets accessed,
+     * so it affects the entity fields and might call addQueryFilter.
+     */
     public void addQueryEditor(String queryName, Consumer<T> queryEditor) {
         queryEditors.put(queryName, queryEditor);
     }
@@ -262,6 +268,10 @@ public abstract class Entity<T extends Entity> {
         return queryEditors;
     }
 
+    /**
+     * Adds a filter to the whole entity template query.
+     * (Affects Grid View)
+     */
     public void addQueryFilter(AbstractJPAQuery<T, JPAQuery<T>> filter) {
         addedFilters[0] = filter;
     }
@@ -270,5 +280,10 @@ public abstract class Entity<T extends Entity> {
         return addedFilters[0];
     }
 
-
+    public static <T extends Entity> T newTemplate(Class<T> entityClass) {
+        T templateEntity = Entity.newEntity(entityClass);
+        ServiceFactory.define(templateEntity);
+        Entity.excuteDefaultQuery(templateEntity);
+        return templateEntity;
+    }
 }

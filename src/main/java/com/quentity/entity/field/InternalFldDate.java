@@ -2,7 +2,10 @@ package com.quentity.entity.field;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 import jakarta.persistence.Transient;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import java.time.LocalDate;
@@ -73,6 +76,7 @@ public abstract class InternalFldDate extends Fld<InternalFldDate, LocalDate> {
         datePicker.setVisible(visible);
         datePicker.setEnabled(editable);
         this.hasLabel = datePicker;
+        this.hasEnabled = datePicker;
         datePicker.addThemeName("label-left");
     }
 

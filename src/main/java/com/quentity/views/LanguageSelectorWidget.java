@@ -6,36 +6,35 @@ import com.quentity.security.AuthenticatedUser;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.ContextMenu;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class LanguageSelectorWidget extends VerticalLayout {
+public class LanguageSelectorWidget extends Button {
 
     public LanguageSelectorWidget(AuthenticatedUser authenticatedUser) {
+        super();
         AtomicReference<User> user = new AtomicReference<>(authenticatedUser.get().orElse(null));
         String currentLanguage = "en";
         if (user.get() != null)
             currentLanguage = user.get().getLang();
 
-        Button languageButton = new Button(currentLanguage);
-        languageButton.getStyle()
+        setText(currentLanguage);
+        getStyle()
                 .set("background", "transparent")
-                .set("color", "black")
+                .set("color", "var(--lumo-body-text-color)")
                 .set("width", "50px")
                 .set("height", "50px")
                 .set("border-radius", "5px");
 
-        ContextMenu contextMenu = new ContextMenu(languageButton);
+        ContextMenu contextMenu = new ContextMenu(this);
         contextMenu.setOpenOnClick(true);
 
         Map<String, Properties> languages = LanguageUtil.LANGUAGES;
         languages.keySet().forEach(locale ->
                 contextMenu.addItem(locale, event -> {
-                    languageButton.setText(locale);
+                    setText(locale);
                     if (user.get() != null) {
                         user.get().setLang(locale);
                         user.set(authenticatedUser.update(user.get()));
@@ -43,9 +42,5 @@ public class LanguageSelectorWidget extends VerticalLayout {
                     }
                     UI.getCurrent().getPage().reload();
                 }));
-
-
-        Div container = new Div(languageButton);
-        add(container);
     }
 }

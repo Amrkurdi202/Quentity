@@ -229,6 +229,30 @@
                 <!--                    </execution>-->
                 <!--                </executions>-->
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/loose-package.xml</descriptor>
+                    </descriptors>
+                    <finalName>${project.artifactId}-loose</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>${project.build.directory}/loose-package</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-loose-package</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>

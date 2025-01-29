@@ -1,13 +1,13 @@
 package com.quentity.entity.field;
 
 import com.vaadin.flow.component.textfield.TextField;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
-import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 @EqualsAndHashCode(callSuper = true)
@@ -54,6 +54,7 @@ public abstract class InternalFldString extends Fld<InternalFldString, String> {
         textField.setVisible(visible);
         textField.setEnabled(editable);
         this.hasLabel = textField;
+        this.hasEnabled = textField;
     }
 
     // Additional methods

@@ -37,6 +37,7 @@ public abstract class InternalFldBool extends Fld<InternalFldBool, Boolean> {
         checkBox.setVisible(visible);
         checkBox.setEnabled(editable);
         this.hasLabel = checkBox;
+        this.hasEnabled = checkBox;
     }
 
 

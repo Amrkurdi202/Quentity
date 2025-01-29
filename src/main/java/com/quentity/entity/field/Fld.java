@@ -1,12 +1,12 @@
 package com.quentity.entity.field;
 
 import com.quentity.entity.field.events.FieldChanged;
+import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasLabel;
 import jakarta.persistence.Transient;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 @EqualsAndHashCode(callSuper = true)
@@ -27,6 +27,8 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
   protected boolean editable;
   @EqualsAndHashCode.Exclude
   HasLabel hasLabel;
+  @EqualsAndHashCode.Exclude
+  HasEnabled hasEnabled;
   @Transient
   @EqualsAndHashCode.Exclude
   protected FieldChanged<INNER_TYPE> fieldChangedCallback;
@@ -59,5 +61,9 @@ public abstract class Fld<TYPE, INNER_TYPE extends Comparable<? super INNER_TYPE
 
   abstract <E extends ValueChangeEvent<INNER_TYPE>> void getValueChangeListener(E e);
 
-
+  public TYPE setEditable(boolean editable) {
+    this.editable = editable;
+    hasEnabled.setEnabled(editable);
+    return (TYPE) this;
+  }
 }

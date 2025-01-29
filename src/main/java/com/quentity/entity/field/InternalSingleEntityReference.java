@@ -1,5 +1,7 @@
 package com.quentity.entity.field;
 
+import com.quentity.data.Role;
+import com.quentity.data.User;
 import com.quentity.entity.*;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
@@ -13,6 +15,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
+import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
@@ -47,7 +50,6 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
     @EqualsAndHashCode.Exclude
     private boolean visibleField;
     @Transient
-    @Setter
     @Getter
     @EqualsAndHashCode.Exclude
     private boolean editable;
@@ -58,10 +60,16 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
     @EqualsAndHashCode.Exclude
     private AbstractJPAQuery<T, JPAQuery<T>>[] addedFilters = new AbstractJPAQuery[1];
 
+    @Transient
+    @EqualsAndHashCode.Exclude
+    @Getter
+    private boolean reflected;
+
     public InternalSingleEntityReference() {
         this.comboBox = new ComboBox<>();
         this.comboBox.setPageSize(10);
         this.comboBox.setAutoOpen(true);
+        this.reflected = false;
 
 
         this.comboBox.setRenderer(createRenderer());
@@ -82,16 +90,10 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
             setPresentationValue(this);
         });
         this.comboBox.setValue(getEntity());
-        this.comboBox.setLabel(getTextData());
         this.button = new Button(LumoIcon.PLUS.create());
+        this.button.setEnabled(isEnabled());
         this.visibleField = true;
         this.editable = true;
-        HorizontalLayout horizontalLayout = new HorizontalLayout();
-        horizontalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        horizontalLayout.add(this.comboBox);
-        horizontalLayout.setAlignItems(FlexComponent.Alignment.END);
-        horizontalLayout.add(this.button);
-        add(horizontalLayout);
     }
 
     public void reflect(String className) {
@@ -116,13 +118,31 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
                     throw new RuntimeException(e);
                 }
             });
+            this.comboBox.setLabel(getTextData());
+            
+            HorizontalLayout horizontalLayout = new HorizontalLayout();
+            horizontalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+            horizontalLayout.add(this.comboBox);
+            VaadinSession currentSession = VaadinSession.getCurrent();
+            if (currentSession != null) {
+                User user = currentSession.getAttribute(User.class);
+                if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
+                    horizontalLayout.setAlignItems(FlexComponent.Alignment.END);
+                    horizontalLayout.add(this.button);
+                }
+            }
+
+            add(horizontalLayout);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        this.reflected = true;
     }
 
     public String getEntityTitle() {
-        return getEntityTitle(getEntity(), (Class<T>) getEntity().getClass());
+        T entity = getEntity();
+        if (entity == null) return "";
+        return getEntityTitle(getEntity(), (Class<T>) entity.getClass());
     }
 
     private static <T extends Entity> String getEntityTitle(T source, Class<T> clazz) {
@@ -233,4 +253,11 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
     public abstract T getEntity();
 
     public abstract void onSave();
+
+    public R setEditable(boolean editable) {
+        this.editable = editable;
+        comboBox.setEnabled(editable);
+        button.setEnabled(editable);
+        return (R) this;
+    }
 }

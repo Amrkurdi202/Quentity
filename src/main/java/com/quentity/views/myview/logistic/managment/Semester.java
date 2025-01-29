@@ -1,14 +1,13 @@
-package com.quentity.views.myview;
+package com.quentity.views.myview.logistic.managment;
 
+import com.quentity.entity.Entity;
+import com.quentity.entity.EntityService;
+import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldDate;
 import com.quentity.entity.field.FldString;
 import com.quentity.misc.Patterns;
-import lombok.EqualsAndHashCode;
-import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
-import com.quentity.entity.Entity;
-import com.quentity.entity.annotions.Icon;
 import jakarta.annotation.security.PermitAll;
-import com.quentity.entity.EntityService;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
