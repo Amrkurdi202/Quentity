@@ -254,6 +254,28 @@
             </plugin>
 
             <plugin>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-processor-plugin</artifactId>
+                <version>3.3.3</version>
+                <executions>
+                    <execution>
+                        <id>querydsl-process</id>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <processors>
+                        <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+                    </processors>
+                    <outputDirectory>target/generated-sources/annotations</outputDirectory>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>3.2.0</version>

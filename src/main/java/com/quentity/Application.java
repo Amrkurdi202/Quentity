@@ -1,15 +1,10 @@
 package com.quentity;
 
-import com.quentity.data.QUser;
-import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.ServiceFactory;
 import com.quentity.misc.EntityManagerProvider;
+import com.quentity.project.adminstrator.*;
 import com.quentity.reflection.Reflector;
-import com.quentity.views.myview.Entities;
-import com.quentity.views.myview.QEntities;
-import com.quentity.views.myview.QQueries;
-import com.quentity.views.myview.Queries;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;

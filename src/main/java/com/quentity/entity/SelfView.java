@@ -2,12 +2,12 @@ package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.InternalSingleEntityReference;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
 import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.KeyModifier;
@@ -45,7 +45,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
         ServiceFactory.define(entity);
         Entity.excuteDefaultQuery(entity);
 
-        boolean anyFieldVisible = false;
+        boolean anyFieldVisibleOrEditable = false;
 
         for (Field field : classfields) {
             if (Modifier.isStatic(field.getModifiers()))
@@ -62,23 +62,21 @@ public class SelfView<T extends Entity> extends EntityView<T> {
                     fld.setFieldValue(fld.getFieldValue());
                     if (fld.isVisibleField()) {
                         add(fld);
-                        anyFieldVisible = true;
+                        anyFieldVisibleOrEditable |= fld.isEditable();
                     }
                 }
                 if (isInheritedFrom(fieldType, InternalSingleEntityReference.class)) {
                     SingleEntityReference singleEntityReference = (SingleEntityReference) fieldObj;
-                    Reflector.treatREF(entity, fieldObj, field);
                     if (singleEntityReference.isVisibleField()) {
                         add(singleEntityReference);
-                        anyFieldVisible = true;
+                        anyFieldVisibleOrEditable |= singleEntityReference.isEditable();
                     }
                 }
                 if (isInheritedFrom(fieldType, InternalMultiEntitiesReferences.class)) {
                     InternalMultiEntitiesReferences multiEntitiesReferences = (InternalMultiEntitiesReferences) fieldObj;
-                    Reflector.treatREF(entity, fieldObj, field);
                     if (multiEntitiesReferences.isVisibleField()) {
                         add(multiEntitiesReferences);
-                        anyFieldVisible = true;
+                        anyFieldVisibleOrEditable |= multiEntitiesReferences.isEditable();
                     }
                 }
             } catch (IllegalAccessException e) {
@@ -88,7 +86,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
             }
         }
 
-        if (anyFieldVisible) {
+        if (anyFieldVisibleOrEditable) {
             horizontalLayout.add(saveButton(entity));
             addComponentAsFirst(horizontalLayout);
         }

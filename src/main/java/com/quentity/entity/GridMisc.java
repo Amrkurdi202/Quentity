@@ -1,9 +1,8 @@
 package com.quentity.entity;
 
-import com.quentity.Application;
 import com.quentity.misc.LanguageUtil;
-import com.quentity.views.MainLayout;
-import com.quentity.views.myview.Main;
+import com.quentity.misc.MainLayout;
+import com.quentity.project.education.Main;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
@@ -11,7 +10,6 @@ import com.vaadin.flow.component.grid.ItemClickEvent;
 import com.vaadin.flow.component.grid.ItemDoubleClickEvent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
-import org.springframework.transaction.annotation.Transactional;
 
 import static com.quentity.misc.Utils.addToTabs;
 

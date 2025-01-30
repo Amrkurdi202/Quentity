@@ -1,11 +1,11 @@
-package com.quentity.views.myview;
+package com.quentity.project.education.types;
 
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldString;
+import com.quentity.misc.Patterns;
 import jakarta.annotation.security.PermitAll;
-import lombok.EqualsAndHashCode;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,23 +13,22 @@ import org.springframework.stereotype.Component;
 @PermitAll
 @jakarta.persistence.Entity
 @Component
-@Icon(value = "item.svg")
-public class Item extends Entity<Item> {
+@Icon(value = "ExamType.svg")
+public class ExamType extends Entity<ExamType> {
 
     @IndexedEmbedded
-    public FldString name, price;
+    public FldString name;
 
-    public void define(Item item) {
-        item.name.setMaxLength(5).setMask("^[\\s\\w]+$");
-        item.price.setMaxLength(5).setMask("^[\\s\\w]+$");
+    public void define(ExamType examType) {
+        name.setMaxLength(30).setMask(Patterns.ALPHABETICAL);
     }
 
     @Autowired()
-    public Item(EntityService<Item> entityService) {
+    public ExamType(EntityService<ExamType> entityService) {
         super(entityService);
     }
 
-    public Item() {
+    public ExamType() {
         super();
     }
 }

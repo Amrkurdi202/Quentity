@@ -1,6 +1,6 @@
-package com.quentity.views.myview;
+package com.quentity.project.education;
 
-import com.quentity.views.MainLayout;
+import com.quentity.misc.MainLayout;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;

@@ -2,11 +2,11 @@ package com.quentity.entity;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.field.Action;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalSingleEntityReference;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
 import com.quentity.reflection.Reflector;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;

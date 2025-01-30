@@ -2,11 +2,11 @@ package com.quentity.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.quentity.data.User;
 import com.quentity.entity.field.Fld;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.entity.field.events.FieldChanged;
+import com.quentity.project.adminstrator.User;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.server.VaadinSession;

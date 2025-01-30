@@ -1,14 +1,14 @@
-package com.quentity.data;
+package com.quentity.project.adminstrator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.quentity.data.Role;
 import com.quentity.entity.EntityService;
+import com.quentity.entity.ServiceFactory;
 import com.quentity.entity.field.FldBool;
 import com.quentity.entity.field.FldString;
+import com.quentity.entity.field.NSFldString;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
-import com.quentity.views.myview.AccessGroup;
-import com.quentity.views.myview.EntityQuery;
-import com.quentity.views.myview.Queries;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.RolesAllowed;
@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -51,6 +52,8 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     @JsonIgnore
     private String hashedPassword;
 
+    public NSFldString password;
+
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
     @Getter
@@ -67,6 +70,11 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
 
     public SingleEntityReference<AccessGroup> accessGroup;
 
+    @Transient
+    @Autowired
+    @JsonIgnore
+    public static BCryptPasswordEncoder encoder;
+
     @Override
     public int hashCode() {
         Long entityId = getEntityId();
@@ -75,7 +83,21 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
 
     @Override
     public void define(User entity) {
-        accessGroup.onSave();
+        entity.accessGroup.onSave();
+        entity.password.setPassword();
+
+        setOnSaveCallback((context) -> {
+            NSFldString passwdFld = entity.password;
+            if (passwdFld != null) {
+                String fieldValue = passwdFld.getFieldValue();
+                if (fieldValue != null && !fieldValue.isEmpty())
+                    entity.hashedPassword = ServiceFactory.
+                            getPasswordEncoder().encode(fieldValue);
+            }
+            if (entity.roles == null)
+                entity.roles = new HashSet<>();
+            entity.roles.add(Role.USER);
+        });
     }
 
     public static void refreshAccessRights() {

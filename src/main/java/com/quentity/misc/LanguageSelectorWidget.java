@@ -1,7 +1,6 @@
-package com.quentity.views;
+package com.quentity.misc;
 
-import com.quentity.data.User;
-import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
 import com.quentity.security.AuthenticatedUser;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;

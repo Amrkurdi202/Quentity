@@ -1,4 +1,4 @@
-package com.quentity.views.myview;
+package com.quentity.project.adminstrator;
 
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
@@ -7,6 +7,7 @@ import com.quentity.entity.field.FldBool;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
 import com.querydsl.jpa.impl.JPAQuery;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.Map;
@@ -16,11 +17,15 @@ import java.util.function.Consumer;
 @Component
 public class EntityQuery extends Entity<EntityQuery> {
 
+    @IndexedEmbedded
     public SingleEntityReference<Entities> entities;
 
+    public FldBool active;
+
+    @IndexedEmbedded
     public SingleEntityReference<Queries> query;
 
-    public FldBool active, mono, readWrite;
+    public FldBool mono, readWrite;
 
     public void define(EntityQuery entityQuery) {
         boolean active = entityQuery.active != null && (entityQuery.active.getFieldValue() != null && entityQuery.active.getFieldValue());
@@ -52,6 +57,9 @@ public class EntityQuery extends Entity<EntityQuery> {
                 QQueries queries = QQueries.queries;
                 entityQuery.query.setAddedFilters(jpaQuery.select(queries).from(queries).where(queries.name.textValue.in(queryEditors.keySet())));
             }
+        });
+        entityQuery.setOnSaveCallback((context) -> {
+            User.refreshAccessRights();
         });
     }
 

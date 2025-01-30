@@ -1,5 +1,6 @@
 package com.quentity.entity.field;
 
+import com.quentity.misc.LanguageUtil;
 import com.vaadin.flow.component.textfield.TextField;
 import jakarta.persistence.Transient;
 import lombok.AccessLevel;
@@ -30,14 +31,20 @@ public abstract class InternalFldString extends Fld<InternalFldString, String> {
     @Transient
     @EqualsAndHashCode.Exclude
     private String mask;
+    @Transient
+    @EqualsAndHashCode.Exclude
+    private boolean password;
 
     public InternalFldString() {
         this(null, 0, 0, null, null, false, false, true, true);
     }
 
-    public InternalFldString(String value, int minLength, int maxLength, String mask, String defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
+    public InternalFldString(String value, int minLength, int maxLength, String mask, String defaultValue, boolean required, boolean password, boolean visible, boolean editable) {
         super(defaultValue, required, visible, editable);
         this.textField = new TextField();
+        if (password)
+            setPassword();
+
         textField.addValueChangeListener(this::getValueChangeListener);
         add(textField);
         setTextValue(value);
@@ -55,6 +62,15 @@ public abstract class InternalFldString extends Fld<InternalFldString, String> {
         textField.setEnabled(editable);
         this.hasLabel = textField;
         this.hasEnabled = textField;
+    }
+
+    public void setPassword() {
+        this.password = true;
+        this.textField.setId("custom-password-field");
+        this.textField.getId().ifPresent(id ->
+                this.textField.
+                        getElement().
+                        executeJs("document.getElementById($0).querySelector('input').setAttribute('type', 'password');", id));
     }
 
     // Additional methods
@@ -88,16 +104,16 @@ public abstract class InternalFldString extends Fld<InternalFldString, String> {
 
     public void validateValue(String value) throws IllegalArgumentException {
         if (this.isRequired() && isEmptyValue(value)) {
-            throw new IllegalArgumentException("Required");
+            throw new IllegalArgumentException(LanguageUtil.get("required"));
         }
         if (this.getMask() != null) {
             Pattern pattern = Pattern.compile(this.getMask());
             if (!pattern.matcher(value).matches()) {
-                throw new IllegalArgumentException("[" + value + "] is Invalid value");
+                throw new IllegalArgumentException(LanguageUtil.get("valueIsInvalid", password ? "********" : value));
             }
         }
         if (value != null && (value.length() < this.getMinLength() || value.length() > this.getMaxLength() && this.getMaxLength() > 0)) {
-            throw new IllegalArgumentException("Length must be between " + this.getMinLength() + " and " + this.getMaxLength() + " characters [" + value + "] is Invalid");
+            throw new IllegalArgumentException(LanguageUtil.get("lengthException", this.getMinLength() + "", this.getMaxLength() + "", password ? "********" : value));
         }
     }
 

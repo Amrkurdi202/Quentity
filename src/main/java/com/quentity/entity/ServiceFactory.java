@@ -1,11 +1,10 @@
 package com.quentity.entity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.lang.invoke.MethodHandle;
@@ -40,6 +39,10 @@ public class ServiceFactory implements ApplicationContextAware {
     if (objectMapper == null)
       objectMapper = (ObjectMapper) applicationContext.getBean("objectMapper");
     return objectMapper;
+  }
+
+  public static PasswordEncoder getPasswordEncoder() {
+    return (PasswordEncoder) applicationContext.getBean("passwordEncoder");
   }
 
   public static <E extends Entity<E>> EntityService<E> getService(String entityClassName) {

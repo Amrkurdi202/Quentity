@@ -1,9 +1,9 @@
 package com.quentity.entity.annotions.handler;
 
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.*;
 import com.quentity.entity.annotions.Mono;
+import com.quentity.project.adminstrator.User;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 
 import java.lang.annotation.Annotation;

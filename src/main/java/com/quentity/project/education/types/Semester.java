@@ -1,4 +1,4 @@
-package com.quentity.views.myview.logistic.managment;
+package com.quentity.project.education.types;
 
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;

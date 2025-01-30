@@ -1,8 +1,8 @@
 package com.quentity.security;
 
-import com.quentity.data.QUser;
-import com.quentity.data.User;
 import com.quentity.misc.EntityManagerProvider;
+import com.quentity.project.adminstrator.QUser;
+import com.quentity.project.adminstrator.User;
 import com.querydsl.jpa.impl.JPAQuery;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

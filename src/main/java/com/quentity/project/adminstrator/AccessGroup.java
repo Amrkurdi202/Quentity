@@ -1,6 +1,5 @@
-package com.quentity.views.myview;
+package com.quentity.project.adminstrator;
 
-import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.field.FldString;

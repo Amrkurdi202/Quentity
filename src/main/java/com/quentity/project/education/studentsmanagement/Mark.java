@@ -1,6 +1,5 @@
-package com.quentity.views.myview;
+package com.quentity.project.education.studentsmanagement;
 
-import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.annotions.DieTogether;
@@ -8,7 +7,10 @@ import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldNumber;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
-import com.quentity.views.myview.logistic.managment.Semester;
+import com.quentity.project.adminstrator.User;
+import com.quentity.project.education.Course;
+import com.quentity.project.education.types.ExamType;
+import com.quentity.project.education.types.Semester;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.PermitAll;

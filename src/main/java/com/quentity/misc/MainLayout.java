@@ -1,14 +1,13 @@
-package com.quentity.views;
+package com.quentity.misc;
 
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.annotions.handler.IconHandler;
 import com.quentity.entity.annotions.handler.MainEntityViewHandler;
-import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
+import com.quentity.project.education.Main;
 import com.quentity.reflection.Reflector;
 import com.quentity.security.AuthenticatedUser;
-import com.quentity.views.myview.Main;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -123,6 +122,7 @@ public class MainLayout extends AppLayout {
         themeSwitch = themeSwitch();
         HorizontalLayout div2 = new HorizontalLayout(languageSelectorWidget, themeSwitch);
         div2.getStyle().set("margin-right", "var(--lumo-space-l)");
+        div2.getStyle().set("margin-left", "var(--lumo-space-l)");
         div2.setAlignItems(FlexComponent.Alignment.CENTER);
         div2.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
         HorizontalLayout div = new HorizontalLayout(div1, div2);
@@ -174,6 +174,8 @@ public class MainLayout extends AppLayout {
 
             MenuItem userName = userMenu.addItem("");
             Div div = new Div();
+            div.getStyle().set("margin-right", "var(--lumo-space-l)");
+            div.getStyle().set("margin-left", "var(--lumo-space-l)");
             div.add(avatar);
             div.add(user.getUsername());
             div.add(new Icon("lumo", "dropdown"));
@@ -203,7 +205,7 @@ public class MainLayout extends AppLayout {
     @Override
     public void setContent(Component content) {
         content.removeFromParent();
-        if (content instanceof com.quentity.views.myview.Main) {
+        if (content instanceof com.quentity.project.education.Main) {
             ((Main) content).setMainLayout(this);
             tabs.setSelectedTab(null);
             super.setContent(content);
@@ -215,7 +217,7 @@ public class MainLayout extends AppLayout {
     }
 
     private String getCurrentPageTitle() {
-        if (getContent() instanceof com.quentity.views.myview.Main) {
+        if (getContent() instanceof com.quentity.project.education.Main) {
             return LanguageUtil.
                     get("main");
         }

@@ -1,6 +1,5 @@
-package com.quentity.views.myview;
+package com.quentity.project.education.studentsmanagement;
 
-import com.quentity.data.User;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.annotions.Icon;
@@ -10,8 +9,12 @@ import com.quentity.entity.field.NSMultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
 import com.quentity.misc.Patterns;
-import com.quentity.views.myview.logistic.managment.QSemester;
-import com.quentity.views.myview.logistic.managment.Semester;
+import com.quentity.project.adminstrator.User;
+import com.quentity.project.education.Course;
+import com.quentity.project.education.types.EducationalDepartments;
+import com.quentity.project.education.types.QSemester;
+import com.quentity.project.education.types.Semester;
+import com.querydsl.core.types.Expression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.data.provider.ListDataProvider;
 import com.vaadin.flow.server.VaadinSession;
@@ -40,6 +43,8 @@ public class Student extends Entity<Student> {
 
     public SingleEntityReference<User> user;
 
+    public SingleEntityReference<EducationalDepartments> educationalDepartment;
+
     public NSMultiEntitiesReferences<Course> currentSemesterCourses;
 
     public void define(Student student) {
@@ -49,10 +54,10 @@ public class Student extends Entity<Student> {
         student.birthDate.setMinValue(LocalDate.of(1900, 1, 1)).setMaxValue(LocalDate.now().minusYears(16));
         student.address.setMaxLength(40).setMask(Patterns.CUSTOM_COMMENT);
         StudentCourses currentSemesterCourses1 = getCurrentSemesterCourses(student);
-        student.currentSemesterCourses.setEnabled(currentSemesterCourses1 != null);
+        student.currentSemesterCourses.setEditable(currentSemesterCourses1 != null);
         if (currentSemesterCourses1 != null) {
             List<Course> coursesEntities = currentSemesterCourses1.courses.getEntity();
-            student.currentSemesterCourses.setEnabled(coursesEntities != null);
+            student.currentSemesterCourses.setEditable(coursesEntities != null);
             student.currentSemesterCourses.setEntitiesWithContext(new ListDataProvider<>(coursesEntities == null ? new ArrayList<>() : coursesEntities), (context) -> {
                 context.put("studentCourses", currentSemesterCourses1);
             });
@@ -74,10 +79,14 @@ public class Student extends Entity<Student> {
         student.firstName.setEditable(false);
         student.lastName.setEditable(false);
         student.birthDate.setEditable(false);
+        student.educationalDepartment.setEditable(false);
         student.address.setEditable(true);
         student.user.setVisibleField(false);
+        JPAQuery<Student> where = getCurrentStudentJPAQuery(QStudent.student);
+        student.addQueryFilter(where);
+    }
 
-
+    public static <U> JPAQuery<U> getCurrentStudentJPAQuery(Expression<U> expr) {
         JPAQuery<Student> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
         VaadinSession current = VaadinSession.getCurrent();
         User user = null;
@@ -87,8 +96,8 @@ public class Student extends Entity<Student> {
         if (user == null)
             throw new IllegalArgumentException("user is null");
         QStudent student1 = QStudent.student;
-        JPAQuery<Student> where = jpaQuery.select(student1).from(student1).where(student1.user.entity.entityId.eq(user.getEntityId()));
-        student.addQueryFilter(where);
+        JPAQuery<U> where = jpaQuery.select(expr).from(student1).where(student1.user.entity.entityId.eq(user.getEntityId()));
+        return where;
     }
 
     @Autowired()

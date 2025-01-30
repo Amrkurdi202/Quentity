@@ -1,4 +1,4 @@
-package com.quentity.views.login;
+package com.quentity.login;
 
 import com.quentity.security.AuthenticatedUser;
 import com.vaadin.flow.component.login.LoginI18n;

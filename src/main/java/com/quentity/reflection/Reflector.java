@@ -5,6 +5,7 @@ import com.quentity.entity.EntityFieldsFactory;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.ServiceFactory;
 import com.quentity.entity.field.Fld;
+import com.quentity.entity.field.HasReflect;
 import com.quentity.entity.field.InternalMultiEntitiesReferences;
 import com.quentity.entity.field.InternalSingleEntityReference;
 import com.quentity.misc.LanguageUtil;
@@ -116,8 +117,12 @@ public class Reflector {
         for (Field field : EntityFieldsFactory.getFields(entityClass)) {
             MethodHandle fieldGetter = getFieldGetter(field);
             try {
-                if (fieldGetter.invoke(entity) == null)
+                Object fldInstance = fieldGetter.invoke(entity);
+                if (fldInstance == null)
                     newField(entity, field);
+                else if (fldInstance instanceof HasReflect) {
+                    treatREF(entity, fldInstance, field);
+                }
             } catch (Throwable e) {
                 throw new RuntimeException(e);
             }

@@ -1,4 +1,4 @@
-package com.quentity.views;
+package com.quentity.misc;
 
 
 import com.vaadin.flow.component.icon.AbstractIcon;

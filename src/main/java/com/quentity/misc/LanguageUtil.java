@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Slf4j
 public class LanguageUtil {
@@ -23,6 +25,7 @@ public class LanguageUtil {
     private static final String DEFAULT_LANG = "en";
     public static final String QUENTITY_LANGUAGE_DIRECTION = "Quentity.language.direction";
     private static final ExecutorService WATCHER_SERVICE = Executors.newSingleThreadExecutor();
+    public static final String $_D_$ = "\\$(\\d+)\\$";
     public static Map<String, Properties> LANGUAGES = loadAllLanguages("strings");
 
     static {
@@ -128,5 +131,23 @@ public class LanguageUtil {
 
     public static String get(String key) {
         return getCurrentLanguageProperties().getProperty(key);
+    }
+
+    public static String get(String key, String... replacements) {
+        return replacePlaceholders(get(key), replacements);
+    }
+
+    private static String replacePlaceholders(String input, String... replacements) {
+        Pattern pattern = Pattern.compile($_D_$);
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer result = new StringBuffer();
+
+        while (matcher.find()) {
+            int index = Integer.parseInt(matcher.group(1));
+            String replacement = (index < replacements.length) ? replacements[index] : matcher.group(0);
+            matcher.appendReplacement(result, Matcher.quoteReplacement(replacement));
+        }
+        matcher.appendTail(result);
+        return result.toString();
     }
 }

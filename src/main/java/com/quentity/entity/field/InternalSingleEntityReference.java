@@ -1,10 +1,10 @@
 package com.quentity.entity.field;
 
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.*;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.component.Text;
@@ -31,7 +31,7 @@ import java.lang.reflect.InvocationTargetException;
 
 @Embeddable
 @EqualsAndHashCode
-public abstract class InternalSingleEntityReference<R extends InternalSingleEntityReference, T extends Entity> extends Res<InternalSingleEntityReference<R, T>> implements HasValue<T> {
+public abstract class InternalSingleEntityReference<R extends InternalSingleEntityReference, T extends Entity> extends Res<InternalSingleEntityReference<R, T>> implements HasValue<T>, HasReflect {
     @Transient
     @EqualsAndHashCode.Exclude
     private final Button button;
@@ -96,7 +96,7 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
         this.editable = true;
     }
 
-    public void reflect(String className) {
+    public void reflect(String className, Entity... entity) {
         try {
             final Class<T> clazz = (Class<T>) Class.forName(className);
             this.comboBox.setItemsWithFilterConverter(query ->
@@ -197,7 +197,9 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
             Class<T> clazz = (Class<T>) source.getClass();
             EntityFieldsFactory.getFields(clazz).
                     stream().
-                    filter(field -> field.getAnnotation(IndexedEmbedded.class) != null && Fld.class.isAssignableFrom(field.getType())).
+                    filter(field -> field.getAnnotation(IndexedEmbedded.class) != null &&
+                            (Fld.class.isAssignableFrom(field.getType()) ||
+                                    SingleEntityReference.class.isAssignableFrom(field.getType()))).
                     limit(3).
                     forEachOrdered(field -> {
                         Object o = null;
@@ -209,7 +211,11 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
                         } catch (IllegalAccessException e) {
                             throw new RuntimeException(e);
                         }
-                        Text text = new Text(((Fld) o).getFieldValue().toString());
+                        Text text;
+                        if (o instanceof Fld)
+                            text = new Text(((Fld) o).getFieldValue().toString());
+                        else
+                            text = new Text(((SingleEntityReference) o).getEntityTitle());
                         if (source.isDeleted())
                             text.getStyle().set("text-decoration", "line-through");
                         verticalLayout.add(

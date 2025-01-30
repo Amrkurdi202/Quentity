@@ -3,7 +3,8 @@ package com.quentity.entity.field;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
-import lombok.*;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 @EqualsAndHashCode
@@ -27,6 +28,8 @@ public class NSFldString extends InternalFldString {
         } catch (IllegalArgumentException ex) {
             textField.setInvalid(true);
             textField.setErrorMessage(ex.getMessage());
+            if (isPassword())
+                setPassword();
         }
         this.textValue = eValue;
         setModelValue(this, true);

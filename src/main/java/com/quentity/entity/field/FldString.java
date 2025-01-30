@@ -1,7 +1,8 @@
 package com.quentity.entity.field;
 
 import jakarta.persistence.Embeddable;
-import lombok.*;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 
@@ -27,6 +28,8 @@ public class FldString extends InternalFldString {
         } catch (IllegalArgumentException ex) {
             textField.setInvalid(true);
             textField.setErrorMessage(ex.getMessage());
+            if (isPassword())
+                setPassword();
         }
         this.textValue = eValue;
         setModelValue(this, true);
@@ -34,8 +37,8 @@ public class FldString extends InternalFldString {
     }
 
     @Builder
-    public FldString(String value, int minLength, int maxLength, String mask, String defaultValue, boolean required, boolean unique, boolean visible, boolean editable) {
-        super(value, minLength, maxLength, mask, defaultValue, required, unique, visible, editable);
+    public FldString(String value, int minLength, int maxLength, String mask, String defaultValue, boolean required, boolean password, boolean visible, boolean editable) {
+        super(value, minLength, maxLength, mask, defaultValue, required, password, visible, editable);
     }
 
     @Override

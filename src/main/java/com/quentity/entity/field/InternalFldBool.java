@@ -85,8 +85,12 @@ public abstract class InternalFldBool extends Fld<InternalFldBool, Boolean> {
         Boolean oldValue = this.getFieldValue();
         this.setBoolValue(value);
         this.checkBox.setValue(value != null && value);
-        if (fieldChangedCallback != null)
-            fieldChangedCallback.onFieldChanged(oldValue, value);
+        //All of this to protect from NPE unboxing null Boolean to boolean
+        if (fieldChangedCallback != null &&
+                ((oldValue == null) != (value == null)))
+            fieldChangedCallback.
+                    onFieldChanged(oldValue != null && oldValue,
+                            value != null && value);
     }
 
     <E extends ValueChangeEvent<Boolean>> void getValueChangeListener(E e) {

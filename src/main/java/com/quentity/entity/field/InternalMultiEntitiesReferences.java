@@ -2,10 +2,10 @@ package com.quentity.entity.field;
 
 import com.flowingcode.vaadin.addons.fontawesome.FontAwesome;
 import com.quentity.data.Role;
-import com.quentity.data.User;
 import com.quentity.entity.*;
 import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.misc.LanguageUtil;
+import com.quentity.project.adminstrator.User;
 import com.quentity.refGenPlug.FieldPojo;
 import com.quentity.reflection.Reflector;
 import com.vaadin.flow.component.button.Button;
@@ -37,7 +37,7 @@ import static com.quentity.entity.Entity.getReferenceFieldTitle;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
 @EqualsAndHashCode
-public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends Res<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>> {
+public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends Res<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>>, HasReflect {
     @Transient
     @Setter
     @Getter
@@ -49,7 +49,6 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
     @EqualsAndHashCode.Exclude
     private boolean visibleField;
     @Transient
-    @Setter
     @Getter
     @EqualsAndHashCode.Exclude
     private boolean editable;
@@ -79,7 +78,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
     }
 
-    public void reflect(String className, Entity entity) {
+    public void reflect(String className, Entity... entity) {
+
         Class<T> clazz;
         try {
             setSizeFull();
@@ -166,8 +166,8 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
             });
             grid.setDragDataGenerator("id", item -> String.valueOf(item.getEntityId()));
             grid.setDragDataGenerator("type", item -> item.getClass().getSimpleName().toLowerCase());
-            if (entity.getEntityId() != null)
-                grid.setDragDataGenerator("sourceentityid", item -> entity.getEntityId().toString());
+            if (entity[0].getEntityId() != null)
+                grid.setDragDataGenerator("sourceentityid", item -> entity[0].getEntityId().toString());
 
             grid.addDropListener(e -> {
                 List<String> sourceEntityIds = Arrays.asList(
@@ -197,7 +197,7 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
                         continue;
                     }
 
-                    Long entityId = entity.getEntityId();
+                    Long entityId = entity[0].getEntityId();
                     boolean isSameEntity = Objects.equals(sourceEntityId, entityId == null ? null : entityId.toString());
 
                     if (!isSameEntity) {
@@ -366,10 +366,15 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
     @Override
     public void setEnabled(boolean enabled) {
+        this.editable = enabled;
         grid.setEnabled(enabled);
         entitySingleEntityReference.setEnabled(enabled);
         addToListButton.setEnabled(enabled);
         super.setEnabled(enabled);
+    }
+
+    public void setEditable(boolean editable) {
+        setEnabled(editable);
     }
 
 }
