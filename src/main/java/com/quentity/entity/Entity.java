@@ -9,7 +9,6 @@ import com.quentity.entity.field.events.FieldChanged;
 import com.quentity.project.adminstrator.User;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.vaadin.flow.server.VaadinSession;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -92,11 +91,7 @@ public abstract class Entity<T extends Entity> {
     }
 
     public static <T extends Entity> void excuteDefaultQuery(Entity<T> entity) {
-        VaadinSession current = VaadinSession.getCurrent();
-        User user = null;
-        if (current != null) {
-            user = current.getAttribute(User.class);
-        }
+        User user = ServiceFactory.getCurrentUser();
         Consumer<T> queryEditor = entity.
                 getQueryEditor(user == null ?
                         "default" :
@@ -215,7 +210,7 @@ public abstract class Entity<T extends Entity> {
         return entity;
     }
 
-
+    @JsonIgnore
     public boolean isEntityEdited() {
         if (this.entityId == null)
             return true;
@@ -264,6 +259,7 @@ public abstract class Entity<T extends Entity> {
         return queryEditors.get(queryName);
     }
 
+    @JsonIgnore
     public Map<String, Consumer<T>> getQueryEditor() {
         return queryEditors;
     }
@@ -276,6 +272,7 @@ public abstract class Entity<T extends Entity> {
         addedFilters[0] = filter;
     }
 
+    @JsonIgnore
     public AbstractJPAQuery<T, JPAQuery<T>> getQueryFilter() {
         return addedFilters[0];
     }

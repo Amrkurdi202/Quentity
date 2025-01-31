@@ -20,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 /**
@@ -34,6 +35,7 @@ import java.util.function.Consumer;
 @Push
 @Theme("quentity")
 public class Application implements AppShellConfigurator {
+    public static final AtomicBoolean INIT_SERVER = new AtomicBoolean(true);
     public static final String LOCAL = "en";
     public static final HashMap<String, Properties> LOCAL_PROPERTIES = new HashMap<>();
     private static final Reflector REFLECTOR = new Reflector();
@@ -51,14 +53,21 @@ public class Application implements AppShellConfigurator {
         return new SqlDataSourceScriptDatabaseInitializer(dataSource, properties) {
             @Override
             public boolean initializeDatabase() {
-                addEntites();
-                addQueries();
-                JPAQuery<Object> jpaQuery;
+                try {
+                    addEntites();
+                    addQueries();
+                    JPAQuery<Object> jpaQuery;
 
-                jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
-                User user = jpaQuery.select(QUser.user).from(QUser.user).limit(1).fetchOne();
-                if (user == null) {
-                    return super.initializeDatabase();
+                    jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
+                    User user = jpaQuery.select(QUser.user).from(QUser.user).limit(1).fetchOne();
+                    if (user == null) {
+                        return super.initializeDatabase();
+                    }
+                    return false;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    INIT_SERVER.set(false);
                 }
                 return false;
             }

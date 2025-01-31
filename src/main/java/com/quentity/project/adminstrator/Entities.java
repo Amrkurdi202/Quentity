@@ -1,5 +1,6 @@
 package com.quentity.project.adminstrator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
 import com.quentity.entity.field.FldString;
@@ -21,6 +22,7 @@ public class Entities extends Entity<Entities> {
     FldString name;
 
     @Setter
+    @JsonIgnore
     String fullName;
 
     public void define(Entities entities) {

@@ -8,6 +8,8 @@ import com.quentity.misc.LanguageUtil;
 import com.quentity.project.adminstrator.User;
 import com.quentity.refGenPlug.FieldPojo;
 import com.quentity.reflection.Reflector;
+import com.querydsl.jpa.impl.AbstractJPAQuery;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
@@ -20,7 +22,6 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.provider.ListDataProvider;
-import com.vaadin.flow.server.VaadinSession;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -224,44 +225,42 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
         GridContextMenu<T> tGridContextMenu = grid.addContextMenu();
         FontAwesome.Solid.Icon icon;
 
-        VaadinSession currentSession = VaadinSession.getCurrent();
-        if (currentSession != null) {
-            User user = currentSession.getAttribute(User.class);
-            boolean isReadWrite = user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz));
-            if (isReadWrite) {
-                icon = FontAwesome.Solid.EDIT.create();
-                icon.setVisible(true);
-                tGridContextMenu.addItem(icon, e -> {
-                    T item = e.getItem().orElse(null);
-                    if (item != null) {
-                        if (editor.isOpen()) {
-                            T editorItem = editor.getItem();
-                            if (editorItem != null) {
-                                editorItem.save();
-                                editor.save();
-                            }
+        User user = ServiceFactory.getCurrentUser();
+        boolean isReadWrite = user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz));
+        if (isReadWrite) {
+            icon = FontAwesome.Solid.EDIT.create();
+            icon.setVisible(true);
+            tGridContextMenu.addItem(icon, e -> {
+                T item = e.getItem().orElse(null);
+                if (item != null) {
+                    if (editor.isOpen()) {
+                        T editorItem = editor.getItem();
+                        if (editorItem != null) {
+                            editorItem.save();
+                            editor.save();
                         }
-                        editor.editItem(item);
                     }
-                });
+                    editor.editItem(item);
+                }
+            });
 
-                icon = FontAwesome.Solid.SAVE.create();
-                icon.setVisible(true);
-                tGridContextMenu.addItem(icon, e -> {
-                    T item = e.getItem().orElse(null);
-                    if (item != null) {
-                        if (editor.isOpen()) {
-                            T editorItem = editor.getItem();
-                            if (editorItem != null) {
-                                editorItem.save();
-                            }
+            icon = FontAwesome.Solid.SAVE.create();
+            icon.setVisible(true);
+            tGridContextMenu.addItem(icon, e -> {
+                T item = e.getItem().orElse(null);
+                if (item != null) {
+                    if (editor.isOpen()) {
+                        T editorItem = editor.getItem();
+                        if (editorItem != null) {
+                            editorItem.save();
                         }
-                        item.save();
-                        editor.save();
                     }
-                });
-            }
+                    item.save();
+                    editor.save();
+                }
+            });
         }
+
 
         icon = FontAwesome.Solid.TRASH.create();
         icon.setVisible(true);
@@ -375,6 +374,10 @@ public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEnt
 
     public void setEditable(boolean editable) {
         setEnabled(editable);
+    }
+
+    public void setAddedFilters(AbstractJPAQuery<T, JPAQuery<T>> addedFilters) {
+        entitySingleEntityReference.setAddedFilters(addedFilters);
     }
 
 }

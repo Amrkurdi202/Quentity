@@ -8,16 +8,24 @@ import lombok.experimental.Accessors;
 @Embeddable
 @EqualsAndHashCode
 public class FldBool extends InternalFldBool {
-    private Boolean textValue;
+    private Boolean boolValue;
+
+    public FldBool() {
+        super();
+    }
+
+    public FldBool(Boolean value, Boolean defaultValue, boolean required, boolean visible, boolean editable) {
+        super(value, defaultValue, required, visible, editable);
+    }
 
     @Override
     Boolean getBoolValue() {
-        return textValue;
+        return boolValue;
     }
 
     @Override
     void setBoolValue(Boolean value) {
-        this.textValue = value;
+        this.boolValue = value;
     }
 }
 

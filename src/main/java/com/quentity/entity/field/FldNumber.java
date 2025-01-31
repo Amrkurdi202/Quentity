@@ -14,6 +14,14 @@ public class FldNumber extends InternalFldNumber {
     @FullTextField
     Double value;
 
+    public FldNumber(Double value, Double defaultValue, boolean required, boolean visible, boolean editable, Double min, Double max, Double step, String suffix, String prefix) {
+        super(value, defaultValue, required, visible, editable, min, max, step, suffix, prefix);
+    }
+
+    public FldNumber() {
+        super();
+    }
+
     @Override
     Double getNumericValue() {
         return value;

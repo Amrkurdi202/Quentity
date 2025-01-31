@@ -6,6 +6,7 @@ import com.quentity.entity.field.MultiEntitiesReferences;
 import com.quentity.refGenPlug.DiePojo;
 import com.quentity.refGenPlug.EntityPojo;
 import com.quentity.reflection.Reflector;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.NumberPath;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
@@ -273,5 +274,9 @@ public class EntityService<E extends Entity> {
             throw new IllegalArgumentException("Invalid field name: " + fieldName);
         }
         return fieldName;
+    }
+
+    public Iterable<?> findAll(Predicate predicate, Pageable pageable) {
+        return repository.findAll(predicate, pageable);
     }
 }

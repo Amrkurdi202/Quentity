@@ -1,7 +1,9 @@
 package com.quentity.project.education.studentsmanagement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.quentity.entity.Entity;
 import com.quentity.entity.EntityService;
+import com.quentity.entity.ServiceFactory;
 import com.quentity.entity.annotions.Icon;
 import com.quentity.entity.field.FldDate;
 import com.quentity.entity.field.FldString;
@@ -17,12 +19,10 @@ import com.quentity.project.education.types.Semester;
 import com.querydsl.core.types.Expression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.data.provider.ListDataProvider;
-import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.PermitAll;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +45,7 @@ public class Student extends Entity<Student> {
 
     public SingleEntityReference<EducationalDepartments> educationalDepartment;
 
+    @JsonIgnore
     public NSMultiEntitiesReferences<Course> currentSemesterCourses;
 
     public void define(Student student) {
@@ -67,6 +68,7 @@ public class Student extends Entity<Student> {
                 studentCourses.save();
             });
         }
+        student.currentSemesterCourses.setAddedFilters(Course.getCurrentStudentAllowedCoursesJPAQuery());
         addQueryEditor("default", this::defaultQuery);
         addQueryEditor("Student", this::studentQuery);
     }
@@ -88,11 +90,7 @@ public class Student extends Entity<Student> {
 
     public static <U> JPAQuery<U> getCurrentStudentJPAQuery(Expression<U> expr) {
         JPAQuery<Student> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
-        VaadinSession current = VaadinSession.getCurrent();
-        User user = null;
-        if (current != null) {
-            user = current.getAttribute(User.class);
-        }
+        User user = ServiceFactory.getCurrentUser();
         if (user == null)
             throw new IllegalArgumentException("user is null");
         QStudent student1 = QStudent.student;
@@ -121,6 +119,7 @@ public class Student extends Entity<Student> {
         return studentCoursesQuery.select(studentCourses).from(studentCourses).where(studentCourses.student.entity.entityId.eq(student.getEntityId()).and(studentCourses.semester.entity.entityId.eq(getLatestSemester().getEntityId()))).limit(1).fetchOne();
     }
 
+    @JsonIgnore
     public Semester getLatestSemester() {
         QSemester semester = QSemester.semester;
         JPAQuery<Semester> query = new JPAQuery<>(EntityManagerProvider.getEntityManager());

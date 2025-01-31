@@ -10,7 +10,6 @@ import com.quentity.entity.field.NSFldString;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.misc.EntityManagerProvider;
 import com.querydsl.jpa.impl.JPAQuery;
-import com.vaadin.flow.server.VaadinSession;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -24,7 +23,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -85,14 +83,12 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     public void define(User entity) {
         entity.accessGroup.onSave();
         entity.password.setPassword();
-
         setOnSaveCallback((context) -> {
             NSFldString passwdFld = entity.password;
             if (passwdFld != null) {
                 String fieldValue = passwdFld.getFieldValue();
                 if (fieldValue != null && !fieldValue.isEmpty())
-                    entity.hashedPassword = ServiceFactory.
-                            getPasswordEncoder().encode(fieldValue);
+                    entity.hashedPassword = ServiceFactory.getPasswordEncoder().encode(fieldValue);
             }
             if (entity.roles == null)
                 entity.roles = new HashSet<>();
@@ -123,6 +119,7 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return hashedPassword;
     }
@@ -205,15 +202,10 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     }
 
     public static String getCurrentUserDefaultQuery(Class<? extends com.quentity.entity.Entity> entityClass) {
-        VaadinSession current = VaadinSession.getCurrent();
-        User user = null;
-        if (current != null) {
-            user = current.getAttribute(User.class);
-            if (user == null)
-                return null;
-            return getDefaultEntityQueryString(user, entityClass);
-        }
-        return null;
+        User user = ServiceFactory.getCurrentUser();
+        if (user == null)
+            return null;
+        return getDefaultEntityQueryString(user, entityClass);
     }
 
     private static <E extends com.quentity.entity.Entity> UserEntityConstraint getQuery(User user, Class<E> entityClass) {

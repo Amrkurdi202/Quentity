@@ -1,6 +1,13 @@
 package com.quentity.entity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.quentity.Application;
+import com.quentity.data.Role;
+import com.quentity.misc.EntityManagerProvider;
+import com.quentity.project.adminstrator.QUser;
+import com.quentity.project.adminstrator.User;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.vaadin.flow.server.VaadinSession;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -70,5 +77,21 @@ public class ServiceFactory implements ApplicationContextAware {
   @Override
   public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     ServiceFactory.applicationContext = applicationContext;
+  }
+
+  public static User getCurrentUser() {
+    if (Application.INIT_SERVER.get()) {
+      JPAQuery<User> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
+      return jpaQuery.select(QUser.user).
+              from(QUser.user).
+              where(QUser.user.roles.contains(Role.ADMIN)).
+              limit(1).
+              fetchOne();
+    }
+    VaadinSession session = VaadinSession.getCurrent();
+    if (session != null) {
+      return session.getAttribute(User.class);
+    }
+    return null;
   }
 }

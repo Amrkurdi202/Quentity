@@ -20,7 +20,6 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.provider.DataProvider;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 
 import java.lang.reflect.Field;
@@ -45,8 +44,7 @@ public class GridView<T extends Entity> extends EntityView<T> {
         grid.setHeight("80vh");
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-        VaadinSession currentSession = VaadinSession.getCurrent();
-        User user = currentSession.getAttribute(User.class);
+        User user = ServiceFactory.getCurrentUser();
         if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
             Button button = new Button(LumoIcon.PLUS.create(), (event -> {
                 try {

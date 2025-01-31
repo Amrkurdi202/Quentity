@@ -52,11 +52,16 @@ public class Course extends Entity<Course> {
         course.hours.setEditable(false);
         course.courseType.setEditable(false);
         course.educationalDepartments.setEditable(false);
+        JPAQuery<Course> where = getCurrentStudentAllowedCoursesJPAQuery();
+        course.addQueryFilter(where);
+    }
+
+    public static JPAQuery<Course> getCurrentStudentAllowedCoursesJPAQuery() {
         JPAQuery<Entity<?>> currentStudentJPAQuery = Student.getCurrentStudentJPAQuery(QStudent.student.educationalDepartment.entity);
         JPAQuery<Course> jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
         QCourse course1 = QCourse.course;
         JPAQuery<Course> where = jpaQuery.select(course1).from(course1).where(course1.educationalDepartments.entities.contains(currentStudentJPAQuery));
-        course.addQueryFilter(where);
+        return where;
     }
 
     @Autowired()

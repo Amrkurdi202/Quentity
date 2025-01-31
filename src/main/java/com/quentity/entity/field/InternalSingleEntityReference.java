@@ -15,7 +15,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.Renderer;
-import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoIcon;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Transient;
@@ -97,6 +96,7 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
     }
 
     public void reflect(String className, Entity... entity) {
+        if (reflected) return;
         try {
             final Class<T> clazz = (Class<T>) Class.forName(className);
             this.comboBox.setItemsWithFilterConverter(query ->
@@ -119,18 +119,17 @@ public abstract class InternalSingleEntityReference<R extends InternalSingleEnti
                 }
             });
             this.comboBox.setLabel(getTextData());
-            
+
             HorizontalLayout horizontalLayout = new HorizontalLayout();
             horizontalLayout.setAlignItems(FlexComponent.Alignment.CENTER);
             horizontalLayout.add(this.comboBox);
-            VaadinSession currentSession = VaadinSession.getCurrent();
-            if (currentSession != null) {
-                User user = currentSession.getAttribute(User.class);
-                if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
-                    horizontalLayout.setAlignItems(FlexComponent.Alignment.END);
-                    horizontalLayout.add(this.button);
-                }
+
+            User user = ServiceFactory.getCurrentUser();
+            if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
+                horizontalLayout.setAlignItems(FlexComponent.Alignment.END);
+                horizontalLayout.add(this.button);
             }
+
 
             add(horizontalLayout);
         } catch (ClassNotFoundException e) {

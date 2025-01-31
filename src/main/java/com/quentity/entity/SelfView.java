@@ -16,7 +16,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.server.VaadinSession;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -36,8 +35,7 @@ public class SelfView<T extends Entity> extends EntityView<T> {
         Set<Field> classfields = EntityFieldsFactory.getFields(clazz);
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-        VaadinSession currentSession = VaadinSession.getCurrent();
-        User user = currentSession.getAttribute(User.class);
+        User user = ServiceFactory.getCurrentUser();
         if (user != null && (user.getRoles().contains(Role.ADMIN) || user.isReadWrite(clazz))) {
             horizontalLayout.add(deleteButton(entity, closeRunnable));
         }
