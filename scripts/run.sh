@@ -5,4 +5,4 @@ cd "$(dirname "$0")"
 CLASSPATH=".:./lib/*"
 
 echo "Running the application..."
-java -cp "$CLASSPATH" com.quentity.Application
+java -Dspring.sql.init.data-locations=file:./data.sql -cp "$CLASSPATH" com.quentity.Application

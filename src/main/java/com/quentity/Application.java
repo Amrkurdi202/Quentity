@@ -1,5 +1,6 @@
 package com.quentity;
 
+import com.quentity.data.Role;
 import com.quentity.entity.Entity;
 import com.quentity.entity.ServiceFactory;
 import com.quentity.misc.EntityManagerProvider;
@@ -54,16 +55,17 @@ public class Application implements AppShellConfigurator {
             @Override
             public boolean initializeDatabase() {
                 try {
-                    addEntites();
-                    addQueries();
                     JPAQuery<Object> jpaQuery;
-
                     jpaQuery = new JPAQuery<>(EntityManagerProvider.getEntityManager());
                     User user = jpaQuery.select(QUser.user).from(QUser.user).limit(1).fetchOne();
                     if (user == null) {
-                        return super.initializeDatabase();
+                        createUser(true);
+                        createUser(false);
                     }
-                    return false;
+
+                    addEntites();
+                    addQueries();
+                    return true;
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -124,5 +126,17 @@ public class Application implements AppShellConfigurator {
                 }
             }
         };
+    }
+
+    private static void createUser(boolean isAdmin) {
+        User user = Entity.newEntity(User.class);
+        ServiceFactory.define(user);
+        user.username.setFieldValue(isAdmin ? "admin" : "user");
+        user.password.setFieldValue(isAdmin ? "admin" : "user");
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(isAdmin ? Role.ADMIN : Role.USER);
+        user.setRoles(roles);
+        user.setProfilePicture(new byte[]{});
+        user.save();
     }
 }

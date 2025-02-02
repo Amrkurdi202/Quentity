@@ -13,6 +13,7 @@
     <properties>
         <java.version>21</java.version>
         <vaadin.version>24.4.4</vaadin.version>
+        <spring-boot.build-image.imageName>quentity/app</spring-boot.build-image.imageName>
     </properties>
 
     <parent>
@@ -209,6 +210,7 @@
                                 RepoServGenPlug
                             </goal>
                         </goals>
+                        <phase>generate-sources</phase>
                     </execution>
                 </executions>
                 <configuration>
@@ -227,6 +229,7 @@
                                 ResGenPlug
                             </goal>
                         </goals>
+                        <phase>generate-resources</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -241,6 +244,7 @@
                                 RefGenPlug
                             </goal>
                         </goals>
+                        <phase>process-sources</phase>
                     </execution>
                 </executions>
             </plugin>
@@ -346,6 +350,13 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>${vaadin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-context</artifactId>
+                        <version>6.2.2</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <goals>
@@ -354,10 +365,63 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <builder>paketobuildpacks/builder-jammy-tiny:latest</builder>
+                        <env>
+                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                            <JAVA_TOOL_OPTIONS>-Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false
+                            </JAVA_TOOL_OPTIONS>
+                        </env>
+                    </image>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process-aot</id>
+                        <goals>
+                            <goal>process-aot</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <profiles>
+        <profile>
+            <!-- Production mode is activated using -Pproduction -->
+            <id>loose-package</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>${maven-assembly-plugin.version}</version>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/loose-package.xml</descriptor>
+                            </descriptors>
+                            <finalName>${project.artifactId}-loose</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <outputDirectory>${project.build.directory}/loose-package</outputDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>create-loose-package</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <profile>
             <!-- Production mode is activated using -Pproduction -->
             <id>production</id>

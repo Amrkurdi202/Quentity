@@ -1,0 +1,79 @@
+[
+{
+  "name":"[Lcom.sun.management.internal.DiagnosticCommandArgumentInfo;"
+},
+{
+  "name":"[Lcom.sun.management.internal.DiagnosticCommandInfo;"
+},
+{
+  "name":"com.sun.management.VMOption$Origin",
+  "fields":[{"name":"ATTACH_ON_DEMAND"}, {"name":"CONFIG_FILE"}, {"name":"DEFAULT"}, {"name":"ENVIRON_VAR"}, {"name":"ERGONOMIC"}, {"name":"MANAGEMENT"}, {"name":"OTHER"}, {"name":"VM_CREATION"}]
+},
+{
+  "name":"com.sun.management.internal.DiagnosticCommandArgumentInfo",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String","java.lang.String","java.lang.String","boolean","boolean","boolean","int"] }]
+},
+{
+  "name":"com.sun.management.internal.DiagnosticCommandInfo",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String","java.lang.String","boolean","java.util.List"] }]
+},
+{
+  "name":"com.sun.management.internal.Flag",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.Object","boolean","boolean","com.sun.management.VMOption$Origin"] }]
+},
+{
+  "name":"java.awt.GraphicsEnvironment",
+  "methods":[{"name":"isHeadless","parameterTypes":[] }]
+},
+{
+  "name":"java.awt.image.BufferedImage",
+  "fields":[{"name":"colorModel"}, {"name":"imageType"}, {"name":"raster"}],
+  "methods":[{"name":"getRGB","parameterTypes":["int","int","int","int","int[]","int","int"] }, {"name":"setRGB","parameterTypes":["int","int","int","int","int[]","int","int"] }]
+},
+{
+  "name":"java.awt.image.ColorModel",
+  "fields":[{"name":"colorSpace"}, {"name":"colorSpaceType"}, {"name":"isAlphaPremultiplied"}, {"name":"is_sRGB"}, {"name":"nBits"}, {"name":"numComponents"}, {"name":"supportsAlpha"}, {"name":"transparency"}],
+  "methods":[{"name":"getRGBdefault","parameterTypes":[] }]
+},
+{
+  "name":"java.awt.image.IndexColorModel",
+  "fields":[{"name":"map_size"}, {"name":"rgb"}, {"name":"transparent_index"}]
+},
+{
+  "name":"java.awt.image.Raster",
+  "fields":[{"name":"dataBuffer"}, {"name":"height"}, {"name":"minX"}, {"name":"minY"}, {"name":"numBands"}, {"name":"numDataElements"}, {"name":"sampleModel"}, {"name":"sampleModelTranslateX"}, {"name":"sampleModelTranslateY"}, {"name":"width"}]
+},
+{
+  "name":"java.awt.image.SampleModel",
+  "fields":[{"name":"height"}, {"name":"width"}],
+  "methods":[{"name":"getPixels","parameterTypes":["int","int","int","int","int[]","java.awt.image.DataBuffer"] }, {"name":"setPixels","parameterTypes":["int","int","int","int","int[]","java.awt.image.DataBuffer"] }]
+},
+{
+  "name":"java.lang.Boolean",
+  "methods":[{"name":"<init>","parameterTypes":["boolean"] }, {"name":"getBoolean","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.lang.Long",
+  "methods":[{"name":"<init>","parameterTypes":["long"] }]
+},
+{
+  "name":"java.lang.System",
+  "methods":[{"name":"load","parameterTypes":["java.lang.String"] }]
+},
+{
+  "name":"java.util.Arrays",
+  "methods":[{"name":"asList","parameterTypes":["java.lang.Object[]"] }]
+},
+{
+  "name":"sun.awt.image.ByteComponentRaster",
+  "fields":[{"name":"data"}, {"name":"dataOffsets"}, {"name":"pixelStride"}, {"name":"scanlineStride"}, {"name":"type"}]
+},
+{
+  "name":"sun.java2d.Disposer",
+  "methods":[{"name":"addRecord","parameterTypes":["java.lang.Object","long","long"] }]
+},
+{
+  "name":"sun.management.VMManagementImpl",
+  "fields":[{"name":"compTimeMonitoringSupport"}, {"name":"currentThreadCpuTimeSupport"}, {"name":"objectMonitorUsageSupport"}, {"name":"otherThreadCpuTimeSupport"}, {"name":"remoteDiagnosticCommandsSupport"}, {"name":"synchronizerUsageSupport"}, {"name":"threadAllocatedMemorySupport"}, {"name":"threadContentionMonitoringSupport"}]
+}
+]

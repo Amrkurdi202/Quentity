@@ -1,0 +1,51 @@
+version: '3.8'
+
+networks:
+  network:
+    driver: bridge
+
+services:
+  app:
+    networks:
+      - network
+    build:
+      context: ../../..
+      dockerfile: src/main/docker/Dockerfile
+    ports:
+      - "8086:8086"
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/docker_database
+      - SPRING_DATASOURCE_USERNAME=dockerUser
+      - SPRING_DATASOURCE_PASSWORD=dockerSecret
+      - spring.sql.init.data-locations=classpath:data.sql
+    depends_on:
+      - mariadb
+
+  mariadb:
+    networks:
+      - network
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: docker_database
+      MYSQL_USER: dockerUser
+      MYSQL_PASSWORD: dockerSecret
+
+      MARIADB_INNODB_BUFFER_POOL_SIZE: 2G
+      MARIADB_INNODB_LOG_BUFFER_SIZE: 64M
+      MARIADB_INNODB_FLUSH_LOG_AT_TRX_COMMIT: 2
+      
+      
+      MARIADB_TABLE_OPEN_CACHE: 8000
+      MARIADB_OPEN_FILES_LIMIT: 65535
+      
+      
+      MARIADB_TMP_TABLE_SIZE: 256M
+      MARIADB_MAX_HEAP_TABLE_SIZE: 256M
+      
+      
+      MARIADB_MAX_CONNECTIONS: 500
+    ports:
+      - "3306:3306"

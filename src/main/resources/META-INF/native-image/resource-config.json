@@ -1,0 +1,3228 @@
+{
+  "resources":{
+  "includes":[{
+    "pattern":"\\Q./reflection/reflection.json\\E"
+  }, {
+    "pattern":"\\QMETA-INF/MANIFEST.MF\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/config/flow-build-info.json\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/config/stats.json\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/file-routes.json\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/35532d34-42d4-4f3f-b6a3-ed699f7a61bc/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/76983b6a-8c46-4c03-b204-efce25460200/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/8238ec58-2aee-4661-9e0d-1e561a6fc24e/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/8722bfff-8988-429e-8bb0-773dbf43a4e3/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/9d789d63-5149-46b4-96b2-f75c323a5942/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/a7af82a3-f866-482b-966f-979342d36a46/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/a833368e-f29c-4bcb-aece-3afcc8221b4c/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/c59e8cbc-e5e6-45c9-ac12-4fb626f23f9c/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/c7bb70fe-5a38-49ab-aab4-5aee0e2526a1/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/d62a9f1a-08f9-4af3-9fce-76988dcf5a74/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/d95a0572-12fa-4c6c-aabe-76a2d63bd0eb/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/1/f4561a62-625e-4d69-a41b-77c284392fbd/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/02f6172e-87a9-497f-aed1-2fffc2750b4d/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/0ca52acc-04fd-43db-872b-e053ab1f9736/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/3e35a7ef-ba2a-428b-82ec-8dc0490c27e7/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/69955781-7ac4-437a-98c4-192293936988/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/6d4d0c02-b0bf-4790-8f1f-0ae0ca60518f/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/9724d48f-181a-488b-8539-94125adfb988/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/b053a1c5-05e9-41cd-ad02-7731f2083b6a/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/b5aa6b9a-9da6-465d-8736-663d07b570e5/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/c4d883b7-d31b-4e54-943a-578e129cb3e2/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/c537108a-1412-412a-b644-230b3c6e55f5/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/d94c7463-5c99-45c3-9bc1-bfd77f02905c/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/2/da2bc4cc-d4c1-45c7-b637-4c07dc029d84/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/29612d0e-adc0-4bb6-9fa5-5890032cf84a/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/37d19cd5-7b9e-4854-8047-f33ce6114722/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/3b649f23-5b95-4b81-a739-fd3a4f2e046b/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/97f6290c-2d3d-466e-8f7e-7f70653963c7/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/9bed4854-88d2-448f-80ec-929fa07013f2/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/a9f4ce04-d688-4e8a-a8f1-ef90f96328a5/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/bcb83f68-f1e0-49f4-b288-336bc66383c7/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/c6516181-acf6-4271-a60e-1e197f9b3dd5/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/d8fcd9b5-1f23-41c6-98f1-a1fa70682e39/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/e45bd31e-8512-4ab1-8032-e954fc977f7d/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/f36c7fb6-cb38-4def-a951-ed57563ba277/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/3/fd5c63cf-9b7a-4ea4-a3eb-a06f1e99a948/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/16f74331-96a3-42c2-a82a-8824f2d64515/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/179038d7-87cf-4ed3-a78d-269650444f8e/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/21acbbb6-1dbb-44fe-b6c4-7dcbce378c16/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/3f75bed6-bd25-479b-8cef-2b7892779c88/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/6042970a-99c4-4443-bf5a-f1f3eadce5b3/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/84d2e25e-eb31-4889-a98e-09ded8580f58/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/adb713e8-8215-4d45-8d1f-9a945022a0d4/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/bc2208ae-71d3-480b-af8f-0b33e7e4abfe/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/ce2aec8a-4828-46d2-bfc6-96743129427a/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/d77a9671-e61d-41f0-91e9-d53bf1777399/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/e1d39ec2-b307-4035-b45b-4843cb44e8e4/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/4/f6a37cd9-e2bd-438b-b449-2a853a3e30a3/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/18255168-d78e-4a5f-a00f-13e3458ad104/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/3bbe0793-59a0-401d-8bfa-ac694055a8d3/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/84c72dc9-eff3-483c-8e4d-aaa9c341ca46/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/88f98fbf-f5f8-45b0-b35e-9d98a66db682/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/8e0ca5fa-2e6d-452e-b52f-749ac7d0f4de/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/b7b7fd22-4cf8-4133-b9be-e1e7904fa113/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/be16aed3-5fc6-4013-996a-3f263e955960/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/d27aa4bf-7d0e-42b9-af80-3109d47c01b8/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/e993a83d-7901-4096-89d1-c9d1c7c751b7/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/eb3cf7eb-acbf-4b11-87af-379210e005c4/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/f8367f84-9efd-4f9d-b8c7-ad449257afe0/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/5/fe0d46c5-737b-4065-8224-0987678abf84/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/1facce79-0491-47b6-95f7-4e821e8fd309/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/24b1d206-1ccb-447f-853e-aeedb1ba5141/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/2b1cb82c-d504-431c-8521-354e76dd9b7d/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/39b09c21-0058-46f9-9dbd-f991e94c883a/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/4d62e0d7-15e4-42e8-8537-afd02c3ffbd1/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/6d061498-c806-446d-8e5a-4b185f9b9f22/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/7b1559f7-1030-4ebe-8788-8ec2be4ebdbc/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/896024df-3bc3-477e-8647-04cc15557807/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/8a0b4a8d-9d42-4997-9e34-9affc6fe22b2/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/96db8b9c-60d3-4e5d-95de-033be962d6c5/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/a6af744a-fb05-4f73-8ee0-6d0020345377/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/dynamic/resource/6/da9acbac-524a-43cc-b097-4188ddbdc9e2/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/VAADIN/static/themes/quentity/theme.json\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/icons/logo.png\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/index.html\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/login\\E"
+  }, {
+    "pattern":"\\QMETA-INF/VAADIN/webapp/sw-runtime-resources-precache.js\\E"
+  }, {
+    "pattern":"\\QMETA-INF/build-info.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/jpa-named-queries.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/maven/com.vaadin/hilla/pom.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/orm.xml\\E"
+  }, {
+    "pattern":"\\QMETA-INF/persistence.xml\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/35532d34-42d4-4f3f-b6a3-ed699f7a61bc/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/76983b6a-8c46-4c03-b204-efce25460200/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/8238ec58-2aee-4661-9e0d-1e561a6fc24e/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/8722bfff-8988-429e-8bb0-773dbf43a4e3/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/9d789d63-5149-46b4-96b2-f75c323a5942/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/a7af82a3-f866-482b-966f-979342d36a46/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/a833368e-f29c-4bcb-aece-3afcc8221b4c/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/c59e8cbc-e5e6-45c9-ac12-4fb626f23f9c/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/c7bb70fe-5a38-49ab-aab4-5aee0e2526a1/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/d62a9f1a-08f9-4af3-9fce-76988dcf5a74/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/d95a0572-12fa-4c6c-aabe-76a2d63bd0eb/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/1/f4561a62-625e-4d69-a41b-77c284392fbd/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/02f6172e-87a9-497f-aed1-2fffc2750b4d/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/0ca52acc-04fd-43db-872b-e053ab1f9736/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/3e35a7ef-ba2a-428b-82ec-8dc0490c27e7/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/69955781-7ac4-437a-98c4-192293936988/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/6d4d0c02-b0bf-4790-8f1f-0ae0ca60518f/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/9724d48f-181a-488b-8539-94125adfb988/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/b053a1c5-05e9-41cd-ad02-7731f2083b6a/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/b5aa6b9a-9da6-465d-8736-663d07b570e5/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/c4d883b7-d31b-4e54-943a-578e129cb3e2/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/c537108a-1412-412a-b644-230b3c6e55f5/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/d94c7463-5c99-45c3-9bc1-bfd77f02905c/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/2/da2bc4cc-d4c1-45c7-b637-4c07dc029d84/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/29612d0e-adc0-4bb6-9fa5-5890032cf84a/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/37d19cd5-7b9e-4854-8047-f33ce6114722/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/3b649f23-5b95-4b81-a739-fd3a4f2e046b/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/97f6290c-2d3d-466e-8f7e-7f70653963c7/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/9bed4854-88d2-448f-80ec-929fa07013f2/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/a9f4ce04-d688-4e8a-a8f1-ef90f96328a5/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/bcb83f68-f1e0-49f4-b288-336bc66383c7/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/c6516181-acf6-4271-a60e-1e197f9b3dd5/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/d8fcd9b5-1f23-41c6-98f1-a1fa70682e39/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/e45bd31e-8512-4ab1-8032-e954fc977f7d/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/f36c7fb6-cb38-4def-a951-ed57563ba277/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/3/fd5c63cf-9b7a-4ea4-a3eb-a06f1e99a948/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/16f74331-96a3-42c2-a82a-8824f2d64515/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/179038d7-87cf-4ed3-a78d-269650444f8e/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/21acbbb6-1dbb-44fe-b6c4-7dcbce378c16/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/3f75bed6-bd25-479b-8cef-2b7892779c88/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/6042970a-99c4-4443-bf5a-f1f3eadce5b3/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/84d2e25e-eb31-4889-a98e-09ded8580f58/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/adb713e8-8215-4d45-8d1f-9a945022a0d4/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/bc2208ae-71d3-480b-af8f-0b33e7e4abfe/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/ce2aec8a-4828-46d2-bfc6-96743129427a/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/d77a9671-e61d-41f0-91e9-d53bf1777399/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/e1d39ec2-b307-4035-b45b-4843cb44e8e4/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/4/f6a37cd9-e2bd-438b-b449-2a853a3e30a3/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/18255168-d78e-4a5f-a00f-13e3458ad104/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/3bbe0793-59a0-401d-8bfa-ac694055a8d3/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/84c72dc9-eff3-483c-8e4d-aaa9c341ca46/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/88f98fbf-f5f8-45b0-b35e-9d98a66db682/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/8e0ca5fa-2e6d-452e-b52f-749ac7d0f4de/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/b7b7fd22-4cf8-4133-b9be-e1e7904fa113/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/be16aed3-5fc6-4013-996a-3f263e955960/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/d27aa4bf-7d0e-42b9-af80-3109d47c01b8/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/e993a83d-7901-4096-89d1-c9d1c7c751b7/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/eb3cf7eb-acbf-4b11-87af-379210e005c4/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/f8367f84-9efd-4f9d-b8c7-ad449257afe0/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/5/fe0d46c5-737b-4065-8224-0987678abf84/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/1facce79-0491-47b6-95f7-4e821e8fd309/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/24b1d206-1ccb-447f-853e-aeedb1ba5141/profile-pic\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/2b1cb82c-d504-431c-8521-354e76dd9b7d/Semester.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/39b09c21-0058-46f9-9dbd-f991e94c883a/Item.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/4d62e0d7-15e4-42e8-8537-afd02c3ffbd1/CourseType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/6d061498-c806-446d-8e5a-4b185f9b9f22/Course.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/7b1559f7-1030-4ebe-8788-8ec2be4ebdbc/ExamType.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/896024df-3bc3-477e-8647-04cc15557807/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/8a0b4a8d-9d42-4997-9e34-9affc6fe22b2/Student.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/96db8b9c-60d3-4e5d-95de-033be962d6c5/Mark.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/a6af744a-fb05-4f73-8ee0-6d0020345377/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/VAADIN/dynamic/resource/6/da9acbac-524a-43cc-b097-4188ddbdc9e2/doc.svg\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/icons/logo.png\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/index.html\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/login\\E"
+  }, {
+    "pattern":"\\QMETA-INF/resources/sw-runtime-resources-precache.js\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/ch.qos.logback.classic.spi.Configurator\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.fasterxml.jackson.databind.Module\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.component.template.internal.DeprecatedPolymerPublishedEventHandler\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.di.InstantiatorFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.di.Instantiator\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.internal.DevModeHandlerManager\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.server.VaadinServiceInitListener\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.server.communication.PushConnectionFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.server.startup.ApplicationConfigurationFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.server.startup.NavigationTargetFilter\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/com.vaadin.flow.spring.security.VaadinRolePrefixHolder\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/jakarta.el.ExpressionFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/jakarta.validation.ConstraintValidator\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/jakarta.validation.spi.ValidationProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/jakarta.validation.valueextraction.ValueExtractor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/jakarta.websocket.server.ServerEndpointConfig$Configurator\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.lang.System$LoggerFinder\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.InetAddressResolverProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.net.spi.URLStreamHandlerProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.nio.channels.spi.SelectorProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.sql.Driver\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.time.zone.ZoneRulesProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/java.util.spi.ResourceBundleControlProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.imageio.spi.ImageInputStreamSpi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.imageio.spi.ImageOutputStreamSpi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.imageio.spi.ImageReaderSpi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.imageio.spi.ImageTranscoderSpi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.imageio.spi.ImageWriterSpi\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.xml.stream.XMLEventFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/javax.xml.transform.TransformerFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.apache.juli.logging.Log\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.apache.lucene.codecs.Codec\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.atmosphere.cpr.AtmosphereFramework\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.atmosphere.inject.Injectable\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.model.FunctionContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.model.TypeContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.registry.selector.StrategyRegistrationProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.registry.selector.spi.DialectSelector\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.AdditionalJaxbMappingProducer\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.AdditionalMappingContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.MetadataBuilderContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.MetadataBuilderFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.MetadataBuilderInitializer\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.MetadataContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.MetadataSourcesContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.boot.spi.SessionFactoryBuilderFactory\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.bytecode.spi.BytecodeProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.engine.jdbc.dialect.spi.DialectResolver\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.event.spi.EventEngineContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.event.spi.EventManager\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.id.factory.spi.GenerationTypeStrategyRegistration\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.integrator.spi.Integrator\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.query.criteria.spi.CriteriaBuilderExtension\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.search.engine.environment.bean.spi.BeanConfigurer\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.service.spi.ServiceContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.hibernate.service.spi.SessionFactoryServiceContributor\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.mariadb.jdbc.plugin.Codec\\E"
+  }, {
+    "pattern":"\\QMETA-INF/services/org.slf4j.spi.SLF4JServiceProvider\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring-autoconfigure-metadata.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring-devtools.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring.components\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring.factories\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring.integration.properties\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring/org.springframework.boot.actuate.autoconfigure.web.ManagementContextConfiguration.imports\\E"
+  }, {
+    "pattern":"\\QMETA-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports\\E"
+  }, {
+    "pattern":"\\QMETA-INF/validation.xml\\E"
+  }, {
+    "pattern":"\\Qapplication-native.properties\\E"
+  }, {
+    "pattern":"\\Qapplication-native.xml\\E"
+  }, {
+    "pattern":"\\Qapplication-native.yaml\\E"
+  }, {
+    "pattern":"\\Qapplication-native.yml\\E"
+  }, {
+    "pattern":"\\Qapplication.xml\\E"
+  }, {
+    "pattern":"\\Qapplication.yaml\\E"
+  }, {
+    "pattern":"\\Qapplication.yml\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/core/ObjectCodec.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/core/TreeCodec.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/JsonDeserializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/JsonSerializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/Module.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/ObjectMapper.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/deser/ContextualDeserializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/deser/NullValueProvider.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/jsonFormatVisitors/JsonFormatVisitable.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/databind/module/SimpleModule.class\\E"
+  }, {
+    "pattern":"\\Qcom/fasterxml/jackson/module/paramnames/ParameterNamesModule.class\\E"
+  }, {
+    "pattern":"\\Qcom/github/javaparser/ast/visitor/VoidVisitor.class\\E"
+  }, {
+    "pattern":"\\Qcom/github/javaparser/ast/visitor/VoidVisitorAdapter.class\\E"
+  }, {
+    "pattern":"\\Qcom/google/gson/Gson.class\\E"
+  }, {
+    "pattern":"\\Qcom/google/gson/GsonBuilder.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/Entity.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/FldBool.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/FldDate.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/FldNumber.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/FldString.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/InternalSingleEntityReference.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/MultiEntitiesReferences.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSFldBool.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSFldDate.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSFldNumber.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSFldString.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSMultiEntitiesReferences.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/NSSingleEntityReference.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/entity/field/SingleEntityReference.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/adminstrator/AccessGroup.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/adminstrator/Entities.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/adminstrator/EntityQuery.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/adminstrator/Queries.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/adminstrator/User.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/Course.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/Item.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/studentsmanagement/Mark.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/studentsmanagement/Student.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/studentsmanagement/StudentCourses.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/types/CourseType.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/types/EducationalDepartments.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/types/ExamType.class\\E"
+  }, {
+    "pattern":"\\Qcom/quentity/project/education/types/Semester.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/EntityPath.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/Expression.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/Path.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/dsl/BeanPath.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/dsl/DslExpression.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/dsl/EntityPathBase.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/core/types/dsl/SimpleExpression.class\\E"
+  }, {
+    "pattern":"\\Qcom/querydsl/jpa/impl/JPAQueryFactory.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/base/devserver/\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/AbstractField.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/AttachNotifier.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/BlurNotifier.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/ClickNotifier.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/Component$MapToExistingElement.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/Component.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/DetachNotifier.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/FocusNotifier.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/Focusable.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasAriaLabel.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasComponents.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasElement.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasEnabled.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasHelper.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasLabel.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasOrderedComponents.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasSize.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasStyle.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasText.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasTheme.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasValidation.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasValue.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/HasValueAndElement.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/Tag.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/applayout/AppLayout$AppLayoutI18n.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/applayout/AppLayout$Section.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/applayout/AppLayout.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/button/Button.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/customfield/CustomField.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/dependency/JsModule$Container.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/dependency/NpmPackage$Container.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/login/AbstractLogin.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/login/LoginOverlay.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/login/i18n.json\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/orderedlayout/FlexComponent.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/orderedlayout/HorizontalLayout.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/orderedlayout/ThemableLayout.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/orderedlayout/VerticalLayout.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/page/AppShellConfigurator.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/polymertemplate/rpc/\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/HasPrefix.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/HasSuffix.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/HasThemeVariant.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/HasTooltip.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/HasValidationProperties.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/component/shared/InputField.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/dom/NodeVisitor.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/internal/Pair.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/internal/hilla/EndpointRequestUtil.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/internal/hilla/FileRouterRequestUtil.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/AbstractRouteNotFoundError.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/AfterNavigationObserver.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/BeforeEnterObserver.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/BeforeEvent.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/NavigationEvent.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/NavigationHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/RouteBaseData.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/RoutePathProvider.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/RouteResolver.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/RouterLayout.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/AbstractNavigationStateRenderer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/AfterNavigationHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/BeforeEnterHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/BeforeLeaveHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/ClientRoutesProvider.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/router/internal/ConfiguredRoutes.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/BootstrapHandler.js\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/RouteRegistry.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/VaadinServiceInitListener.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/auth/AccessAnnotationChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/auth/AnnotatedViewAccessChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/auth/DefaultMenuAccessControl.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/auth/NavigationAccessControl.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/auth/RoutePathAccessChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/default-offline-page.html\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/startup/AbstractConfigurationFactory.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/startup/DefaultApplicationConfigurationFactory.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/server/version.properties\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/SpringApplicationConfigurationFactory.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/SpringBootAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/SpringLookupInitializer$SpringApplicationContextInit.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/SpringSecurityAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinApplicationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinScopesConfig.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinServletConfiguration$RootExcludeHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinServletConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinServletContextInitializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/VaadinWebsocketEndpointExporter.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/annotation/UIScope.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/AuthenticationContext.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/NavigationAccessControlConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/NavigationAccessControlInitializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/RequestUtil.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/SpringAccessPathChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/SpringNavigationAccessControl.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinAwareSecurityContextHolderStrategy.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinAwareSecurityContextHolderStrategyConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinDefaultRequestCache.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinRolePrefixHolder.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinWebSecurity$$Lambda/0x0000755bb8eaa278.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinWebSecurity$DeprecateViewAccessCheckerDelegator.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinWebSecurity$Http401UnauthorizedAccessDeniedHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/security/VaadinWebSecurity.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/flow/spring/springnative/VaadinBeanFactoryInitializationAotProcessor.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/ApplicationContextProvider.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointCodeGenerator.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointController.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointControllerConfiguration$1$1.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointControllerConfiguration$1.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointControllerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointInvoker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointNameChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointProperties.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointRegistry.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/EndpointUtil.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/ExplicitNullableTypeChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/auth/CsrfChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/auth/EndpointAccessChecker.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/crud/CrudConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/crud/JpaFilterConverter.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/frontend/\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/internal/hotswap/EndpointHotSwapListener.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/internal/hotswap/HotSwapConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/internal/hotswap/HotSwapConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/internal/hotswap/HotSwapServiceInitializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/internal/hotswap/PollChangedEndpointsHotSwapService.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/push/PushConfigurer$EmbeddedAtmosphereInitializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/push/PushConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/push/PushEndpoint.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/push/PushMessageHandler.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/route/ClientRouteRegistry.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/route/RouteUnifyingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/route/RouteUnifyingConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/route/RouteUtil.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/startup/EndpointRegistryInitializer.class\\E"
+  }, {
+    "pattern":"\\Qcom/vaadin/hilla/startup/RouteUnifyingServiceInitListener.class\\E"
+  }, {
+    "pattern":"\\Qcom/zaxxer/hikari/HikariConfig.class\\E"
+  }, {
+    "pattern":"\\Qcom/zaxxer/hikari/HikariDataSource.class\\E"
+  }, {
+    "pattern":"\\Qconfig/application-native.properties\\E"
+  }, {
+    "pattern":"\\Qconfig/application-native.xml\\E"
+  }, {
+    "pattern":"\\Qconfig/application-native.yaml\\E"
+  }, {
+    "pattern":"\\Qconfig/application-native.yml\\E"
+  }, {
+    "pattern":"\\Qconfig/application.properties\\E"
+  }, {
+    "pattern":"\\Qconfig/application.xml\\E"
+  }, {
+    "pattern":"\\Qconfig/application.yaml\\E"
+  }, {
+    "pattern":"\\Qconfig/application.yml\\E"
+  }, {
+    "pattern":"\\Qgit.properties\\E"
+  }, {
+    "pattern":"\\Qhilla-openapi.json\\E"
+  }, {
+    "pattern":"\\Qio/async/control/\\E"
+  }, {
+    "pattern":"\\Qio/async/postman/\\E"
+  }, {
+    "pattern":"\\Qio/async/satellite/\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/Clock$1.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/MeterRegistry.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/ClassLoaderMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmCompilationMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmGcMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmHeapPressureMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmInfoMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmMemoryMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/jvm/JvmThreadMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/logging/LogbackMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/system/FileDescriptorMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/system/ProcessorMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/binder/system/UptimeMetrics.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/config/MeterFilter$9.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/config/MeterFilter.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/config/MeterRegistryConfig.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/observation/DefaultMeterObservationHandler.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/observation/MeterObservationHandler.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/simple/SimpleConfig.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/core/instrument/simple/SimpleMeterRegistry.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/observation/ObservationHandler.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/observation/ObservationRegistry.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/observation/SimpleObservationRegistry.class\\E"
+  }, {
+    "pattern":"\\Qio/micrometer/observation/annotation/Observed.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/annotation/security/PermitAll.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/annotation/security/RolesAllowed.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/persistence/Entity.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/persistence/EntityManager.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/persistence/EntityManagerFactory.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/persistence/Inheritance.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/persistence/Table.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/servlet/Filter.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/servlet/GenericServlet.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/servlet/MultipartConfigElement.class\\E"
+  }, {
+    "pattern":"\\Qjakarta/servlet/http/HttpServlet.class\\E"
+  }, {
+    "pattern":"\\Qjava/lang/Iterable.class\\E"
+  }, {
+    "pattern":"\\Qjava/lang/Object.class\\E"
+  }, {
+    "pattern":"\\Qjava/lang/reflect/Proxy.class\\E"
+  }, {
+    "pattern":"\\Qjava/util/function/BiPredicate.class\\E"
+  }, {
+    "pattern":"\\Qjavax/naming/Referenceable.class\\E"
+  }, {
+    "pattern":"\\Qjavax/sql/CommonDataSource.class\\E"
+  }, {
+    "pattern":"\\Qjavax/sql/DataSource.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy191.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy198.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy205.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy206.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy207.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy208.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy209.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy210.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy211.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy212.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy213.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy214.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy215.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy216.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy217.class\\E"
+  }, {
+    "pattern":"\\Qjdk/proxy3/$Proxy218.class\\E"
+  }, {
+    "pattern":"\\Qjndi.properties\\E"
+  }, {
+    "pattern":"\\Qlogback-spring.groovy\\E"
+  }, {
+    "pattern":"\\Qlogback-spring.xml\\E"
+  }, {
+    "pattern":"\\Qlogback-test-spring.groovy\\E"
+  }, {
+    "pattern":"\\Qlogback-test-spring.xml\\E"
+  }, {
+    "pattern":"\\Qlogback-test.groovy\\E"
+  }, {
+    "pattern":"\\Qlogback-test.scmo\\E"
+  }, {
+    "pattern":"\\Qlogback-test.xml\\E"
+  }, {
+    "pattern":"\\Qlogback.groovy\\E"
+  }, {
+    "pattern":"\\Qlogback.scmo\\E"
+  }, {
+    "pattern":"\\Qlogback.xml\\E"
+  }, {
+    "pattern":"\\Qmariadb.properties\\E"
+  }, {
+    "pattern":"\\Qmessages.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/core/RestrictedFilters.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/core/RestrictedListeners.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/core/RestrictedServlets.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/loader/JdbcLeakPrevention.class\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/util/CharsetMapperDefault.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/catalina/util/ServerInfo.properties\\E"
+  }, {
+    "pattern":"\\Qorg/apache/maven/plugin/AbstractMojo.class\\E"
+  }, {
+    "pattern":"\\Qorg/apache/maven/plugin/ContextEnabled.class\\E"
+  }, {
+    "pattern":"\\Qorg/apache/maven/plugin/Mojo.class\\E"
+  }, {
+    "pattern":"\\Qorg/atmosphere/annotation/\\E"
+  }, {
+    "pattern":"\\Qorg/atmosphere/cpr/ContainerInitializer.class\\E"
+  }, {
+    "pattern":"\\Qorg/atmosphere/handler/AtmosphereHandlerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/atmosphere/util/version.properties\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/Session.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/SessionFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/SharedSessionContract.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/annotations/Filter.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/annotations/FilterDef.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/annotations/Where.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/hibernate-configuration-3.0.dtd\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/hibernate-mapping-3.0.dtd\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/query/QueryProducer.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/search/mapper/pojo/bridge/ValueBridge.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/search/mapper/pojo/mapping/definition/annotation/Indexed.class\\E"
+  }, {
+    "pattern":"\\Qorg/hibernate/search/mapper/pojo/mapping/definition/annotation/processing/TypeMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/aop/TargetClassAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/aop/framework/Advised.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/aot/hint/annotation/Reflective.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/Aware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/BeanClassLoaderAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/BeanFactoryAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/FactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/InitializingBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/SmartInitializingSingleton.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/aot/BeanRegistrationAotProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/config/AbstractFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/config/BeanFactoryPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/config/BeanPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/beans/factory/support/NullBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/LazyInitializationExcludeFilter$$Lambda/0x0000755bb8f33288.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/LazyInitializationExcludeFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/audit/AuditAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/audit/AuditEventsEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/availability/AvailabilityHealthContributorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/availability/AvailabilityProbesAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/beans/BeansEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/cache/CachesEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/cloudfoundry/servlet/CloudFoundryActuatorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/condition/ConditionsReportEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/context/ShutdownEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/context/properties/ConfigurationPropertiesReportEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/EndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/condition/ConditionalOnAvailableEndpoint.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/expose/IncludeExcludeEndpointFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/jackson/JacksonEndpointAutoConfiguration$$Lambda/0x0000755bb8e335c8.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/jackson/JacksonEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/jmx/JmxEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/CorsEndpointProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/MappingWebEndpointPathMapper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration$JerseyServletEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration$WebMvcServletEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/ServletEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/WebEndpointAutoConfiguration$WebEndpointServletConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/WebEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/WebEndpointProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/jersey/JerseyWebEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/reactive/WebFluxEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/servlet/WebMvcEndpointManagementContextConfiguration$EndpointObjectMapperWebMvcConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/endpoint/web/servlet/WebMvcEndpointManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/env/EnvironmentEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/AutoConfiguredHealthContributorRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/AutoConfiguredHealthEndpointGroups.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/AutoConfiguredReactiveHealthContributorRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/ConditionalOnEnabledHealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthContributorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$AdaptedReactiveHealthContributors.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$HealthEndpointGroupMembershipValidator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration$HealthEndpointGroupsBeanPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointReactiveWebExtensionConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$JerseyAdditionalHealthEndpointPathsConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$JerseyAdditionalHealthEndpointPathsResourcesRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration$MvcAdditionalHealthEndpointPathsConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthEndpointWebExtensionConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/HealthProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/health/ReactiveHealthEndpointConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/info/InfoContributorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/info/InfoContributorProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/info/InfoEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/jdbc/DataSourceHealthContributorAutoConfiguration$RoutingDataSourceHealthContributor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/jdbc/DataSourceHealthContributorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/jdbc/DataSourceHealthIndicatorProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/logging/LogFileWebEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/logging/LoggersEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/management/HeapDumpWebEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/management/ThreadDumpEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/CompositeMeterRegistryAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/CompositeMeterRegistryConfiguration$MultipleNonPrimaryMeterRegistriesCondition$NoMeterRegistryCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/CompositeMeterRegistryConfiguration$MultipleNonPrimaryMeterRegistriesCondition$SingleInjectableMeterRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/CompositeMeterRegistryConfiguration$MultipleNonPrimaryMeterRegistriesCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/CompositeMeterRegistryConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/JvmMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/LogbackMetricsAutoConfiguration$LogbackLoggingCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/LogbackMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MeterRegistryPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAspectsAutoConfiguration$ObservationAnnotationsEnabledCondition$ManagementObservationsEnabledCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAspectsAutoConfiguration$ObservationAnnotationsEnabledCondition$MicrometerObservationsEnabledCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAspectsAutoConfiguration$ObservationAnnotationsEnabledCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAspectsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAutoConfiguration$MeterRegistryCloser.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/MetricsProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/NoOpMeterRegistryConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/PropertiesMeterFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/SystemMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration$Cache2kCacheMeterBinderProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration$CaffeineCacheMeterBinderProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration$HazelcastCacheMeterBinderProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration$JCacheCacheMeterBinderProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration$RedisCacheMeterBinderProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMeterBinderProvidersConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/cache/CacheMetricsRegistrarConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/data/MetricsRepositoryMethodInvocationListenerBeanPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/data/RepositoryMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/export/ConditionalOnEnabledMetricsExport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/export/properties/PropertiesConfigAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimpleMetricsExportAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimpleProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/export/simple/SimplePropertiesConfigAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/integration/IntegrationMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration$DataSourcePoolMetadataMeterBinder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$DataSourcePoolMetadataMetricsConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$HikariDataSourceMetricsConfiguration$HikariDataSourceMeterBinder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration$HikariDataSourceMetricsConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/jdbc/DataSourcePoolMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/startup/StartupTimeMetricsListenerAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/task/TaskExecutorMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/metrics/web/tomcat/TomcatMetricsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$MeterObservationHandlerConfiguration$OnlyMetricsMeterObservationHandlerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$MeterObservationHandlerConfiguration$TracingAndMetricsObservationHandlerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$MeterObservationHandlerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$MetricsWithTracingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$ObservedAspectConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$OnlyMetricsConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration$OnlyTracingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationHandlerGrouping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/ObservationRegistryPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/PropertiesObservationFilterPredicate.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/client/HttpClientObservationsAutoConfiguration$MeterFilterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/client/HttpClientObservationsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/client/RestClientObservationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/client/RestTemplateObservationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/client/WebClientObservationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/servlet/WebMvcObservationAutoConfiguration$MeterFilterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/observation/web/servlet/WebMvcObservationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/scheduling/ScheduledTasksEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/scheduling/ScheduledTasksObservabilityAutoConfiguration$ObservabilitySchedulingConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/scheduling/ScheduledTasksObservabilityAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/security/servlet/ManagementWebSecurityAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/security/servlet/SecurityRequestMatchersManagementContextConfiguration$JerseyRequestMatcherConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/security/servlet/SecurityRequestMatchersManagementContextConfiguration$MvcRequestMatcherConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/security/servlet/SecurityRequestMatchersManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/startup/StartupEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/system/DiskSpaceHealthContributorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/system/DiskSpaceHealthIndicatorProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/ManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/ManagementContextFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/exchanges/HttpExchangesAutoConfiguration$ReactiveHttpExchangesConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/exchanges/HttpExchangesAutoConfiguration$ServletHttpExchangesConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/exchanges/HttpExchangesAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/exchanges/HttpExchangesEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/jersey/JerseyChildManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/jersey/JerseySameManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/mappings/MappingsEndpointAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/reactive/ReactiveManagementChildContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ConditionalOnManagementPort.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/EnableManagementContext.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementContextAutoConfiguration$DifferentManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementContextAutoConfiguration$SameManagementContextConfiguration$EnableSameManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementContextAutoConfiguration$SameManagementContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementContextAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementContextConfigurationImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/server/ManagementServerProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementChildContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementContextAutoConfiguration$$Lambda/0x0000755bb8f28ab0.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementContextAutoConfiguration$ApplicationContextFilterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/servlet/ServletManagementContextAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/autoconfigure/web/servlet/WebMvcEndpointChildContextConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/annotation/EndpointDiscoverer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/invoke/ParameterValueMapper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/invoke/convert/ConversionServiceParameterValueMapper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/invoker/cache/CachingOperationInvokerAdvisor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/EndpointMediaTypes.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/PathMappedEndpoints.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/PathMapper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/ServletEndpointRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/annotation/ControllerEndpointDiscoverer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/annotation/ServletEndpointDiscoverer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/annotation/WebEndpointDiscoverer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/servlet/AbstractWebMvcEndpointHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/servlet/AdditionalHealthEndpointPathsWebMvcHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/servlet/ControllerEndpointHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/endpoint/web/servlet/WebMvcEndpointHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/AbstractHealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/DefaultContributorRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/DefaultHealthContributorRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/DefaultReactiveHealthContributorRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/HealthEndpoint.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/HealthEndpointGroups.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/HealthEndpointSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/HealthEndpointWebExtension.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/HealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/NamedContributors.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/PingHealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/SimpleHttpCodeStatusMapper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/SimpleStatusAggregator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/health/StatusAggregator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/jdbc/DataSourceHealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/data/DefaultRepositoryTagsProvider.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/data/MetricsRepositoryMethodInvocationListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/startup/StartupTimeMetricsListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/system/DiskSpaceMetricsBinder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/web/client/ObservationRestClientCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/web/client/ObservationRestTemplateCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/metrics/web/tomcat/TomcatMetricsBinder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/actuate/system/DiskSpaceHealthIndicator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AbstractDependsOnBeanFactoryPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AutoConfigurationPackages$BasePackages.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AutoConfigureAfter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AutoConfigureBefore.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/AutoConfigureOrder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/admin/SpringApplicationAdminJmxAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/aop/AopAutoConfiguration$AspectJAutoProxyingConfiguration$CglibAutoProxyConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/aop/AopAutoConfiguration$AspectJAutoProxyingConfiguration$JdkDynamicAutoProxyConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/aop/AopAutoConfiguration$AspectJAutoProxyingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/aop/AopAutoConfiguration$ClassProxyingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/aop/AopAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/availability/ApplicationAvailabilityAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/CacheAutoConfiguration$CacheConfigurationImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/CacheAutoConfiguration$CacheManagerEntityManagerFactoryDependsOnPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/CacheAutoConfiguration$CacheManagerValidator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/CacheAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/GenericCacheConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/NoOpCacheConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/cache/SimpleCacheConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnClass.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnMissingBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnMissingClass.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnNotWarDeployment.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnProperty.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnResource.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnSingleCandidate.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/condition/ConditionalOnWebApplication.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/context/ConfigurationPropertiesAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/context/LifecycleAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/context/LifecycleProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/context/MessageSourceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/context/PropertyPlaceholderAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/dao/PersistenceExceptionTranslationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/AbstractRepositoryConfigurationSourceSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/jpa/JpaRepositoriesAutoConfiguration$BootstrapExecutorCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/jpa/JpaRepositoriesAutoConfiguration$JpaRepositoriesImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/jpa/JpaRepositoriesAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/jpa/JpaRepositoriesRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/web/SpringDataWebAutoConfiguration$$Lambda/0x0000755bb8f02a30.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/web/SpringDataWebAutoConfiguration$$Lambda/0x0000755bb8f03768.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/web/SpringDataWebAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/data/web/SpringDataWebProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/gson/GsonAutoConfiguration$StandardGsonBuilderCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/gson/GsonAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/gson/GsonProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$GsonHttpMessageConverterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$JacksonAndJsonbUnavailableCondition$JacksonAvailable.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$JacksonAndJsonbUnavailableCondition$JsonbPreferred.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$JacksonAndJsonbUnavailableCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$PreferGsonOrJacksonAndJsonbUnavailableCondition$GsonPreferred.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$PreferGsonOrJacksonAndJsonbUnavailableCondition$JacksonJsonbUnavailable.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration$PreferGsonOrJacksonAndJsonbUnavailableCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/GsonHttpMessageConvertersConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConverters.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConvertersAutoConfiguration$HttpMessageConvertersAutoConfigurationRuntimeHints.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConvertersAutoConfiguration$NotReactiveWebApplicationCondition$ReactiveWebApplication.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConvertersAutoConfiguration$NotReactiveWebApplicationCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConvertersAutoConfiguration$StringHttpMessageConverterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/HttpMessageConvertersAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/JacksonHttpMessageConvertersConfiguration$MappingJackson2HttpMessageConverterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/JacksonHttpMessageConvertersConfiguration$MappingJackson2XmlHttpMessageConverterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/JacksonHttpMessageConvertersConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/http/JsonbHttpMessageConvertersConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/info/ProjectInfoAutoConfiguration$GitResourceAvailableCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/info/ProjectInfoAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/info/ProjectInfoProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration$StandardJackson2ObjectMapperBuilderCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$Jackson2ObjectMapperBuilderCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonAutoConfigurationRuntimeHints.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonMixinConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$ParameterNamesModuleConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jackson/JacksonProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$EmbeddedDatabaseCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$EmbeddedDatabaseConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$PooledDataSourceAvailableCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$PooledDataSourceCondition$ExplicitType.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$PooledDataSourceCondition$PooledDataSourceAvailable.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$PooledDataSourceCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration$PooledDataSourceConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceCheckpointRestoreConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Dbcp2.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Generic.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Hikari.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$OracleUcp.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceConfiguration$Tomcat.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceJmxConfiguration$Hikari.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceJmxConfiguration$TomcatDataSourceJmxConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceJmxConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceTransactionManagerAutoConfiguration$JdbcTransactionManagerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/DataSourceTransactionManagerAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/JdbcClientAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/JdbcProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/JdbcTemplateAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/JdbcTemplateConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/JndiDataSourceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/NamedParameterJdbcTemplateConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/PropertiesJdbcConnectionDetails.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/XADataSourceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration$CommonsDbcp2PoolDataSourceMetadataProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration$HikariPoolDataSourceMetadataProviderConfiguration$$Lambda/0x0000755bb8610f00.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration$HikariPoolDataSourceMetadataProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration$OracleUcpPoolDataSourceMetadataProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration$TomcatDataSourcePoolMetadataProviderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jdbc/metadata/DataSourcePoolMetadataProvidersConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/jmx/JmxAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/EntityManagerFactoryDependsOnPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/HibernateJpaAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration$HibernateRuntimeHints.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration$NamingStrategiesHibernatePropertiesCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/HibernateProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration$JpaWebConfiguration$1.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration$JpaWebConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration$PersistenceManagedTypesConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/orm/jpa/JpaProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/reactor/ReactorAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/reactor/ReactorProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/ConditionalOnDefaultWebSecurity.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/DefaultWebSecurityCondition$Beans.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/DefaultWebSecurityCondition$Classes.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/DefaultWebSecurityCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/SecurityDataConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/SecurityProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/OAuth2ResourceServerProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/OAuth2ResourceServerAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/OAuth2ResourceServerJwtConfiguration$JwtDecoderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/OAuth2ResourceServerJwtConfiguration$OAuth2SecurityFilterChainConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/OAuth2ResourceServerOpaqueTokenConfiguration$OAuth2SecurityFilterChainConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/OAuth2ResourceServerOpaqueTokenConfiguration$OpaqueTokenIntrospectionClientConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/Oauth2ResourceServerConfiguration$JwtConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/oauth2/resource/servlet/Oauth2ResourceServerConfiguration$OpaqueTokenConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/reactive/ReactiveUserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$MissingAlternative.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/reactive/ReactiveUserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$NameConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/reactive/ReactiveUserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$PasswordConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/reactive/ReactiveUserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/reactive/ReactiveUserDetailsServiceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/AntPathRequestMatcherProvider.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/SecurityAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/SecurityFilterAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/SpringBootWebSecurityConfiguration$SecurityFilterChainConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/SpringBootWebSecurityConfiguration$WebSecurityEnablerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/SpringBootWebSecurityConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$MissingAlternative.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$NameConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured$PasswordConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration$MissingAlternativeOrUserPropertiesConfigured.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/security/servlet/UserDetailsServiceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/DataSourceInitializationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/R2dbcInitializationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/SqlDataSourceScriptDatabaseInitializer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/SqlInitializationAutoConfiguration$SqlInitializationModeCondition$ModeIsNever.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/SqlInitializationAutoConfiguration$SqlInitializationModeCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/SqlInitializationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/sql/init/SqlInitializationProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/ssl/FileWatcher.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/ssl/SslAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/ssl/SslProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/ssl/SslPropertiesBundleRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutionAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutionProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutorConfigurations$TaskExecutorBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutorConfigurations$TaskExecutorConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingConfigurations$SimpleAsyncTaskSchedulerBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingConfigurations$TaskSchedulerBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingConfigurations$TaskSchedulerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingConfigurations$ThreadPoolTaskSchedulerBuilderConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/task/TaskSchedulingProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/ExecutionListenersTransactionManagerCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration$AspectJTransactionManagementConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration$EnableTransactionManagementConfiguration$CglibAutoProxyConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration$EnableTransactionManagementConfiguration$JdkDynamicAutoProxyConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration$EnableTransactionManagementConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration$TransactionTemplateConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionManagerCustomizationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionManagerCustomizers.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/TransactionProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/jta/JndiJtaConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/transaction/jta/JtaAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/validation/PrimaryDefaultValidatorPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/validation/ValidationAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/validation/ValidatorAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/ServerProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/WebProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/AutoConfiguredRestClientSsl.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/HttpMessageConvertersRestClientCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/NotReactiveWebApplicationCondition$ReactiveWebApplication.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/NotReactiveWebApplicationCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/RestClientAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/RestClientBuilderConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/client/RestTemplateAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/EmbeddedWebServerFactoryCustomizerAutoConfiguration$JettyWebServerFactoryCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/EmbeddedWebServerFactoryCustomizerAutoConfiguration$NettyWebServerFactoryCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/EmbeddedWebServerFactoryCustomizerAutoConfiguration$TomcatWebServerFactoryCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/EmbeddedWebServerFactoryCustomizerAutoConfiguration$UndertowWebServerFactoryCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/EmbeddedWebServerFactoryCustomizerAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/embedded/TomcatWebServerFactoryCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/format/WebConversionService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ConditionalOnMissingFilterBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DefaultDispatcherServletCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletRegistrationCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration$DispatcherServletRegistrationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletPath.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/DispatcherServletRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration$LocaleCharsetMappingsCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/HttpEncodingAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/MultipartAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/MultipartProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration$BeanPostProcessorsRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration$ForwardedHeaderFilterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration$ForwardedHeaderFilterCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedJetty.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedTomcat.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedUndertow.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/TomcatServletWebServerFactoryCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$OptionalPathExtensionContentNegotiationStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$ProblemDetailsErrorHandlingConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$ResourceChainCustomizerConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$ResourceChainResourceHandlerRegistrationCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$ResourceHandlerRegistrationCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$WelcomePageHandlerMappingFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WebMvcRegistrations.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WelcomePageHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/WelcomePageNotAcceptableHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/AbstractErrorController.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/BasicErrorController.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/DefaultErrorViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$DefaultErrorViewResolverConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$ErrorPageCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$ErrorTemplateMissingCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$PreserveErrorControllerTargetClassPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$StaticView.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/web/servlet/error/ErrorMvcAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/TomcatWebSocketServletWebServerCustomizer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketMessagingAutoConfiguration$WebSocketMessageConverterConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketMessagingAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketServletAutoConfiguration$JettyWebSocketConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketServletAutoConfiguration$TomcatWebSocketConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketServletAutoConfiguration$UndertowWebSocketConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/autoconfigure/websocket/servlet/WebSocketServletAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/availability/ApplicationAvailability.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/availability/ApplicationAvailabilityBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/context/properties/BoundConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/context/properties/ConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/context/properties/EnableConfigurationProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/context/properties/EnableConfigurationPropertiesRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/ConditionEvaluationDeltaLoggingListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/DevToolsDataSourceAutoConfiguration$DatabaseShutdownExecutorEntityManagerFactoryDependsOnPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/DevToolsDataSourceAutoConfiguration$DevToolsDataSourceCondition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/DevToolsDataSourceAutoConfiguration$NonEmbeddedInMemoryDatabaseShutdownExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/DevToolsDataSourceAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/DevToolsProperties.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration$LiveReloadConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration$LiveReloadServerEventListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration$RestartConfiguration$$Lambda/0x0000755bb8f3d428.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration$RestartConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/LocalDevToolsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/OptionalLiveReloadServer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/autoconfigure/RemoteDevToolsAutoConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/classpath/ClassPathFileSystemWatcher.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/classpath/PatternClassPathRestartStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/env/devtools-property-defaults.properties\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/livereload/LiveReloadServer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/devtools/restart/ConditionalOnInitializedRestarter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/jackson/JsonComponentModule.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/jackson/JsonMixinModule.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/jackson/JsonMixinModuleEntries.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/jdbc/init/DataSourceScriptDatabaseInitializer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/orm/jpa/EntityManagerFactoryBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/sql/init/AbstractScriptDatabaseInitializer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/sql/init/dependency/DatabaseInitializationDependencyConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/ssl/DefaultSslBundleRegistry.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/SimpleAsyncTaskExecutorBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/SimpleAsyncTaskSchedulerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/TaskExecutorBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/TaskSchedulerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/ThreadPoolTaskExecutorBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/task/ThreadPoolTaskSchedulerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/embedded/tomcat/TomcatServletWebServerFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/server/AbstractConfigurableWebServerFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/server/ConfigurableWebServerFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/server/mime-mappings.properties\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/AbstractFilterRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/DelegatingFilterProxyRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/DynamicRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/FilterRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/RegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/ServletRegistrationBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/error/DefaultErrorAttributes.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/filter/OrderedCharacterEncodingFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/filter/OrderedFormContentFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/filter/OrderedRequestContextFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/boot/web/servlet/server/AbstractServletWebServerFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/ApplicationContextAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/ApplicationContextInitializer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/ApplicationListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/EnvironmentAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/ResourceLoaderAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/SmartLifecycle.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/AdviceModeImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/AspectJAutoProxyRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/AutoProxyRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Conditional.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Configuration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/DeferredImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/EnableAspectJAutoProxy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Import.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/ImportAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/ImportBeanDefinitionRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/ImportRuntimeHints.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Lazy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/PropertySource.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Role.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/annotation/Scope.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/event/GenericApplicationListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/event/SmartApplicationListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/support/ApplicationObjectSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/context/support/DefaultLifecycleProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/DecoratingProxy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/Ordered.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/annotation/Order.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/convert/ConversionService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/convert/converter/Converter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/convert/support/GenericConversionService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/io/support/PropertiesLoaderSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/core/task/AsyncTaskExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/geo/GeoModule.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/mapping/JpaMetamodelMappingContext.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/JpaRepository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/JpaSpecificationExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/config/JpaMetamodelMappingContextFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/config/JpaRepositoryConfigExtension$JpaRepositoryRegistrationAotProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/support/JpaEvaluationContextExtension.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/repository/support/JpaRepositoryFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/jpa/util/JpaMetamodelCacheCleanup.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/mapping/context/AbstractMappingContext.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/mapping/context/MappingContext.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/querydsl/QuerydslPredicateExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/querydsl/binding/QuerydslBindingsFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/CrudRepository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/ListCrudRepository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/ListPagingAndSortingRepository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/PagingAndSortingRepository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/Repository.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/config/PropertiesBasedNamedQueriesFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/config/RepositoryRegistrationAotProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/core/support/PropertiesBasedNamedQueries.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/core/support/RepositoryComposition$RepositoryFragments.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/core/support/RepositoryFactoryBeanSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/core/support/RepositoryFragmentsFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/core/support/TransactionalRepositoryFactoryBeanSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/repository/query/QueryByExampleExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/spel/spi/EvaluationContextExtension.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/util/Streamable.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/OffsetScrollPositionHandlerMethodArgumentResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/OffsetScrollPositionHandlerMethodArgumentResolverSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/PageableHandlerMethodArgumentResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/PageableHandlerMethodArgumentResolverSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/SortHandlerMethodArgumentResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/SortHandlerMethodArgumentResolverSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/EnableSpringDataWebSupport$QuerydslActivator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/EnableSpringDataWebSupport$SpringDataWebConfigurationImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/EnableSpringDataWebSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/ProjectingArgumentResolverRegistrar$ProjectingArgumentResolverBeanPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/ProjectingArgumentResolverRegistrar.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/QuerydslWebConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/SpringDataJacksonConfiguration$PageModule.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/SpringDataJacksonConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/SpringDataJacksonModules.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/config/SpringDataWebConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/querydsl/QuerydslPredicateArgumentResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/data/web/querydsl/QuerydslPredicateArgumentResolverSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/format/support/DefaultFormattingConversionService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/format/support/FormattingConversionService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/AbstractGenericHttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/AbstractHttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/HttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/StringHttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/json/AbstractJackson2HttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/json/Jackson2ObjectMapperBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/http/converter/json/MappingJackson2HttpMessageConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/jdbc/core/JdbcTemplate.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/jdbc/core/namedparam/NamedParameterJdbcTemplate.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/jdbc/core/simple/DefaultJdbcClient.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/jdbc/core/simple/JdbcClient.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/jdbc/support/JdbcAccessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/AbstractEntityManagerFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/EntityManagerFactoryAccessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/EntityManagerFactoryInfo.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/EntityManagerProxy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/JpaTransactionManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/LocalContainerEntityManagerFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/persistenceunit/PersistenceManagedTypes.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/persistenceunit/SimplePersistenceManagedTypes.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/support/OpenEntityManagerInViewInterceptor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/vendor/AbstractJpaVendorAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/orm/jpa/vendor/HibernateJpaVendorAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/scheduling/SchedulingTaskExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/scheduling/concurrent/CustomizableThreadFactory.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/scheduling/concurrent/ExecutorConfigurationSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/scheduling/concurrent/ThreadPoolTaskExecutor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/authentication/AnonymousAuthenticationProvider.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/authentication/DefaultAuthenticationEventPublisher.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/authentication/ProviderManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/authorization/AuthorizationManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/AbstractSecurityBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/SecurityConfigurerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/builders/AuthenticationManagerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration$AuthenticationManagerDelegator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration$EnableGlobalAuthenticationAutowiredConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration$LazyPasswordEncoder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/AuthenticationConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/EnableGlobalAuthentication.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/GlobalAuthenticationConfigurerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/InitializeAuthenticationProviderBeanManagerConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/authentication/configuration/InitializeUserDetailsBeanManagerConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/configuration/AutowireBeanFactoryObjectPostProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/configuration/ObjectPostProcessorConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/builders/HttpSecurity.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/builders/WebSecurity.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/EnableWebSecurity.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration$DefaultPasswordEncoderAuthenticationManagerBuilder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration$LazyPasswordEncoder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/HttpSecurityConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/OAuth2ImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/SpringWebMvcImportSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/WebMvcSecurityConfiguration$CompositeFilterChainProxy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/WebMvcSecurityConfiguration$HandlerMappingIntrospectorCacheFilterFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/WebMvcSecurityConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration$AnnotationAwareOrderComparator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configuration/WebSecurityConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configurers/AbstractHttpConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/config/annotation/web/configurers/oauth2/server/resource/OAuth2ResourceServerConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/context/DelegatingApplicationListener.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/core/context/SecurityContextHolderStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/core/userdetails/UserDetails.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/core/userdetails/UserDetailsService.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/oauth2/jwt/NimbusJwtDecoder.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/oauth2/server/resource/authentication/JwtAuthenticationConverter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/oauth2/server/resource/authentication/JwtAuthenticationProvider.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/oauth2/server/resource/web/authentication/BearerTokenAuthenticationFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/DefaultSecurityFilterChain.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/FilterChainProxy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/AuthorizationManagerWebInvocationPrivilegeEvaluator$HttpServletRequestTransformer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/ExceptionTranslationFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/HandlerMappingIntrospectorRequestTransformer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/RequestMatcherDelegatingWebInvocationPrivilegeEvaluator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/intercept/AuthorizationFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/access/intercept/RequestMatcherDelegatingAuthorizationManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/AbstractAuthenticationProcessingFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/LoginUrlAuthenticationEntryPoint.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/UsernamePasswordAuthenticationFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/logout/LogoutFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/logout/LogoutSuccessEventPublishingLogoutHandler.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/session/AbstractSessionFixationProtectionStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/session/ChangeSessionIdAuthenticationStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/authentication/session/CompositeSessionAuthenticationStrategy.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/context/SecurityContextHolderFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/csrf/CsrfFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/header/HeaderWriterFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/savedrequest/RequestCacheAwareFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/servlet/support/csrf/CsrfRequestDataValueProcessor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/servletapi/SecurityContextHolderAwareRequestFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/security/web/session/SessionManagementFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/ConfigurableTransactionManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/TransactionDefinition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/annotation/AbstractTransactionManagementConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/annotation/AnnotationTransactionAttributeSource.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/annotation/EnableTransactionManagement.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/annotation/ProxyTransactionManagementConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/annotation/TransactionManagementConfigurationSelector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/interceptor/AbstractFallbackTransactionAttributeSource.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/support/AbstractPlatformTransactionManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/support/DefaultTransactionDefinition.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/support/TransactionOperations.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/transaction/support/TransactionTemplate.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/util/AntPathMatcher.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/util/CustomizableThreadCreator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/validation/SmartValidator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/validation/Validator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/validation/beanvalidation/LocalValidatorFactoryBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/validation/beanvalidation/SpringValidatorAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/accept/ContentNegotiationManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/bind/annotation/Mapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/bind/annotation/RequestMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/bind/annotation/ResponseBody.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/bind/annotation/RestController.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/context/ServletContextAware.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/context/support/WebApplicationObjectSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/filter/CharacterEncodingFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/filter/FormContentFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/filter/GenericFilterBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/filter/OncePerRequestFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/filter/RequestContextFilter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/method/support/CompositeUriComponentsContributor.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/multipart/support/StandardServletMultipartResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/DispatcherServlet.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/FrameworkServlet.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/HandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/HttpServletBean.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/config/annotation/DelegatingWebMvcConfiguration.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport$NoOpValidator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/config/annotation/WebMvcConfigurer.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/function/support/HandlerFunctionAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/function/support/RouterFunctionMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/AbstractDetectingUrlHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/AbstractHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/AbstractHandlerMethodMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/AbstractUrlHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/BeanNameUrlHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/HandlerExceptionResolverComposite.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/HandlerMappingIntrospector$$Lambda/0x0000755bb8eab4f8.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/HandlerMappingIntrospector.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/MatchableHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/handler/SimpleUrlHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/i18n/AbstractLocaleResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/i18n/AcceptHeaderLocaleResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/AbstractController.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/HttpRequestHandlerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/ServletForwardingController.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/SimpleControllerHandlerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/method/AbstractHandlerMethodAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/method/RequestMappingInfoHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerMapping.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/resource/ResourceUrlProvider.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/support/AbstractFlashMapManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/support/SessionFlashMapManager.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/support/WebContentGenerator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/theme/AbstractThemeResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/theme/FixedThemeResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/AbstractCachingViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/BeanNameViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/ContentNegotiatingViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/DefaultRequestToViewNameTranslator.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/InternalResourceViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/UrlBasedViewResolver.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/servlet/view/ViewResolverComposite.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/socket/server/standard/ServerEndpointExporter.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/util/UrlPathHelper.class\\E"
+  }, {
+    "pattern":"\\Qorg/springframework/web/util/pattern/PathPatternParser.class\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/35532d34-42d4-4f3f-b6a3-ed699f7a61bc/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/76983b6a-8c46-4c03-b204-efce25460200/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/8238ec58-2aee-4661-9e0d-1e561a6fc24e/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/8722bfff-8988-429e-8bb0-773dbf43a4e3/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/9d789d63-5149-46b4-96b2-f75c323a5942/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/a7af82a3-f866-482b-966f-979342d36a46/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/a833368e-f29c-4bcb-aece-3afcc8221b4c/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/c59e8cbc-e5e6-45c9-ac12-4fb626f23f9c/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/c7bb70fe-5a38-49ab-aab4-5aee0e2526a1/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/d62a9f1a-08f9-4af3-9fce-76988dcf5a74/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/d95a0572-12fa-4c6c-aabe-76a2d63bd0eb/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/1/f4561a62-625e-4d69-a41b-77c284392fbd/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/02f6172e-87a9-497f-aed1-2fffc2750b4d/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/0ca52acc-04fd-43db-872b-e053ab1f9736/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/3e35a7ef-ba2a-428b-82ec-8dc0490c27e7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/69955781-7ac4-437a-98c4-192293936988/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/6d4d0c02-b0bf-4790-8f1f-0ae0ca60518f/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/9724d48f-181a-488b-8539-94125adfb988/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/b053a1c5-05e9-41cd-ad02-7731f2083b6a/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/b5aa6b9a-9da6-465d-8736-663d07b570e5/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/c4d883b7-d31b-4e54-943a-578e129cb3e2/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/c537108a-1412-412a-b644-230b3c6e55f5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/d94c7463-5c99-45c3-9bc1-bfd77f02905c/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/2/da2bc4cc-d4c1-45c7-b637-4c07dc029d84/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/29612d0e-adc0-4bb6-9fa5-5890032cf84a/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/37d19cd5-7b9e-4854-8047-f33ce6114722/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/3b649f23-5b95-4b81-a739-fd3a4f2e046b/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/97f6290c-2d3d-466e-8f7e-7f70653963c7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/9bed4854-88d2-448f-80ec-929fa07013f2/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/a9f4ce04-d688-4e8a-a8f1-ef90f96328a5/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/bcb83f68-f1e0-49f4-b288-336bc66383c7/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/c6516181-acf6-4271-a60e-1e197f9b3dd5/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/d8fcd9b5-1f23-41c6-98f1-a1fa70682e39/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/e45bd31e-8512-4ab1-8032-e954fc977f7d/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/f36c7fb6-cb38-4def-a951-ed57563ba277/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/3/fd5c63cf-9b7a-4ea4-a3eb-a06f1e99a948/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/16f74331-96a3-42c2-a82a-8824f2d64515/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/179038d7-87cf-4ed3-a78d-269650444f8e/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/21acbbb6-1dbb-44fe-b6c4-7dcbce378c16/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/3f75bed6-bd25-479b-8cef-2b7892779c88/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/6042970a-99c4-4443-bf5a-f1f3eadce5b3/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/84d2e25e-eb31-4889-a98e-09ded8580f58/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/adb713e8-8215-4d45-8d1f-9a945022a0d4/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/bc2208ae-71d3-480b-af8f-0b33e7e4abfe/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/ce2aec8a-4828-46d2-bfc6-96743129427a/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/d77a9671-e61d-41f0-91e9-d53bf1777399/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/e1d39ec2-b307-4035-b45b-4843cb44e8e4/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/4/f6a37cd9-e2bd-438b-b449-2a853a3e30a3/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/18255168-d78e-4a5f-a00f-13e3458ad104/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/3bbe0793-59a0-401d-8bfa-ac694055a8d3/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/84c72dc9-eff3-483c-8e4d-aaa9c341ca46/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/88f98fbf-f5f8-45b0-b35e-9d98a66db682/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/8e0ca5fa-2e6d-452e-b52f-749ac7d0f4de/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/b7b7fd22-4cf8-4133-b9be-e1e7904fa113/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/be16aed3-5fc6-4013-996a-3f263e955960/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/d27aa4bf-7d0e-42b9-af80-3109d47c01b8/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/e993a83d-7901-4096-89d1-c9d1c7c751b7/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/eb3cf7eb-acbf-4b11-87af-379210e005c4/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/f8367f84-9efd-4f9d-b8c7-ad449257afe0/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/5/fe0d46c5-737b-4065-8224-0987678abf84/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/1facce79-0491-47b6-95f7-4e821e8fd309/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/24b1d206-1ccb-447f-853e-aeedb1ba5141/profile-pic\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/2b1cb82c-d504-431c-8521-354e76dd9b7d/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/39b09c21-0058-46f9-9dbd-f991e94c883a/Item.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/4d62e0d7-15e4-42e8-8537-afd02c3ffbd1/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/6d061498-c806-446d-8e5a-4b185f9b9f22/Course.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/7b1559f7-1030-4ebe-8788-8ec2be4ebdbc/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/896024df-3bc3-477e-8647-04cc15557807/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/8a0b4a8d-9d42-4997-9e34-9affc6fe22b2/Student.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/96db8b9c-60d3-4e5d-95de-033be962d6c5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/a6af744a-fb05-4f73-8ee0-6d0020345377/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/VAADIN/dynamic/resource/6/da9acbac-524a-43cc-b097-4188ddbdc9e2/doc.svg\\E"
+  }, {
+    "pattern":"\\Qpublic/icons/logo.png\\E"
+  }, {
+    "pattern":"\\Qpublic/index.html\\E"
+  }, {
+    "pattern":"\\Qpublic/login\\E"
+  }, {
+    "pattern":"\\Qpublic/sw-runtime-resources-precache.js\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/35532d34-42d4-4f3f-b6a3-ed699f7a61bc/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/76983b6a-8c46-4c03-b204-efce25460200/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/8238ec58-2aee-4661-9e0d-1e561a6fc24e/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/8722bfff-8988-429e-8bb0-773dbf43a4e3/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/9d789d63-5149-46b4-96b2-f75c323a5942/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/a7af82a3-f866-482b-966f-979342d36a46/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/a833368e-f29c-4bcb-aece-3afcc8221b4c/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/c59e8cbc-e5e6-45c9-ac12-4fb626f23f9c/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/c7bb70fe-5a38-49ab-aab4-5aee0e2526a1/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/d62a9f1a-08f9-4af3-9fce-76988dcf5a74/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/d95a0572-12fa-4c6c-aabe-76a2d63bd0eb/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/1/f4561a62-625e-4d69-a41b-77c284392fbd/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/02f6172e-87a9-497f-aed1-2fffc2750b4d/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/0ca52acc-04fd-43db-872b-e053ab1f9736/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/3e35a7ef-ba2a-428b-82ec-8dc0490c27e7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/69955781-7ac4-437a-98c4-192293936988/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/6d4d0c02-b0bf-4790-8f1f-0ae0ca60518f/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/9724d48f-181a-488b-8539-94125adfb988/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/b053a1c5-05e9-41cd-ad02-7731f2083b6a/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/b5aa6b9a-9da6-465d-8736-663d07b570e5/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/c4d883b7-d31b-4e54-943a-578e129cb3e2/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/c537108a-1412-412a-b644-230b3c6e55f5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/d94c7463-5c99-45c3-9bc1-bfd77f02905c/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/2/da2bc4cc-d4c1-45c7-b637-4c07dc029d84/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/29612d0e-adc0-4bb6-9fa5-5890032cf84a/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/37d19cd5-7b9e-4854-8047-f33ce6114722/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/3b649f23-5b95-4b81-a739-fd3a4f2e046b/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/97f6290c-2d3d-466e-8f7e-7f70653963c7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/9bed4854-88d2-448f-80ec-929fa07013f2/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/a9f4ce04-d688-4e8a-a8f1-ef90f96328a5/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/bcb83f68-f1e0-49f4-b288-336bc66383c7/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/c6516181-acf6-4271-a60e-1e197f9b3dd5/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/d8fcd9b5-1f23-41c6-98f1-a1fa70682e39/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/e45bd31e-8512-4ab1-8032-e954fc977f7d/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/f36c7fb6-cb38-4def-a951-ed57563ba277/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/3/fd5c63cf-9b7a-4ea4-a3eb-a06f1e99a948/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/16f74331-96a3-42c2-a82a-8824f2d64515/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/179038d7-87cf-4ed3-a78d-269650444f8e/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/21acbbb6-1dbb-44fe-b6c4-7dcbce378c16/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/3f75bed6-bd25-479b-8cef-2b7892779c88/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/6042970a-99c4-4443-bf5a-f1f3eadce5b3/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/84d2e25e-eb31-4889-a98e-09ded8580f58/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/adb713e8-8215-4d45-8d1f-9a945022a0d4/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/bc2208ae-71d3-480b-af8f-0b33e7e4abfe/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/ce2aec8a-4828-46d2-bfc6-96743129427a/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/d77a9671-e61d-41f0-91e9-d53bf1777399/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/e1d39ec2-b307-4035-b45b-4843cb44e8e4/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/4/f6a37cd9-e2bd-438b-b449-2a853a3e30a3/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/18255168-d78e-4a5f-a00f-13e3458ad104/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/3bbe0793-59a0-401d-8bfa-ac694055a8d3/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/84c72dc9-eff3-483c-8e4d-aaa9c341ca46/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/88f98fbf-f5f8-45b0-b35e-9d98a66db682/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/8e0ca5fa-2e6d-452e-b52f-749ac7d0f4de/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/b7b7fd22-4cf8-4133-b9be-e1e7904fa113/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/be16aed3-5fc6-4013-996a-3f263e955960/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/d27aa4bf-7d0e-42b9-af80-3109d47c01b8/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/e993a83d-7901-4096-89d1-c9d1c7c751b7/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/eb3cf7eb-acbf-4b11-87af-379210e005c4/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/f8367f84-9efd-4f9d-b8c7-ad449257afe0/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/5/fe0d46c5-737b-4065-8224-0987678abf84/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/1facce79-0491-47b6-95f7-4e821e8fd309/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/24b1d206-1ccb-447f-853e-aeedb1ba5141/profile-pic\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/2b1cb82c-d504-431c-8521-354e76dd9b7d/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/39b09c21-0058-46f9-9dbd-f991e94c883a/Item.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/4d62e0d7-15e4-42e8-8537-afd02c3ffbd1/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/6d061498-c806-446d-8e5a-4b185f9b9f22/Course.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/7b1559f7-1030-4ebe-8788-8ec2be4ebdbc/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/896024df-3bc3-477e-8647-04cc15557807/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/8a0b4a8d-9d42-4997-9e34-9affc6fe22b2/Student.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/96db8b9c-60d3-4e5d-95de-033be962d6c5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/a6af744a-fb05-4f73-8ee0-6d0020345377/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qresources/VAADIN/dynamic/resource/6/da9acbac-524a-43cc-b097-4188ddbdc9e2/doc.svg\\E"
+  }, {
+    "pattern":"\\Qresources/icons/logo.png\\E"
+  }, {
+    "pattern":"\\Qresources/index.html\\E"
+  }, {
+    "pattern":"\\Qresources/login\\E"
+  }, {
+    "pattern":"\\Qresources/sw-runtime-resources-precache.js\\E"
+  }, {
+    "pattern":"\\Qspring.properties\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/35532d34-42d4-4f3f-b6a3-ed699f7a61bc/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/76983b6a-8c46-4c03-b204-efce25460200/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/8238ec58-2aee-4661-9e0d-1e561a6fc24e/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/8722bfff-8988-429e-8bb0-773dbf43a4e3/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/9d789d63-5149-46b4-96b2-f75c323a5942/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/a7af82a3-f866-482b-966f-979342d36a46/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/a833368e-f29c-4bcb-aece-3afcc8221b4c/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/c59e8cbc-e5e6-45c9-ac12-4fb626f23f9c/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/c7bb70fe-5a38-49ab-aab4-5aee0e2526a1/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/d62a9f1a-08f9-4af3-9fce-76988dcf5a74/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/d95a0572-12fa-4c6c-aabe-76a2d63bd0eb/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/1/f4561a62-625e-4d69-a41b-77c284392fbd/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/02f6172e-87a9-497f-aed1-2fffc2750b4d/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/0ca52acc-04fd-43db-872b-e053ab1f9736/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/3e35a7ef-ba2a-428b-82ec-8dc0490c27e7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/69955781-7ac4-437a-98c4-192293936988/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/6d4d0c02-b0bf-4790-8f1f-0ae0ca60518f/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/9724d48f-181a-488b-8539-94125adfb988/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/b053a1c5-05e9-41cd-ad02-7731f2083b6a/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/b5aa6b9a-9da6-465d-8736-663d07b570e5/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/c4d883b7-d31b-4e54-943a-578e129cb3e2/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/c537108a-1412-412a-b644-230b3c6e55f5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/d94c7463-5c99-45c3-9bc1-bfd77f02905c/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/2/da2bc4cc-d4c1-45c7-b637-4c07dc029d84/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/29612d0e-adc0-4bb6-9fa5-5890032cf84a/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/37d19cd5-7b9e-4854-8047-f33ce6114722/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/3b649f23-5b95-4b81-a739-fd3a4f2e046b/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/97f6290c-2d3d-466e-8f7e-7f70653963c7/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/9bed4854-88d2-448f-80ec-929fa07013f2/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/a9f4ce04-d688-4e8a-a8f1-ef90f96328a5/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/bcb83f68-f1e0-49f4-b288-336bc66383c7/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/c6516181-acf6-4271-a60e-1e197f9b3dd5/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/d8fcd9b5-1f23-41c6-98f1-a1fa70682e39/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/e45bd31e-8512-4ab1-8032-e954fc977f7d/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/f36c7fb6-cb38-4def-a951-ed57563ba277/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/3/fd5c63cf-9b7a-4ea4-a3eb-a06f1e99a948/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/16f74331-96a3-42c2-a82a-8824f2d64515/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/179038d7-87cf-4ed3-a78d-269650444f8e/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/21acbbb6-1dbb-44fe-b6c4-7dcbce378c16/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/3f75bed6-bd25-479b-8cef-2b7892779c88/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/6042970a-99c4-4443-bf5a-f1f3eadce5b3/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/84d2e25e-eb31-4889-a98e-09ded8580f58/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/adb713e8-8215-4d45-8d1f-9a945022a0d4/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/bc2208ae-71d3-480b-af8f-0b33e7e4abfe/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/ce2aec8a-4828-46d2-bfc6-96743129427a/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/d77a9671-e61d-41f0-91e9-d53bf1777399/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/e1d39ec2-b307-4035-b45b-4843cb44e8e4/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/4/f6a37cd9-e2bd-438b-b449-2a853a3e30a3/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/18255168-d78e-4a5f-a00f-13e3458ad104/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/3bbe0793-59a0-401d-8bfa-ac694055a8d3/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/84c72dc9-eff3-483c-8e4d-aaa9c341ca46/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/88f98fbf-f5f8-45b0-b35e-9d98a66db682/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/8e0ca5fa-2e6d-452e-b52f-749ac7d0f4de/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/b7b7fd22-4cf8-4133-b9be-e1e7904fa113/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/be16aed3-5fc6-4013-996a-3f263e955960/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/d27aa4bf-7d0e-42b9-af80-3109d47c01b8/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/e993a83d-7901-4096-89d1-c9d1c7c751b7/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/eb3cf7eb-acbf-4b11-87af-379210e005c4/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/f8367f84-9efd-4f9d-b8c7-ad449257afe0/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/5/fe0d46c5-737b-4065-8224-0987678abf84/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/1facce79-0491-47b6-95f7-4e821e8fd309/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/24b1d206-1ccb-447f-853e-aeedb1ba5141/profile-pic\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/2b1cb82c-d504-431c-8521-354e76dd9b7d/Semester.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/39b09c21-0058-46f9-9dbd-f991e94c883a/Item.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/4d62e0d7-15e4-42e8-8537-afd02c3ffbd1/CourseType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/6d061498-c806-446d-8e5a-4b185f9b9f22/Course.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/7b1559f7-1030-4ebe-8788-8ec2be4ebdbc/ExamType.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/896024df-3bc3-477e-8647-04cc15557807/StudentCourses.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/8a0b4a8d-9d42-4997-9e34-9affc6fe22b2/Student.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/96db8b9c-60d3-4e5d-95de-033be962d6c5/Mark.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/a6af744a-fb05-4f73-8ee0-6d0020345377/EducationalDepartments.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/VAADIN/dynamic/resource/6/da9acbac-524a-43cc-b097-4188ddbdc9e2/doc.svg\\E"
+  }, {
+    "pattern":"\\Qstatic/icons/logo.png\\E"
+  }, {
+    "pattern":"\\Qstatic/index.html\\E"
+  }, {
+    "pattern":"\\Qstatic/login\\E"
+  }, {
+    "pattern":"\\Qstatic/sw-runtime-resources-precache.js\\E"
+  }, {
+    "pattern":"\\Qvaadin-featureflags.properties\\E"
+  }, {
+    "pattern":"\\Qvaadin-i18n/\\E"
+  }, {
+    "pattern":"\\Qvaadin-i18n/translations.properties\\E"
+  }, {
+    "pattern":"\\Qvaadin-i18n\\E"
+  }, {
+    "pattern":"java.base:\\Qjava/lang/Iterable.class\\E"
+  }, {
+    "pattern":"java.base:\\Qjava/lang/Object.class\\E"
+  }, {
+    "pattern":"java.base:\\Qjava/lang/reflect/Proxy.class\\E"
+  }, {
+    "pattern":"java.base:\\Qjava/util/function/BiPredicate.class\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt72b/nfc.nrm\\E"
+  }, {
+    "pattern":"java.base:\\Qjdk/internal/icu/impl/data/icudt72b/nfkc.nrm\\E"
+  }, {
+    "pattern":"java.base:\\Qsun/net/www/content-types.properties\\E"
+  }, {
+    "pattern":"java.naming:\\Qjavax/naming/Referenceable.class\\E"
+  }, {
+    "pattern":"java.sql:\\Qjavax/sql/CommonDataSource.class\\E"
+  }, {
+    "pattern":"java.sql:\\Qjavax/sql/DataSource.class\\E"
+  }, {
+    "pattern":"jdk.jfr:\\Qjdk/jfr/internal/query/view.ini\\E"
+  }]},
+  "bundles":[{
+    "name":"jakarta.servlet.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"jakarta.servlet.http.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.authenticator.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.authenticator.jaspic.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.connector.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.core.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.deploy.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.loader.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.mapper.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.mbeans.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.realm.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.security.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.session.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.startup.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.util.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.valves.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.catalina.webresources.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.coyote.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.coyote.http11.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.coyote.http11.filters.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.naming.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.buf.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.collections.LocalStrings"
+  }, {
+    "name":"org.apache.tomcat.util.compat.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.descriptor.web.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.http.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.http.parser.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.modeler.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.net.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.scan.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.security.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.util.threads.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.websocket.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.websocket.pojo.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.apache.tomcat.websocket.server.LocalStrings",
+    "locales":[""]
+  }, {
+    "name":"org.springframework.security.messages",
+    "locales":["", "en"]
+  }, {
+    "name":"sun.awt.resources.awt",
+    "classNames":["sun.awt.resources.awt"]
+  }]
+}

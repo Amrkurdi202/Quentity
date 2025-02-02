@@ -45,7 +45,7 @@ public class User extends com.quentity.entity.Entity<User> implements UserDetail
     public static final String DEFAULT = "default";
 
     @IndexedEmbedded
-    private FldString username;
+    public FldString username;
 
     @JsonIgnore
     private String hashedPassword;
