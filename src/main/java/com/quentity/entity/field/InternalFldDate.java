@@ -1,6 +1,7 @@
 package com.quentity.entity.field;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.dependency.Uses;
 import jakarta.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.util.Objects;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
+@Uses(DatePicker.class)
 public abstract class InternalFldDate extends Fld<InternalFldDate, LocalDate> {
 
     @Transient
@@ -115,10 +117,10 @@ public abstract class InternalFldDate extends Fld<InternalFldDate, LocalDate> {
     @Override
     protected void setPresentationValue(InternalFldDate InternalFldDate) {
         if (InternalFldDate != null) {
-            datePicker.setValue(InternalFldDate.getDateValue());
-            datePicker.setRequired(InternalFldDate.isRequired());
-            datePicker.setVisible(InternalFldDate.isVisibleField());
-            datePicker.setEnabled(InternalFldDate.isEditable());
+            InternalFldDate.setDateValue(getDateValue());
+            InternalFldDate.setRequired(isRequired());
+            InternalFldDate.setVisible(isVisibleField());
+            InternalFldDate.setEnabled(isEditable());
         } else
             datePicker.clear();
     }

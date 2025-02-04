@@ -11,6 +11,7 @@ import com.quentity.reflection.Reflector;
 import com.querydsl.jpa.impl.AbstractJPAQuery;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.grid.GridMultiSelectionModel;
 import com.vaadin.flow.component.grid.contextmenu.GridContextMenu;
@@ -38,6 +39,7 @@ import static com.quentity.entity.Entity.getReferenceFieldTitle;
 import static com.quentity.misc.Utils.isInheritedFrom;
 
 @EqualsAndHashCode
+@Uses(Grid.class)
 public abstract class InternalMultiEntitiesReferences<R extends InternalMultiEntitiesReferences, T extends Entity> extends Res<InternalMultiEntitiesReferences<InternalMultiEntitiesReferences, T>> implements HasValue<List<T>>, HasReflect {
     @Transient
     @Setter

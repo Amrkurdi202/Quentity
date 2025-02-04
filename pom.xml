@@ -452,6 +452,9 @@
                                 <phase>compile</phase>
                             </execution>
                         </executions>
+                        <configuration>
+                            <optimizeBundle>false</optimizeBundle>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

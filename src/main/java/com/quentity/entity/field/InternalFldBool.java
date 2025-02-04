@@ -1,6 +1,7 @@
 package com.quentity.entity.field;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.Uses;
 import jakarta.persistence.Transient;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -11,6 +12,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
+@Uses(Checkbox.class)
 public abstract class InternalFldBool extends Fld<InternalFldBool, Boolean> {
     @Transient
     @EqualsAndHashCode.Exclude

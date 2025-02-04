@@ -10,6 +10,7 @@ import com.querydsl.jpa.impl.JPAQuery;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -30,6 +31,8 @@ import java.lang.reflect.InvocationTargetException;
 
 @Embeddable
 @EqualsAndHashCode
+@Uses(ComboBox.class)
+@Uses(Button.class)
 public abstract class InternalSingleEntityReference<R extends InternalSingleEntityReference, T extends Entity> extends Res<InternalSingleEntityReference<R, T>> implements HasValue<T>, HasReflect {
     @Transient
     @EqualsAndHashCode.Exclude

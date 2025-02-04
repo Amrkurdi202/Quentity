@@ -1,6 +1,7 @@
 package com.quentity.entity.field;
 
 import com.quentity.misc.LanguageUtil;
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.textfield.TextField;
 import jakarta.persistence.Transient;
 import lombok.AccessLevel;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
+@Uses(TextField.class)
 public abstract class InternalFldString extends Fld<InternalFldString, String> {
     @Transient
     @EqualsAndHashCode.Exclude

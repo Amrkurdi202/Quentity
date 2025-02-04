@@ -33,7 +33,8 @@ public class Semester extends Entity<Semester> {
             if (endIndex != -1) {
                 fieldValue = fieldValue.substring(endIndex + 1);
             }
-            name.setFieldValue(newValue.getMonthValue() + "/" + newValue.getYear() + "-" + fieldValue);
+            if (newValue != null)
+                name.setFieldValue(newValue.getMonthValue() + "/" + newValue.getYear() + "-" + fieldValue);
         });
         endDate.onFieldChanged((oldValue, newValue) -> {
             String fieldValue = name.getFieldValue();
@@ -41,7 +42,8 @@ public class Semester extends Entity<Semester> {
             if (endIndex != -1) {
                 fieldValue = fieldValue.substring(0, endIndex);
             }
-            name.setFieldValue(fieldValue + "-" + newValue.getMonthValue() + "/" + newValue.getYear());
+            if (newValue != null)
+                name.setFieldValue(fieldValue + "-" + newValue.getMonthValue() + "/" + newValue.getYear());
         });
     }
 

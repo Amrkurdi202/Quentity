@@ -7,6 +7,7 @@ import com.quentity.entity.field.MultiEntitiesReferences;
 import com.quentity.entity.field.SingleEntityReference;
 import com.quentity.project.education.Course;
 import com.quentity.project.education.types.Semester;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,8 +25,9 @@ public class StudentCourses extends Entity<StudentCourses> {
     public MultiEntitiesReferences<Course> courses;
 
     public void define(StudentCourses studentCourses) {
-        student.setRequired(true);
-        semester.setRequired(true);
+        studentCourses.student.setRequired(true);
+        studentCourses.semester.setRequired(true);
+        new HorizontalLayout(studentCourses.student, studentCourses.semester);
     }
 
     @Autowired()

@@ -1,5 +1,6 @@
 package com.quentity.entity.field;
 
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.timepicker.TimePicker;
 import jakarta.persistence.Transient;
 import lombok.AccessLevel;
@@ -14,6 +15,7 @@ import java.time.LocalTime;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
+@Uses(TimePicker.class)
 public abstract class InternalFldTime extends Fld<InternalFldTime, LocalTime> {
 
     @Transient
